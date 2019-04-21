@@ -44,10 +44,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -64,6 +72,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Z.EntityFramework.Plus.EF6, Version=1.8.25.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.1.8.25\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -78,8 +89,69 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201904211814512_InitDatabase.cs" />
+    <Compile Include="Migrations\201904211814512_InitDatabase.Designer.cs">
+      <DependentUpon>201904211814512_InitDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
+    <Compile Include="Schema\Entity\Account.cs" />
+    <Compile Include="Schema\Entity\AccountGroup.cs" />
+    <Compile Include="Schema\Entity\Achievement.cs" />
+    <Compile Include="Schema\Entity\AchievementLevel.cs" />
+    <Compile Include="Schema\Entity\AchievementPrize.cs" />
+    <Compile Include="Schema\Entity\AchievementType.cs" />
+    <Compile Include="Schema\Entity\AdmissionNew.cs" />
+    <Compile Include="Schema\Entity\BirthInfo.cs" />
+    <Compile Include="Schema\Entity\CareerType.cs" />
+    <Compile Include="Schema\Entity\CircumstanceType.cs" />
+    <Compile Include="Schema\Entity\Class.cs" />
+    <Compile Include="Schema\Entity\ConductType.cs" />
+    <Compile Include="Schema\Entity\Confiuration.cs" />
+    <Compile Include="Schema\Entity\ContactInfo.cs" />
+    <Compile Include="DataContext.cs" />
+    <Compile Include="Schema\Entity\Department.cs" />
+    <Compile Include="Schema\Entity\Document.cs" />
+    <Compile Include="Schema\Entity\DocumentType.cs" />
+    <Compile Include="Schema\Entity\ElectionType.cs" />
+    <Compile Include="Schema\Entity\EnrollmentArea.cs" />
+    <Compile Include="Schema\Entity\ErrorMsg.cs" />
+    <Compile Include="Schema\Entity\Ethnic.cs" />
+    <Compile Include="Schema\Entity\Faculty.cs" />
+    <Compile Include="Schema\Entity\Family.cs" />
+    <Compile Include="Schema\Entity\FamilyMember.cs" />
+    <Compile Include="Schema\Entity\FunctionInScreen.cs" />
+    <Compile Include="Schema\Entity\HighSchoolResult.cs" />
+    <Compile Include="Schema\Entity\HightSchoolPosition.cs" />
+    <Compile Include="Schema\Entity\HightSchoolYear.cs" />
+    <Compile Include="Schema\Entity\IdentityInfo.cs" />
+    <Compile Include="Schema\Entity\Insurance.cs" />
+    <Compile Include="Schema\Entity\InsuranceDuration.cs" />
+    <Compile Include="Schema\Entity\InsuranceType.cs" />
+    <Compile Include="Schema\Entity\LearningAbility.cs" />
+    <Compile Include="Schema\Entity\Nationality.cs" />
+    <Compile Include="Schema\Entity\Permission.cs" />
+    <Compile Include="Schema\Entity\PersonalInfo.cs" />
+    <Compile Include="Schema\Entity\PositionType.cs" />
+    <Compile Include="Schema\Entity\Program.cs" />
+    <Compile Include="Schema\Entity\RelationType.cs" />
+    <Compile Include="Schema\Entity\Religion.cs" />
+    <Compile Include="Schema\Entity\Screen.cs" />
+    <Compile Include="Schema\Entity\Slide.cs" />
+    <Compile Include="Schema\Entity\Student.cs" />
+    <Compile Include="Schema\Entity\Subject.cs" />
+    <Compile Include="Schema\Entity\sysdiagram.cs" />
+    <Compile Include="Schema\Entity\Talent.cs" />
+    <Compile Include="Schema\Entity\TalentType.cs" />
+    <Compile Include="Schema\Entity\UniversityExamResult.cs" />
+    <Compile Include="Schema\Entity\UniversityInfo.cs" />
+    <Compile Include="Schema\Entity\UserInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904211814512_InitDatabase.resx">
+      <DependentUpon>201904211814512_InitDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

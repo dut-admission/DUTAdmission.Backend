@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace DUTAdmissionSystem.Database.Schema.Base
 {
@@ -19,6 +16,7 @@ namespace DUTAdmissionSystem.Database.Schema.Base
 
         public bool DelFlag { set; get; } = false;
     }
+
     public abstract class TableHaveIdInt : Table
     {
         [Key]
