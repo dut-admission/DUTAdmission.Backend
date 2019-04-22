@@ -23,7 +23,7 @@
         public virtual DbSet<AchievementLevel> AchievementLevels { get; set; }
         public virtual DbSet<AchievementPrize> AchievementPrizes { get; set; }
         public virtual DbSet<AchievementType> AchievementTypes { get; set; }
-        public virtual DbSet<AdmissionNew> AdmissionNews { get; set; }
+        public virtual DbSet<AdmissionNews> AdmissionNews { get; set; }
         public virtual DbSet<BirthInfo> BirthInfoes { get; set; }
         public virtual DbSet<CareerType> CareerTypes { get; set; }
         public virtual DbSet<CircumstanceType> CircumstanceTypes { get; set; }
