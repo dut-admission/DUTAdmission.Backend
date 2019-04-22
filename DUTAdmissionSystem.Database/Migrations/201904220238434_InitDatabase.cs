@@ -62,8 +62,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.BirthInfo", t => t.BirthInfoId, cascadeDelete: true)
-                .ForeignKey("dbo.ContactInfo", t => t.ContactId, cascadeDelete: true)
-                .ForeignKey("dbo.IdentityInfo", t => t.IdentityId, cascadeDelete: true)
+                .ForeignKey("dbo.ContactInfo", t => t.ContactId)
+                .ForeignKey("dbo.IdentityInfo", t => t.IdentityId)
                 .Index(t => t.ContactId)
                 .Index(t => t.BirthInfoId)
                 .Index(t => t.IdentityId);
@@ -118,9 +118,9 @@ namespace DUTAdmissionSystem.Database.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.CareerType", t => t.CareerId)
-                .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfo, cascadeDelete: true)
-                .ForeignKey("dbo.RelationType", t => t.RelationId, cascadeDelete: true)
-                .ForeignKey("dbo.ContactInfo", t => t.ContactId, cascadeDelete: true)
+                .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfo)
+                .ForeignKey("dbo.RelationType", t => t.RelationId)
+                .ForeignKey("dbo.ContactInfo", t => t.ContactId)
                 .Index(t => t.RelationId)
                 .Index(t => t.PersonalInfo)
                 .Index(t => t.CareerId)
@@ -155,7 +155,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
-                .ForeignKey("dbo.FamilyMember", t => t.MemberId, cascadeDelete: true)
+                .ForeignKey("dbo.FamilyMember", t => t.MemberId)
                 .Index(t => t.StudentId)
                 .Index(t => t.MemberId);
             
@@ -183,9 +183,9 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CircumstanceType", t => t.CircumstanceId, cascadeDelete: true)
+                .ForeignKey("dbo.CircumstanceType", t => t.CircumstanceId)
                 .ForeignKey("dbo.Class", t => t.ClassId, cascadeDelete: true)
-                .ForeignKey("dbo.ElectionType", t => t.ElectionId, cascadeDelete: true)
+                .ForeignKey("dbo.ElectionType", t => t.ElectionId)
                 .ForeignKey("dbo.EnrollmentArea", t => t.EnrollmentAreaId, cascadeDelete: true)
                 .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfoId, cascadeDelete: true)
                 .ForeignKey("dbo.UserInfo", t => t.UserInfoId, cascadeDelete: true)
@@ -546,7 +546,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.InsuranceDuration", t => t.DurationId, cascadeDelete: true)
+                .ForeignKey("dbo.InsuranceDuration", t => t.DurationId)
                 .Index(t => t.DurationId);
             
             CreateTable(
