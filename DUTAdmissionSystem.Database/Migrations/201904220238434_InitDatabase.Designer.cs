@@ -13,7 +13,7 @@ namespace DUTAdmissionSystem.Database.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201904211814512_InitDatabase"; }
+            get { return "201904220238434_InitDatabase"; }
         }
         
         string IMigrationMetadata.Source

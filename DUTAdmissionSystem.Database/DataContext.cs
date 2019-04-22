@@ -149,32 +149,37 @@
                 .HasMany(e => e.FamilyMembers)
                 .WithRequired(e => e.CareerType)
                 .HasForeignKey(e => e.CareerId)
-                .WillCascadeOnDelete(false); ;
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CircumstanceType>()
                 .HasMany(e => e.Students)
                 .WithRequired(e => e.CircumstanceType)
-                .HasForeignKey(e => e.CircumstanceId);
+                .HasForeignKey(e => e.CircumstanceId)
+                .WillCascadeOnDelete(false); ;
 
             modelBuilder.Entity<ContactInfo>()
                 .HasMany(e => e.FamilyMembers)
                 .WithRequired(e => e.ContactInfo)
-                .HasForeignKey(e => e.ContactId);
+                .HasForeignKey(e => e.ContactId)
+                .WillCascadeOnDelete(false); ;
 
             modelBuilder.Entity<ContactInfo>()
                 .HasMany(e => e.UserInfoes)
                 .WithRequired(e => e.ContactInfo)
-                .HasForeignKey(e => e.ContactId);
+                .HasForeignKey(e => e.ContactId)
+                .WillCascadeOnDelete(false); 
 
             modelBuilder.Entity<ElectionType>()
                 .HasMany(e => e.Students)
                 .WithRequired(e => e.ElectionType)
-                .HasForeignKey(e => e.ElectionId);
+                .HasForeignKey(e => e.ElectionId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<FamilyMember>()
                 .HasMany(e => e.Families)
                 .WithRequired(e => e.FamilyMember)
-                .HasForeignKey(e => e.MemberId);
+                .HasForeignKey(e => e.MemberId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<IdentityInfo>()
                 .Property(e => e.DateOfIssue)
@@ -183,22 +188,26 @@
             modelBuilder.Entity<IdentityInfo>()
                 .HasMany(e => e.UserInfoes)
                 .WithRequired(e => e.IdentityInfo)
-                .HasForeignKey(e => e.IdentityId);
+                .HasForeignKey(e => e.IdentityId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<InsuranceDuration>()
                 .HasMany(e => e.InsuranceTypes)
                 .WithRequired(e => e.InsuranceDuration)
-                .HasForeignKey(e => e.DurationId);
+                .HasForeignKey(e => e.DurationId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PersonalInfo>()
                 .HasMany(e => e.FamilyMembers)
                 .WithRequired(e => e.PersonalInfo1)
-                .HasForeignKey(e => e.PersonalInfo);
+                .HasForeignKey(e => e.PersonalInfo)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RelationType>()
                 .HasMany(e => e.FamilyMembers)
                 .WithRequired(e => e.RelationType)
-                .HasForeignKey(e => e.RelationId);
+                .HasForeignKey(e => e.RelationId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Student>()
                 .Property(e => e.DateOfJoiningYouthGroup)

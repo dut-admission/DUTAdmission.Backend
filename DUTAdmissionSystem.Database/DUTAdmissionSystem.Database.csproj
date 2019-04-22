@@ -89,9 +89,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201904211814512_InitDatabase.cs" />
-    <Compile Include="Migrations\201904211814512_InitDatabase.Designer.cs">
-      <DependentUpon>201904211814512_InitDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201904220238434_InitDatabase.cs" />
+    <Compile Include="Migrations\201904220238434_InitDatabase.Designer.cs">
+      <DependentUpon>201904220238434_InitDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,8 +149,8 @@
     <Compile Include="Schema\Entity\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904211814512_InitDatabase.resx">
-      <DependentUpon>201904211814512_InitDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904220238434_InitDatabase.resx">
+      <DependentUpon>201904220238434_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
