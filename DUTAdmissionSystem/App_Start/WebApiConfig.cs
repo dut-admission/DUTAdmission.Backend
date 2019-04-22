@@ -28,6 +28,13 @@ namespace DUTAdmissionSystem
                 new { controller = "AdmissionNews", action = "GetAdmissionNews" },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            config.Routes.MapHttpRoute(
+                "GetAdmissionNewsByIdApi",
+                "api/addmissionnews/{id}",
+                new { controller = "AdmissionNews", action = "GetAdmissionNewsById", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
         }
     }
 }

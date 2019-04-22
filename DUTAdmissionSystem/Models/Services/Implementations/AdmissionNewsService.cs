@@ -52,5 +52,18 @@ namespace DUTAdmissionSystem.Models.Services.Implementations
                 throw e;
             }
         }
+
+        public AdmissionNewsResponseDto GetAdmissionNewsById(int id)
+        {
+            try
+            {
+                return new AdmissionNewsResponseDto(db.AdmissionNews.FirstOrDefault(s => !s.DelFlag && s.Id == id));
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
     }
 }

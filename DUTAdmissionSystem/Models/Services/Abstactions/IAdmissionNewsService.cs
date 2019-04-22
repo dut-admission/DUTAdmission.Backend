@@ -12,5 +12,7 @@ namespace DUTAdmissionSystem.Models.Services.Abstactions
     {
         List<AdmissionNewsResponseDto> GetAdmissionNews(AdmissionNewsConditionSearch conditionSearch);
 
+        AdmissionNewsResponseDto GetAdmissionNewsById(int id);
+
     }
 }

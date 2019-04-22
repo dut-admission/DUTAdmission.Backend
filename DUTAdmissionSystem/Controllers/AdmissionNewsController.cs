@@ -31,6 +31,22 @@ namespace DUTAdmissionSystem.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetAdmissionNewsById")]
+        public IHttpActionResult GetAdmissionNewsById(int id)
+        {
+            try
+            {
+                var result = _admissionNewsService.GetAdmissionNewsById(id);
+                if (result == null)
+                    return BadRequest("Cannot found");
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
-}
 }
