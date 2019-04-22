@@ -224,12 +224,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
-    <Compile Include="Controllers\AdmissionNesController.cs" />
+    <Compile Include="Commons\Paging.cs" />
+    <Compile Include="Controllers\AdmissionNewsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
+    <Compile Include="Models\Dtos\OutputDtos\AdmissionNewsResponseDto.cs" />
+    <Compile Include="Models\Services\Abstactions\IAdmissionNewsService.cs" />
+    <Compile Include="Models\Services\Implementations\AdmissionNewsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,9 +288,6 @@
     <Folder Include="Areas\Public\Controllers\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Public\Views\Shared\" />
-    <Folder Include="Models\Dtos\InputDtos\" />
-    <Folder Include="Models\Dtos\OutputDtos\" />
-    <Folder Include="Models\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\web.config" />
