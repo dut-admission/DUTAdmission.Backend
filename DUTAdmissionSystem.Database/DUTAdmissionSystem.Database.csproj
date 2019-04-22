@@ -102,7 +102,7 @@
     <Compile Include="Schema\Entity\AchievementLevel.cs" />
     <Compile Include="Schema\Entity\AchievementPrize.cs" />
     <Compile Include="Schema\Entity\AchievementType.cs" />
-    <Compile Include="Schema\Entity\AdmissionNew.cs" />
+    <Compile Include="Schema\Entity\AdmissionNews.cs" />
     <Compile Include="Schema\Entity\BirthInfo.cs" />
     <Compile Include="Schema\Entity\CareerType.cs" />
     <Compile Include="Schema\Entity\CircumstanceType.cs" />

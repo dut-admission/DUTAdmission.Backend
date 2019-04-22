@@ -1,13 +1,9 @@
-﻿using DUTAdmissionSystem.Models.Dtos.InputDtos;
-using DUTAdmissionSystem.Models.Services.Abstactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿    using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
 using System.Web.Http;
 
-namespace DUTAdmissionSystem.Controllers
+namespace DUTAdmissionSystem.Areas.Public.Controllers
 {
     public class AdmissionNewsController : ApiController
     {
@@ -40,7 +36,7 @@ namespace DUTAdmissionSystem.Controllers
             {
                 var result = _admissionNewsService.GetAdmissionNewsById(id);
                 if (result == null)
-                    return BadRequest("Cannot found");
+                    return BadRequest(AppMessage.BadRequestNotFound);
                 return Ok(result);
             }
             catch (System.Exception e)

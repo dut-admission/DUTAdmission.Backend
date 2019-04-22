@@ -1,11 +1,8 @@
 ﻿using DUTAdmissionSystem.Database.Schema.Entity;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace DUTAdmissionSystem.Models.Dtos.OutputDtos
+namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
 {
     public class AdmissionNewsResponseDto
     {
@@ -29,7 +26,6 @@ namespace DUTAdmissionSystem.Models.Dtos.OutputDtos
 
         public AdmissionNewsResponseDto()
         {
-
         }
 
         public AdmissionNewsResponseDto(int id, string title, string imageUrl, string summary, string content, DateTime? createdAt)
@@ -42,7 +38,7 @@ namespace DUTAdmissionSystem.Models.Dtos.OutputDtos
             CreatedAt = createdAt;
         }
 
-        public AdmissionNewsResponseDto(AdmissionNew admissionNew)
+        public AdmissionNewsResponseDto(AdmissionNews admissionNew)
         {
             Id = admissionNew.Id;
             Title = admissionNew.Title;
