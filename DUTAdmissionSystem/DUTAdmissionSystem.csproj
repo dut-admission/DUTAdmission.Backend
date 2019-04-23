@@ -305,6 +305,7 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Authorization\Views\web.config" />
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DUTAdmissionSystem.Database\DUTAdmissionSystem.Database.csproj">

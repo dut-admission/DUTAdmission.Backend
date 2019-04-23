@@ -45,7 +45,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 
         public AdmissionNewsResponseDto GetAdmissionNewsById(int id)
         {
-            return new AdmissionNewsResponseDto(db.AdmissionNews.FirstOrDefault(s => !s.DelFlag && s.Id == id));
+            var AdmissionNews =  db.AdmissionNews.FirstOrDefault(s => !s.DelFlag && s.Id == id);
+            return AdmissionNews == null ? null : new AdmissionNewsResponseDto(a);
         }
     }
 }
