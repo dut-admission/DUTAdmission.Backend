@@ -2,51 +2,53 @@
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
 using DUTAdmissionSystem.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 {
-    public class AdmissionNewsService : IAdmissionNewsService
+    public class SlideService:ISlideService
     {
         private readonly DataContext db = new DataContext();
 
-        public List<AdmissionNewsResponseDto> GetAdmissionNews(AdmissionNewsConditionSearch conditionSearch)
+        public List<SlideResponseDto> GetSlide(SlideConditionSearch conditionSearch)
         {
             // Nếu không tồn tại điều kiện tìm kiếm thì khởi tạo giá trị tìm kiếm ban đầu
             if (conditionSearch == null)
             {
-                conditionSearch = new AdmissionNewsConditionSearch();
+                conditionSearch = new SlideConditionSearch();
             }
 
             // Lấy các thông tin dùng để phân trang
-            var paging = new EducationManagement.Commons.Paging(db.AdmissionNews.Count(x => !x.DelFlag &&
+            var paging = new EducationManagement.Commons.Paging(db.Slides.Count(x => !x.DelFlag &&
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                 , conditionSearch.CurrentPage, conditionSearch.PageSize);
 
             // Tìm kiếm và lấy dữ liệu theo trang
-            var listOfNews = db.AdmissionNews.Where(x => !x.DelFlag &&
+            var listOfSlide = db.Slides.Where(x => !x.DelFlag &&
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                 .OrderBy(x => x.Id)
                 .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new AdmissionNewsResponseDto
+                .Take(paging.NumberOfRecord).Select(x => new SlideResponseDto
                 {
                     Id = x.Id,
                     Title = x.Title,
                     ImageUrl = x.ImageUrl,
-                    Summary = x.Summary,
+                    IsShowing = x.IsShowing,
                     Content = x.Content,
+                    Url=x.Url,
                     CreatedAt = x.CreatedAt
                 }).ToList();
-            return listOfNews == null ? null : listOfNews;
+            return listOfSlide ?? listOfSlide;
         }
 
-        public AdmissionNewsResponseDto GetAdmissionNewsById(int id)
+        public SlideResponseDto GetSlideById(int id)
         {
-            var AdmissionNews =  db.AdmissionNews.FirstOrDefault(s => !s.DelFlag && s.Id == id);
-            return AdmissionNews == null ? null : new AdmissionNewsResponseDto(AdmissionNews);
+            return new SlideResponseDto(db.Slides.FirstOrDefault(s => !s.DelFlag && s.Id == id));
         }
     }
 }

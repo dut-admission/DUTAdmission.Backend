@@ -30,6 +30,35 @@ namespace DUTAdmissionSystem.Areas.Public
                 defaults: new { controller = "AdmissionNews", action = "GetAdmissionNewsById", id = RouteParameter.Optional },
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
+
+            context.Routes.MapHttpRoute(
+                name: "GetSlides",
+                routeTemplate: "api/public/slides",
+                defaults: new { controller = "Slide", action = "GetSlides", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "GetSlideById",
+                routeTemplate: "api/public/slides/{id}",
+                defaults: new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "GetUniversityInfo",
+                routeTemplate: "api/public/university-info",
+                defaults: new { controller = "UniversityInfo", action = "GetUniversityInfo", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "GetUniversityInfoById",
+                routeTemplate: "api/public/university-info/{id}",
+                defaults: new { controller = "UniversityInfo", action = "GetUniversityInforById", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
         }
     }
 }
