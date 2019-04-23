@@ -45,6 +45,20 @@ namespace DUTAdmissionSystem.Areas.Public
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            context.Routes.MapHttpRoute(
+                name: "GetUniversityInfo",
+                routeTemplate: "api/public/university-info",
+                defaults: new { controller = "UniversityInfo", action = "GetUniversityInfo", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "GetUniversityInfoById",
+                routeTemplate: "api/public/university-info/{id}",
+                defaults: new { controller = "UniversityInfo", action = "GetUniversityInforById", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
         }
     }
 }

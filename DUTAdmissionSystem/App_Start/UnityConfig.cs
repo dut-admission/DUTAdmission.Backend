@@ -18,6 +18,7 @@ namespace DUTAdmissionSystem
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IAdmissionNewsService, AdmissionNewsService>();
             container.RegisterType<ISlideService, SlideService>();
+            container.RegisterType<IUniversityInfoService, UniversityInfoService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
