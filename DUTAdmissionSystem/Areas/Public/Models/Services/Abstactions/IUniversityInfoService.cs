@@ -12,6 +12,5 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions
     {
         List<UniversityInfoDto> GetUniversityInfo(UniversityInfoConditionSearch conditionSearch);
 
-        UniversityInfoDto GetUniversityInfoById(int id);
     }
 }

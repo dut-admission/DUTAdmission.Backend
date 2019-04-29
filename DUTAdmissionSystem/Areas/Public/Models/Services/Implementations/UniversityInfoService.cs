@@ -50,9 +50,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             return listOfUniversityInfo ?? listOfUniversityInfo;
         }
 
-        public UniversityInfoDto GetUniversityInfoById(int id)
-        {
-            return new UniversityInfoDto(db.UniversityInfoes.FirstOrDefault(s => !s.DelFlag && s.Id == id));
-        }
+        
     }
 }
