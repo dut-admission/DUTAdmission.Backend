@@ -225,12 +225,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Public\Controllers\AdmissionNewsController.cs" />
+    <Compile Include="Areas\Public\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Public\Controllers\SlideController.cs" />
     <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\AdmissionNewsResponseDto.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\OutputDtos\ProfileResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstactions\IAdmissionNewsService.cs" />
