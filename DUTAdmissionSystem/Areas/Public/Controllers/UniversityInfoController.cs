@@ -28,21 +28,6 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
-        [HttpGet]
-        [ActionName("GetUniversityInforById")]
-        public IHttpActionResult GetUniversityInforById(int id)
-        {
-            try
-            {
-                var result = _universityInfoService.GetUniversityInfoById(id);
-                if (result == null)
-                    return BadRequest(AppMessage.BadRequestNotFound);
-                return Ok(result);
-            }
-            catch (System.Exception e)
-            {
-                return InternalServerError(e);
-            }
-        }
+       
     }
 }
