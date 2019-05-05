@@ -67,6 +67,7 @@
         public virtual DbSet<UniversityExamResult> UniversityExamResults { get; set; }
         public virtual DbSet<UniversityInfo> UniversityInfoes { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
+        public virtual DbSet<YouthGroupInfo> YouthGroupInfos { get; set; }
 
 
 
@@ -208,10 +209,6 @@
                 .WithRequired(e => e.RelationType)
                 .HasForeignKey(e => e.RelationId)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Student>()
-                .Property(e => e.DateOfJoiningYouthGroup)
-                .HasPrecision(0);
         }
 
         /// <summary>

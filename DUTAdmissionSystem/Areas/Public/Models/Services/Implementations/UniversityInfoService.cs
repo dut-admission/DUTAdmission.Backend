@@ -1,6 +1,6 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
-using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System;
@@ -51,9 +51,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             return listOfUniversityInfo ?? listOfUniversityInfo;
         }
 
-        public UniversityInfoDto GetUniversityInfoById(int id)
-        {
-            return new UniversityInfoDto(db.UniversityInfoes.FirstOrDefault(s => !s.DelFlag && s.Id == id));
-        }
+        
     }
 }

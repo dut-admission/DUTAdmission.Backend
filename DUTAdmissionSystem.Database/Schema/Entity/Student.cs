@@ -37,16 +37,6 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
 
         public int ElectionId { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime DateOfJoiningYouthGroup { get; set; }
-
-        [StringLength(255)]
-        public string PlaceOfJoinYouthGroup { get; set; }
-
-        public bool HavingBooksOfYouthGroup { get; set; }
-
-        public bool HavingCardsOfYouthGroup { get; set; }
-
         [StringLength(100)]
         public string HightSchoolName { get; set; }
 
@@ -79,6 +69,10 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         public virtual PersonalInfo PersonalInfo { get; set; }
 
         public virtual UserInfo UserInfo { get; set; }
+
+        public int? YouthGroupInfoId { get; set; }
+
+        public virtual YouthGroupInfo YouthGroupInfo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Talent> Talents { get; set; }
