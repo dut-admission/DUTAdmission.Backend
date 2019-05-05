@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace DUTAdmissionSystem.Areas.Authorization
+namespace DUTAdmissionSystem.Areas.Authentication
 {
-    public class AuthorizationAreaRegistration : AreaRegistration 
+    public class AuthenticationAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Authorization";
+                return "Authentication";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Authorization_default",
-                "Authorization/{controller}/{action}/{id}",
+                "Authentication_default",
+                "Authentication/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
