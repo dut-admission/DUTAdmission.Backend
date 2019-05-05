@@ -1,4 +1,4 @@
-using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Implementations;
 using System.Web.Http;
 using Unity;

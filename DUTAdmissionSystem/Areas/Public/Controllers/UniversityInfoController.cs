@@ -1,6 +1,6 @@
 ﻿using DUTAdmissionSystem.App_Resources.Constants;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
-using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.Public.Controllers

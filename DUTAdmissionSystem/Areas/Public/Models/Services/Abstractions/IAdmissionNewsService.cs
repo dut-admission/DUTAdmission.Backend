@@ -2,7 +2,7 @@
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using System.Collections.Generic;
 
-namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions
+namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
 {
     public interface IAdmissionNewsService
     {
