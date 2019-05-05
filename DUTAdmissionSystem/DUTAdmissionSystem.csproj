@@ -235,9 +235,9 @@
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\ProfileResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
-    <Compile Include="Areas\Public\Models\Services\Abstactions\IAdmissionNewsService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Abstactions\ISlideService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Abstactions\IUniversityInfoService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\IAdmissionNewsService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\ISlideService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\IUniversityInfoService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\AdmissionNewsService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
