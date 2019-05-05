@@ -1,6 +1,7 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
+using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }
 
             // Lấy các thông tin dùng để phân trang
-            var paging = new EducationManagement.Commons.Paging(db.AdmissionNews.Count(x => !x.DelFlag &&
+            var paging = new Paging(db.AdmissionNews.Count(x => !x.DelFlag &&
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                 , conditionSearch.CurrentPage, conditionSearch.PageSize);

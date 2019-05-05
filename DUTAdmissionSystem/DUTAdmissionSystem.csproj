@@ -59,8 +59,17 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.4.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.5.4.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.4.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
@@ -68,6 +77,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.4.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -195,7 +207,15 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Authorization\AuthorizationAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\LoginDto.cs" />
+    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\GroupResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\LoginResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\TokenInfo.cs" />
+    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\UserResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Models\Services\Abstactions\IAuthenticationService.cs" />
+    <Compile Include="Areas\Authentication\Models\Services\Implementations\AuthenticationService.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -240,7 +260,13 @@
     <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Commons\AccountVerification.cs" />
+    <Compile Include="Commons\AuthenticationValidation.cs" />
+    <Compile Include="Commons\Constants.cs" />
+    <Compile Include="Commons\FunctionCommon.cs" />
+    <Compile Include="Commons\JwtAuthenticationExtensions.cs" />
     <Compile Include="Commons\Paging.cs" />
+    <Compile Include="Commons\TokenValidationHandler.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -294,16 +320,14 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Authorization\Controllers\" />
-    <Folder Include="Areas\Authorization\Models\" />
-    <Folder Include="Areas\Authorization\Views\Shared\" />
+    <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Public\Views\Shared\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Authorization\Views\web.config" />
+    <Content Include="Areas\Authentication\Views\web.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
