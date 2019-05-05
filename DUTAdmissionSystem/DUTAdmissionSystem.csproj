@@ -214,7 +214,7 @@
     <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\LoginResponseDto.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\TokenInfo.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\UserResponseDto.cs" />
-    <Compile Include="Areas\Authentication\Models\Services\Abstactions\IAuthenticationService.cs" />
+    <Compile Include="Areas\Authentication\Models\Services\Abstractions\IAuthenticationService.cs" />
     <Compile Include="Areas\Authentication\Models\Services\Implementations\AuthenticationService.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
