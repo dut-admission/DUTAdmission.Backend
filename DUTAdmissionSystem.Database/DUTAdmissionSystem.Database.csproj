@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201905050554496_AddYouthGroupInfo.Designer.cs">
       <DependentUpon>201905050554496_AddYouthGroupInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905060705582_StringLengthForIdentityNumber.cs" />
+    <Compile Include="Migrations\201905060705582_StringLengthForIdentityNumber.Designer.cs">
+      <DependentUpon>201905060705582_StringLengthForIdentityNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -112,7 +116,7 @@
     <Compile Include="Schema\Entity\CircumstanceType.cs" />
     <Compile Include="Schema\Entity\Class.cs" />
     <Compile Include="Schema\Entity\ConductType.cs" />
-    <Compile Include="Schema\Entity\Confiuration.cs" />
+    <Compile Include="Schema\Entity\Configuration.cs" />
     <Compile Include="Schema\Entity\ContactInfo.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Schema\Entity\Department.cs" />
@@ -159,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905050554496_AddYouthGroupInfo.resx">
       <DependentUpon>201905050554496_AddYouthGroupInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905060705582_StringLengthForIdentityNumber.resx">
+      <DependentUpon>201905060705582_StringLengthForIdentityNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

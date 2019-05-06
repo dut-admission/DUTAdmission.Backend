@@ -7,12 +7,14 @@
     using System.Data.Entity.Infrastructure;
     using System.Web;
     using Z.EntityFramework.Plus;
+    using Configuration = Schema.Entity.Configuration;
 
     public partial class DataContext : DbContext
     {
         public DataContext()
             : base(@"data source=103.95.197.121;initial catalog=DUTAdmission;User Id=sa;Password=Server2019@)!(;")
         {
+            // Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataContext, Configuration>());
         }
 
         public virtual DbSet<AuditEntry> AuditEntries { get; set; }
@@ -29,7 +31,7 @@
         public virtual DbSet<CircumstanceType> CircumstanceTypes { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
         public virtual DbSet<ConductType> ConductTypes { get; set; }
-        public virtual DbSet<Confiuration> Confiurations { get; set; }
+        public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<ContactInfo> ContactInfoes { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
@@ -68,9 +70,6 @@
         public virtual DbSet<UniversityInfo> UniversityInfoes { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
         public virtual DbSet<YouthGroupInfo> YouthGroupInfos { get; set; }
-
-
-
 
         public override int SaveChanges()
         {
@@ -168,7 +167,7 @@
                 .HasMany(e => e.UserInfoes)
                 .WithRequired(e => e.ContactInfo)
                 .HasForeignKey(e => e.ContactId)
-                .WillCascadeOnDelete(false); 
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ElectionType>()
                 .HasMany(e => e.Students)
