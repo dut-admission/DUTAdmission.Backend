@@ -18,8 +18,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
         {
             this.authenticationService = authenticationService;
         }
-
-        [Route("login")]
+        
         [HttpPost]
         public IHttpActionResult Login([FromBody] LoginDto dto)
         {

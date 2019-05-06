@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Routing;
+using System.Web.Mvc;
 
 namespace DUTAdmissionSystem.Areas.Authentication
 {
@@ -14,6 +17,12 @@ namespace DUTAdmissionSystem.Areas.Authentication
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            context.Routes.MapHttpRoute(
+                name: "LoginToSystem",
+                routeTemplate: "api/login",
+                defaults: new { controller = "Authentication", action = "Login", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
             context.MapRoute(
                 "Authentication_default",
                 "Authentication/{controller}/{action}/{id}",
