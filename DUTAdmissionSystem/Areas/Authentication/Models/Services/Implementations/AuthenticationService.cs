@@ -1,6 +1,6 @@
 ﻿using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.OutputDtos;
-using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Linq;
