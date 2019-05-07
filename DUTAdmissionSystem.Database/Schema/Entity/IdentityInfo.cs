@@ -15,6 +15,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UserInfoes = new HashSet<UserInfo>();
         }
 
+        [Required]
         [StringLength(15)]
         public string IdentityNumber { get; set; }
 

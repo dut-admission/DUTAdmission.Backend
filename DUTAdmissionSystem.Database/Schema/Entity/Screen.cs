@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             FunctionInScreens = new HashSet<FunctionInScreen>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 

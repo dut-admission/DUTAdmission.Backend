@@ -15,12 +15,16 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Students = new HashSet<Student>();
         }
 
+        [Required]
         public int EthnicId { get; set; }
 
+        [Required]
         public int ReligionId { get; set; }
 
+        [Required]
         public int NationalityId { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string PermanentResidence { get; set; }
 

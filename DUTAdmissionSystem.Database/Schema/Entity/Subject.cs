@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UniversityExamResults = new HashSet<UniversityExamResult>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 

@@ -14,9 +14,11 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Insurances = new HashSet<Insurance>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
         public int DurationId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
