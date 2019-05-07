@@ -257,9 +257,11 @@
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IAdmissionNewsService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\ISlideService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\IStudentProfileService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IUniversityInfoService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\AdmissionNewsService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Implementations\StudentProfileService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />
