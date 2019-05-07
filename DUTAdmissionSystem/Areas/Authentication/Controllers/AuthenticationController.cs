@@ -32,11 +32,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
 
-            var accessToken = JwtAuthenticationExtensions.CreateToken(result);
-
-            result.AccessToken = accessToken;
-
-            output.Headers.Add("Authorization", accessToken);
+            output.Headers.Add("Authorization", result.AccessToken);
 
             return ResponseMessage(output);
         }
