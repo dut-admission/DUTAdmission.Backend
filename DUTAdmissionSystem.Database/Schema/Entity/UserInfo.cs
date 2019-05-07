@@ -15,19 +15,25 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Students = new HashSet<Student>();
         }
 
+        [Required]
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Avatar { get; set; }
 
+        [Required]
         public int ContactId { get; set; }
 
+        [Required]
         public int BirthInfoId { get; set; }
 
+        [Required]
         public int IdentityId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

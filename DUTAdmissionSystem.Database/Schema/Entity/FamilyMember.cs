@@ -2,6 +2,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
 {
     using DUTAdmissionSystem.Database.Schema.Base;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("FamilyMember")]
@@ -13,14 +14,19 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Families = new HashSet<Family>();
         }
 
+        [Required]
         public int RelationId { get; set; }
 
+        [Required]
         public int PersonalInfo { get; set; }
 
+        [Required]
         public int YearOfBirth { get; set; }
 
-        public int CareerId { get; set; }
+        [Required]
+        public int CareerTypeId { get; set; }
 
+        [Required]
         public int ContactId { get; set; }
 
         public virtual CareerType CareerType { get; set; }

@@ -101,6 +101,10 @@
     <Compile Include="Migrations\201905060705582_StringLengthForIdentityNumber.Designer.cs">
       <DependentUpon>201905060705582_StringLengthForIdentityNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905071127362_AddRequiredForEntities.cs" />
+    <Compile Include="Migrations\201905071127362_AddRequiredForEntities.Designer.cs">
+      <DependentUpon>201905071127362_AddRequiredForEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905060705582_StringLengthForIdentityNumber.resx">
       <DependentUpon>201905060705582_StringLengthForIdentityNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905071127362_AddRequiredForEntities.resx">
+      <DependentUpon>201905071127362_AddRequiredForEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

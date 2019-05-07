@@ -16,6 +16,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             HighSchoolResults = new HashSet<HighSchoolResult>();
         }
 
+        [Required]
         public int Year { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

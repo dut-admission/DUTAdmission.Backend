@@ -15,12 +15,15 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UserInfoes = new HashSet<UserInfo>();
         }
 
+        [Required]
         [StringLength(15)]
         public string PhoneNumber { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Email { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Address { get; set; }
 
