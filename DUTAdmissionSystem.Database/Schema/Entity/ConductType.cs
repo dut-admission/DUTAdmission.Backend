@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             HighSchoolResults = new HashSet<HighSchoolResult>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Level { get; set; }
 

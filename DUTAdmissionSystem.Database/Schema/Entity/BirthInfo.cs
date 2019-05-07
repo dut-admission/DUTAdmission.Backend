@@ -15,12 +15,15 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UserInfoes = new HashSet<UserInfo>();
         }
 
+        [Required]
         [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string PlaceOfBirth { get; set; }
 
+        [Required]
         public bool Sex { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

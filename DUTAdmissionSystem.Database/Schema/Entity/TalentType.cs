@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Talents = new HashSet<Talent>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 

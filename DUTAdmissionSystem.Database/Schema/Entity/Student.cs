@@ -22,21 +22,29 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UniversityExamResults = new HashSet<UniversityExamResult>();
         }
 
+        [Required]
         [StringLength(50)]
         public string IdentificationNumber { get; set; }
 
+        [Required]
         public int UserInfoId { get; set; }
 
+        [Required]
         public int ClassId { get; set; }
 
+        [Required]
         public int PersonalInfoId { get; set; }
 
-        public int CircumstanceId { get; set; }
+        [Required]
+        public int CircumstanceTypeId { get; set; }
 
+        [Required]
         public int EnrollmentAreaId { get; set; }
 
-        public int ElectionId { get; set; }
+        [Required]
+        public int ElectionTypeId { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string HightSchoolName { get; set; }
 

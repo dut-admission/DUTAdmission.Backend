@@ -15,6 +15,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Permissions = new HashSet<Permission>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 

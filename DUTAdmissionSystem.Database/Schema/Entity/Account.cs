@@ -7,17 +7,21 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
     [Table("Account")]
     public partial class Account : TableHaveIdInt
     {
+        [Required]
         [StringLength(50)]
         public string UserName { get; set; }
 
-        [StringLength(50)]
+        [Required]
+        [StringLength(255)]
         public string Password { get; set; }
 
         [StringLength(100)]
         public string Token { get; set; }
 
+        [Required]
         public int AccountGroupId { get; set; }
 
+        [Required]
         public int UserInfoId { get; set; }
 
         public virtual AccountGroup AccountGroup { get; set; }

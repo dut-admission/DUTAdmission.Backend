@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             PersonalInfoes = new HashSet<PersonalInfo>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
