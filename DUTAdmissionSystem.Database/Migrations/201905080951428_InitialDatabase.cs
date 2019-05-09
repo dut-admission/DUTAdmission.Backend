@@ -3,7 +3,7 @@ namespace DUTAdmissionSystem.Database.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDatabase : DbMigration
+    public partial class InitialDatabase : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -26,8 +26,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UserName = c.String(maxLength: 50),
-                        Password = c.String(maxLength: 50),
+                        UserName = c.String(nullable: false, maxLength: 50),
+                        Password = c.String(nullable: false, maxLength: 255),
                         Token = c.String(maxLength: 100),
                         AccountGroupId = c.Int(nullable: false),
                         UserInfoId = c.Int(nullable: false),
@@ -38,8 +38,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.UserInfo", t => t.UserInfoId)
                 .ForeignKey("dbo.AccountGroup", t => t.AccountGroupId, cascadeDelete: true)
-                .ForeignKey("dbo.UserInfo", t => t.UserInfoId, cascadeDelete: true)
                 .Index(t => t.AccountGroupId)
                 .Index(t => t.UserInfoId);
             
@@ -48,9 +48,9 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        LastName = c.String(maxLength: 50),
-                        FirstName = c.String(maxLength: 50),
-                        Avatar = c.String(maxLength: 255),
+                        LastName = c.String(nullable: false, maxLength: 50),
+                        FirstName = c.String(nullable: false, maxLength: 50),
+                        Avatar = c.String(nullable: false, maxLength: 255),
                         ContactId = c.Int(nullable: false),
                         BirthInfoId = c.Int(nullable: false),
                         IdentityId = c.Int(nullable: false),
@@ -73,8 +73,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DateOfBirth = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
-                        PlaceOfBirth = c.String(maxLength: 255),
+                        DateOfBirth = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        PlaceOfBirth = c.String(nullable: false, maxLength: 255),
                         Sex = c.Boolean(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
@@ -89,9 +89,9 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        PhoneNumber = c.String(maxLength: 15),
-                        Email = c.String(maxLength: 255),
-                        Address = c.String(maxLength: 255),
+                        PhoneNumber = c.String(nullable: false, maxLength: 15),
+                        Email = c.String(nullable: false, maxLength: 255),
+                        Address = c.String(nullable: false, maxLength: 255),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -106,10 +106,11 @@ namespace DUTAdmissionSystem.Database.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         RelationId = c.Int(nullable: false),
-                        PersonalInfo = c.Int(nullable: false),
+                        PersonalInfoId = c.Int(nullable: false),
                         YearOfBirth = c.Int(nullable: false),
-                        CareerId = c.Int(nullable: false),
+                        CareerTypeId = c.Int(nullable: false),
                         ContactId = c.Int(nullable: false),
+                        StudentId = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -117,21 +118,23 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CareerType", t => t.CareerId)
-                .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfo)
+                .ForeignKey("dbo.CareerType", t => t.CareerTypeId)
+                .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfoId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .ForeignKey("dbo.RelationType", t => t.RelationId)
                 .ForeignKey("dbo.ContactInfo", t => t.ContactId)
                 .Index(t => t.RelationId)
-                .Index(t => t.PersonalInfo)
-                .Index(t => t.CareerId)
-                .Index(t => t.ContactId);
+                .Index(t => t.PersonalInfoId)
+                .Index(t => t.CareerTypeId)
+                .Index(t => t.ContactId)
+                .Index(t => t.StudentId);
             
             CreateTable(
                 "dbo.CareerType",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -141,12 +144,14 @@ namespace DUTAdmissionSystem.Database.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Family",
+                "dbo.PersonalInfo",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        StudentId = c.Int(nullable: false),
-                        MemberId = c.Int(nullable: false),
+                        EthnicId = c.Int(nullable: false),
+                        ReligionId = c.Int(nullable: false),
+                        NationalityId = c.Int(nullable: false),
+                        PermanentResidence = c.String(nullable: false, maxLength: 255),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -154,28 +159,69 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
-                .ForeignKey("dbo.FamilyMember", t => t.MemberId)
-                .Index(t => t.StudentId)
-                .Index(t => t.MemberId);
+                .ForeignKey("dbo.Ethnic", t => t.EthnicId)
+                .ForeignKey("dbo.Nationality", t => t.NationalityId)
+                .ForeignKey("dbo.Religion", t => t.ReligionId)
+                .Index(t => t.EthnicId)
+                .Index(t => t.ReligionId)
+                .Index(t => t.NationalityId);
+            
+            CreateTable(
+                "dbo.Ethnic",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.Int(nullable: false),
+                        UpdatedAt = c.DateTime(),
+                        UpdatedBy = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Nationality",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.Int(nullable: false),
+                        UpdatedAt = c.DateTime(),
+                        UpdatedBy = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Religion",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.Int(nullable: false),
+                        UpdatedAt = c.DateTime(),
+                        UpdatedBy = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Student",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        IdentificationNumber = c.String(maxLength: 50),
+                        IdentificationNumber = c.String(nullable: false, maxLength: 50),
                         UserInfoId = c.Int(nullable: false),
                         ClassId = c.Int(nullable: false),
                         PersonalInfoId = c.Int(nullable: false),
-                        CircumstanceId = c.Int(nullable: false),
+                        CircumstanceTypeId = c.Int(nullable: false),
                         EnrollmentAreaId = c.Int(nullable: false),
-                        ElectionId = c.Int(nullable: false),
-                        DateOfJoiningYouthGroup = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
-                        PlaceOfJoinYouthGroup = c.String(maxLength: 255),
-                        HavingBooksOfYouthGroup = c.Boolean(nullable: false),
-                        HavingCardsOfYouthGroup = c.Boolean(nullable: false),
-                        HightSchoolName = c.String(maxLength: 100),
+                        ElectionTypeId = c.Int(nullable: false),
+                        HightSchoolName = c.String(nullable: false, maxLength: 100),
+                        YouthGroupInfoId = c.Int(),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -183,18 +229,20 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.CircumstanceType", t => t.CircumstanceId)
-                .ForeignKey("dbo.Class", t => t.ClassId, cascadeDelete: true)
-                .ForeignKey("dbo.ElectionType", t => t.ElectionId)
-                .ForeignKey("dbo.EnrollmentArea", t => t.EnrollmentAreaId, cascadeDelete: true)
-                .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfoId, cascadeDelete: true)
-                .ForeignKey("dbo.UserInfo", t => t.UserInfoId, cascadeDelete: true)
+                .ForeignKey("dbo.CircumstanceType", t => t.CircumstanceTypeId)
+                .ForeignKey("dbo.Class", t => t.ClassId)
+                .ForeignKey("dbo.ElectionType", t => t.ElectionTypeId)
+                .ForeignKey("dbo.EnrollmentArea", t => t.EnrollmentAreaId)
+                .ForeignKey("dbo.YouthGroupInfo", t => t.YouthGroupInfoId)
+                .ForeignKey("dbo.PersonalInfo", t => t.PersonalInfoId)
+                .ForeignKey("dbo.UserInfo", t => t.UserInfoId)
                 .Index(t => t.UserInfoId)
                 .Index(t => t.ClassId)
                 .Index(t => t.PersonalInfoId)
-                .Index(t => t.CircumstanceId)
+                .Index(t => t.CircumstanceTypeId)
                 .Index(t => t.EnrollmentAreaId)
-                .Index(t => t.ElectionId);
+                .Index(t => t.ElectionTypeId)
+                .Index(t => t.YouthGroupInfoId);
             
             CreateTable(
                 "dbo.Achievement",
@@ -216,7 +264,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 .ForeignKey("dbo.AchievementLevel", t => t.AchievementLevelId, cascadeDelete: true)
                 .ForeignKey("dbo.AchievementPrize", t => t.AchievementPrizeId, cascadeDelete: true)
                 .ForeignKey("dbo.AchievementType", t => t.AchievementTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.StudentId)
                 .Index(t => t.AchievementTypeId)
                 .Index(t => t.AchievementLevelId)
@@ -227,7 +275,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -241,7 +289,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -255,7 +303,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -269,7 +317,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -283,7 +331,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         DepartmentId = c.Int(nullable: false),
                         ProgramId = c.Int(nullable: false),
                         SchoolYear = c.Int(nullable: false),
@@ -294,8 +342,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Department", t => t.DepartmentId, cascadeDelete: true)
-                .ForeignKey("dbo.Program", t => t.ProgramId, cascadeDelete: true)
+                .ForeignKey("dbo.Department", t => t.DepartmentId)
+                .ForeignKey("dbo.Program", t => t.ProgramId)
                 .Index(t => t.DepartmentId)
                 .Index(t => t.ProgramId);
             
@@ -304,7 +352,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         FacultyId = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
@@ -313,7 +361,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Faculty", t => t.FacultyId, cascadeDelete: true)
+                .ForeignKey("dbo.Faculty", t => t.FacultyId)
                 .Index(t => t.FacultyId);
             
             CreateTable(
@@ -321,7 +369,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -335,7 +383,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         Fees = c.Double(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
@@ -352,8 +400,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DocumentTypeId = c.Int(nullable: false),
                         StudentId = c.Int(nullable: false),
-                        Name = c.String(maxLength: 50),
-                        Url = c.String(maxLength: 255),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        Url = c.String(nullable: false, maxLength: 255),
                         IsValid = c.Boolean(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
@@ -362,8 +410,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.DocumentType", t => t.DocumentTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.DocumentType", t => t.DocumentTypeId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.DocumentTypeId)
                 .Index(t => t.StudentId);
             
@@ -372,7 +420,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -386,7 +434,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 100),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -400,8 +448,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
-                        BonusingPoint = c.Double(),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        BonusingPoint = c.Double(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -427,10 +475,10 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ConductType", t => t.ConductTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.HightSchoolYear", t => t.HightSchoolYearId, cascadeDelete: true)
-                .ForeignKey("dbo.LearningAbility", t => t.LearningAbilityId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.ConductType", t => t.ConductTypeId)
+                .ForeignKey("dbo.HightSchoolYear", t => t.HightSchoolYearId)
+                .ForeignKey("dbo.LearningAbility", t => t.LearningAbilityId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.StudentId)
                 .Index(t => t.HightSchoolYearId)
                 .Index(t => t.ConductTypeId)
@@ -441,7 +489,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Level = c.String(maxLength: 50),
+                        Level = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -469,7 +517,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Level = c.String(maxLength: 50),
+                        Level = c.String(nullable: false, maxLength: 50),
                         StartingPoint = c.Double(nullable: false),
                         EndingPoint = c.Double(nullable: false),
                         CreatedAt = c.DateTime(),
@@ -494,8 +542,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.PositionType", t => t.PositionTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.PositionType", t => t.PositionTypeId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.StudentId)
                 .Index(t => t.PositionTypeId);
             
@@ -504,7 +552,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -527,8 +575,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.InsuranceType", t => t.InsuranceTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
+                .ForeignKey("dbo.InsuranceType", t => t.InsuranceTypeId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.InsuranceTypeId)
                 .Index(t => t.StudentId);
             
@@ -537,7 +585,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         DurationId = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
@@ -554,73 +602,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         Fees = c.Double(nullable: false),
-                        CreatedAt = c.DateTime(),
-                        CreatedBy = c.Int(nullable: false),
-                        UpdatedAt = c.DateTime(),
-                        UpdatedBy = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.PersonalInfo",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        EthnicId = c.Int(nullable: false),
-                        ReligionId = c.Int(nullable: false),
-                        NationalityId = c.Int(nullable: false),
-                        PermanentResidence = c.String(maxLength: 255),
-                        CreatedAt = c.DateTime(),
-                        CreatedBy = c.Int(nullable: false),
-                        UpdatedAt = c.DateTime(),
-                        UpdatedBy = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Ethnic", t => t.EthnicId, cascadeDelete: true)
-                .ForeignKey("dbo.Nationality", t => t.NationalityId, cascadeDelete: true)
-                .ForeignKey("dbo.Religion", t => t.ReligionId, cascadeDelete: true)
-                .Index(t => t.EthnicId)
-                .Index(t => t.ReligionId)
-                .Index(t => t.NationalityId);
-            
-            CreateTable(
-                "dbo.Ethnic",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
-                        CreatedAt = c.DateTime(),
-                        CreatedBy = c.Int(nullable: false),
-                        UpdatedAt = c.DateTime(),
-                        UpdatedBy = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Nationality",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
-                        CreatedAt = c.DateTime(),
-                        CreatedBy = c.Int(nullable: false),
-                        UpdatedAt = c.DateTime(),
-                        UpdatedBy = c.Int(),
-                        DelFlag = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Religion",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -643,8 +626,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
-                .ForeignKey("dbo.TalentType", t => t.TalentTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.TalentType", t => t.TalentTypeId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.StudentId)
                 .Index(t => t.TalentTypeId);
             
@@ -653,7 +636,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -677,8 +660,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Student", t => t.StudentId, cascadeDelete: true)
-                .ForeignKey("dbo.Subject", t => t.SubjectId, cascadeDelete: true)
+                .ForeignKey("dbo.Subject", t => t.SubjectId)
+                .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.StudentId)
                 .Index(t => t.SubjectId);
             
@@ -687,7 +670,24 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.Int(nullable: false),
+                        UpdatedAt = c.DateTime(),
+                        UpdatedBy = c.Int(),
+                        DelFlag = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.YouthGroupInfo",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DateOfJoiningYouthGroup = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        PlaceOfJoinYouthGroup = c.String(nullable: false, maxLength: 255),
+                        HavingBooksOfYouthGroup = c.Boolean(nullable: false),
+                        HavingCardsOfYouthGroup = c.Boolean(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -701,7 +701,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -715,8 +715,8 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Identitynumber = c.String(maxLength: 1),
-                        DateOfIssue = c.DateTime(precision: 0, storeType: "datetime2"),
+                        IdentityNumber = c.String(nullable: false, maxLength: 15),
+                        DateOfIssue = c.DateTime(precision: 7, storeType: "datetime2"),
                         PlaceOfIssue = c.String(maxLength: 255),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
@@ -742,7 +742,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AccountGroup", t => t.AccountGroupId, cascadeDelete: true)
-                .ForeignKey("dbo.FunctionInScreen", t => t.FunctionInScreenId, cascadeDelete: true)
+                .ForeignKey("dbo.FunctionInScreen", t => t.FunctionInScreenId)
                 .Index(t => t.AccountGroupId)
                 .Index(t => t.FunctionInScreenId);
             
@@ -751,12 +751,12 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         ScreenId = c.Int(nullable: false),
-                        Description = c.String(maxLength: 500),
-                        Area = c.String(maxLength: 50),
-                        ControllerName = c.String(maxLength: 50),
-                        ActionName = c.String(maxLength: 50),
+                        Description = c.String(nullable: false, maxLength: 500),
+                        Area = c.String(nullable: false, maxLength: 50),
+                        ControllerName = c.String(nullable: false, maxLength: 50),
+                        ActionName = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -764,7 +764,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                         DelFlag = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Screen", t => t.ScreenId, cascadeDelete: true)
+                .ForeignKey("dbo.Screen", t => t.ScreenId)
                 .Index(t => t.ScreenId);
             
             CreateTable(
@@ -772,7 +772,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 50),
+                        Name = c.String(nullable: false, maxLength: 50),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -786,10 +786,10 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(maxLength: 200),
-                        ImageUrl = c.String(maxLength: 255),
-                        Summary = c.String(maxLength: 200),
-                        Content = c.String(),
+                        Title = c.String(nullable: false, maxLength: 200),
+                        ImageUrl = c.String(nullable: false, maxLength: 255),
+                        Summary = c.String(nullable: false, maxLength: 200),
+                        Content = c.String(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -828,7 +828,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 .Index(t => t.AuditEntryID);
             
             CreateTable(
-                "dbo.Confiuration",
+                "dbo.Configuration",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -845,7 +845,7 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Message = c.String(),
+                        Message = c.String(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -859,11 +859,11 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ImageUrl = c.String(maxLength: 255),
-                        Title = c.String(maxLength: 200),
-                        Content = c.String(),
+                        ImageUrl = c.String(nullable: false, maxLength: 255),
+                        Title = c.String(nullable: false, maxLength: 200),
+                        Content = c.String(nullable: false),
                         IsShowing = c.Boolean(nullable: false),
-                        Url = c.String(maxLength: 255),
+                        Url = c.String(nullable: false, maxLength: 255),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -889,13 +889,13 @@ namespace DUTAdmissionSystem.Database.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        UniversityName = c.String(maxLength: 200),
-                        Address = c.String(maxLength: 200),
-                        PhoneNumber = c.String(maxLength: 15),
-                        Fax = c.String(maxLength: 30),
-                        Email = c.String(maxLength: 50),
-                        Summary = c.String(),
-                        Website = c.String(maxLength: 255),
+                        UniversityName = c.String(nullable: false, maxLength: 200),
+                        Address = c.String(nullable: false, maxLength: 200),
+                        PhoneNumber = c.String(nullable: false, maxLength: 15),
+                        Fax = c.String(nullable: false, maxLength: 30),
+                        Email = c.String(nullable: false, maxLength: 50),
+                        Summary = c.String(nullable: false),
+                        Website = c.String(nullable: false, maxLength: 255),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedAt = c.DateTime(),
@@ -912,21 +912,18 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropForeignKey("dbo.FunctionInScreen", "ScreenId", "dbo.Screen");
             DropForeignKey("dbo.Permission", "FunctionInScreenId", "dbo.FunctionInScreen");
             DropForeignKey("dbo.Permission", "AccountGroupId", "dbo.AccountGroup");
+            DropForeignKey("dbo.Account", "AccountGroupId", "dbo.AccountGroup");
+            DropForeignKey("dbo.Student", "UserInfoId", "dbo.UserInfo");
             DropForeignKey("dbo.UserInfo", "IdentityId", "dbo.IdentityInfo");
             DropForeignKey("dbo.UserInfo", "ContactId", "dbo.ContactInfo");
             DropForeignKey("dbo.FamilyMember", "ContactId", "dbo.ContactInfo");
             DropForeignKey("dbo.FamilyMember", "RelationId", "dbo.RelationType");
-            DropForeignKey("dbo.Family", "MemberId", "dbo.FamilyMember");
-            DropForeignKey("dbo.Student", "UserInfoId", "dbo.UserInfo");
-            DropForeignKey("dbo.UniversityExamResult", "SubjectId", "dbo.Subject");
-            DropForeignKey("dbo.UniversityExamResult", "StudentId", "dbo.Student");
-            DropForeignKey("dbo.Talent", "TalentTypeId", "dbo.TalentType");
-            DropForeignKey("dbo.Talent", "StudentId", "dbo.Student");
             DropForeignKey("dbo.Student", "PersonalInfoId", "dbo.PersonalInfo");
-            DropForeignKey("dbo.PersonalInfo", "ReligionId", "dbo.Religion");
-            DropForeignKey("dbo.PersonalInfo", "NationalityId", "dbo.Nationality");
-            DropForeignKey("dbo.FamilyMember", "PersonalInfo", "dbo.PersonalInfo");
-            DropForeignKey("dbo.PersonalInfo", "EthnicId", "dbo.Ethnic");
+            DropForeignKey("dbo.Student", "YouthGroupInfoId", "dbo.YouthGroupInfo");
+            DropForeignKey("dbo.UniversityExamResult", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.UniversityExamResult", "SubjectId", "dbo.Subject");
+            DropForeignKey("dbo.Talent", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.Talent", "TalentTypeId", "dbo.TalentType");
             DropForeignKey("dbo.Insurance", "StudentId", "dbo.Student");
             DropForeignKey("dbo.Insurance", "InsuranceTypeId", "dbo.InsuranceType");
             DropForeignKey("dbo.InsuranceType", "DurationId", "dbo.InsuranceDuration");
@@ -936,24 +933,27 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropForeignKey("dbo.HighSchoolResult", "LearningAbilityId", "dbo.LearningAbility");
             DropForeignKey("dbo.HighSchoolResult", "HightSchoolYearId", "dbo.HightSchoolYear");
             DropForeignKey("dbo.HighSchoolResult", "ConductTypeId", "dbo.ConductType");
-            DropForeignKey("dbo.Family", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.FamilyMember", "StudentId", "dbo.Student");
             DropForeignKey("dbo.Student", "EnrollmentAreaId", "dbo.EnrollmentArea");
-            DropForeignKey("dbo.Student", "ElectionId", "dbo.ElectionType");
+            DropForeignKey("dbo.Student", "ElectionTypeId", "dbo.ElectionType");
             DropForeignKey("dbo.Document", "StudentId", "dbo.Student");
             DropForeignKey("dbo.Document", "DocumentTypeId", "dbo.DocumentType");
             DropForeignKey("dbo.Student", "ClassId", "dbo.Class");
             DropForeignKey("dbo.Class", "ProgramId", "dbo.Program");
             DropForeignKey("dbo.Department", "FacultyId", "dbo.Faculty");
             DropForeignKey("dbo.Class", "DepartmentId", "dbo.Department");
-            DropForeignKey("dbo.Student", "CircumstanceId", "dbo.CircumstanceType");
+            DropForeignKey("dbo.Student", "CircumstanceTypeId", "dbo.CircumstanceType");
             DropForeignKey("dbo.Achievement", "StudentId", "dbo.Student");
             DropForeignKey("dbo.Achievement", "AchievementTypeId", "dbo.AchievementType");
             DropForeignKey("dbo.Achievement", "AchievementPrizeId", "dbo.AchievementPrize");
             DropForeignKey("dbo.Achievement", "AchievementLevelId", "dbo.AchievementLevel");
-            DropForeignKey("dbo.FamilyMember", "CareerId", "dbo.CareerType");
+            DropForeignKey("dbo.PersonalInfo", "ReligionId", "dbo.Religion");
+            DropForeignKey("dbo.PersonalInfo", "NationalityId", "dbo.Nationality");
+            DropForeignKey("dbo.FamilyMember", "PersonalInfoId", "dbo.PersonalInfo");
+            DropForeignKey("dbo.PersonalInfo", "EthnicId", "dbo.Ethnic");
+            DropForeignKey("dbo.FamilyMember", "CareerTypeId", "dbo.CareerType");
             DropForeignKey("dbo.UserInfo", "BirthInfoId", "dbo.BirthInfo");
             DropForeignKey("dbo.Account", "UserInfoId", "dbo.UserInfo");
-            DropForeignKey("dbo.Account", "AccountGroupId", "dbo.AccountGroup");
             DropIndex("dbo.AuditEntryProperties", new[] { "AuditEntryID" });
             DropIndex("dbo.FunctionInScreen", new[] { "ScreenId" });
             DropIndex("dbo.Permission", new[] { "FunctionInScreenId" });
@@ -962,9 +962,6 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropIndex("dbo.UniversityExamResult", new[] { "StudentId" });
             DropIndex("dbo.Talent", new[] { "TalentTypeId" });
             DropIndex("dbo.Talent", new[] { "StudentId" });
-            DropIndex("dbo.PersonalInfo", new[] { "NationalityId" });
-            DropIndex("dbo.PersonalInfo", new[] { "ReligionId" });
-            DropIndex("dbo.PersonalInfo", new[] { "EthnicId" });
             DropIndex("dbo.InsuranceType", new[] { "DurationId" });
             DropIndex("dbo.Insurance", new[] { "StudentId" });
             DropIndex("dbo.Insurance", new[] { "InsuranceTypeId" });
@@ -983,17 +980,20 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropIndex("dbo.Achievement", new[] { "AchievementLevelId" });
             DropIndex("dbo.Achievement", new[] { "AchievementTypeId" });
             DropIndex("dbo.Achievement", new[] { "StudentId" });
-            DropIndex("dbo.Student", new[] { "ElectionId" });
+            DropIndex("dbo.Student", new[] { "YouthGroupInfoId" });
+            DropIndex("dbo.Student", new[] { "ElectionTypeId" });
             DropIndex("dbo.Student", new[] { "EnrollmentAreaId" });
-            DropIndex("dbo.Student", new[] { "CircumstanceId" });
+            DropIndex("dbo.Student", new[] { "CircumstanceTypeId" });
             DropIndex("dbo.Student", new[] { "PersonalInfoId" });
             DropIndex("dbo.Student", new[] { "ClassId" });
             DropIndex("dbo.Student", new[] { "UserInfoId" });
-            DropIndex("dbo.Family", new[] { "MemberId" });
-            DropIndex("dbo.Family", new[] { "StudentId" });
+            DropIndex("dbo.PersonalInfo", new[] { "NationalityId" });
+            DropIndex("dbo.PersonalInfo", new[] { "ReligionId" });
+            DropIndex("dbo.PersonalInfo", new[] { "EthnicId" });
+            DropIndex("dbo.FamilyMember", new[] { "StudentId" });
             DropIndex("dbo.FamilyMember", new[] { "ContactId" });
-            DropIndex("dbo.FamilyMember", new[] { "CareerId" });
-            DropIndex("dbo.FamilyMember", new[] { "PersonalInfo" });
+            DropIndex("dbo.FamilyMember", new[] { "CareerTypeId" });
+            DropIndex("dbo.FamilyMember", new[] { "PersonalInfoId" });
             DropIndex("dbo.FamilyMember", new[] { "RelationId" });
             DropIndex("dbo.UserInfo", new[] { "IdentityId" });
             DropIndex("dbo.UserInfo", new[] { "BirthInfoId" });
@@ -1004,7 +1004,7 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropTable("dbo.sysdiagrams");
             DropTable("dbo.Slide");
             DropTable("dbo.ErrorMsg");
-            DropTable("dbo.Confiuration");
+            DropTable("dbo.Configuration");
             DropTable("dbo.AuditEntryProperties");
             DropTable("dbo.AuditEntries");
             DropTable("dbo.AdmissionNews");
@@ -1013,14 +1013,11 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropTable("dbo.Permission");
             DropTable("dbo.IdentityInfo");
             DropTable("dbo.RelationType");
+            DropTable("dbo.YouthGroupInfo");
             DropTable("dbo.Subject");
             DropTable("dbo.UniversityExamResult");
             DropTable("dbo.TalentType");
             DropTable("dbo.Talent");
-            DropTable("dbo.Religion");
-            DropTable("dbo.Nationality");
-            DropTable("dbo.Ethnic");
-            DropTable("dbo.PersonalInfo");
             DropTable("dbo.InsuranceDuration");
             DropTable("dbo.InsuranceType");
             DropTable("dbo.Insurance");
@@ -1044,7 +1041,10 @@ namespace DUTAdmissionSystem.Database.Migrations
             DropTable("dbo.AchievementLevel");
             DropTable("dbo.Achievement");
             DropTable("dbo.Student");
-            DropTable("dbo.Family");
+            DropTable("dbo.Religion");
+            DropTable("dbo.Nationality");
+            DropTable("dbo.Ethnic");
+            DropTable("dbo.PersonalInfo");
             DropTable("dbo.CareerType");
             DropTable("dbo.FamilyMember");
             DropTable("dbo.ContactInfo");

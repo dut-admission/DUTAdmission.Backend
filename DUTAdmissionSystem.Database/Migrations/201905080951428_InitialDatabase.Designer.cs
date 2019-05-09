@@ -7,13 +7,13 @@ namespace DUTAdmissionSystem.Database.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddYouthGroupInfo : IMigrationMetadata
+    public sealed partial class InitialDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddYouthGroupInfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905050554496_AddYouthGroupInfo"; }
+            get { return "201905080951428_InitialDatabase"; }
         }
         
         string IMigrationMetadata.Source

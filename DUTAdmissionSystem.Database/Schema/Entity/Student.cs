@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         {
             Achievements = new HashSet<Achievement>();
             Documents = new HashSet<Document>();
-            Families = new HashSet<Family>();
+            FamilyMembers = new HashSet<FamilyMember>();
             HighSchoolResults = new HashSet<HighSchoolResult>();
             HightSchoolPositions = new HashSet<HightSchoolPosition>();
             Insurances = new HashSet<Insurance>();
@@ -63,7 +63,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         public virtual EnrollmentArea EnrollmentArea { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Family> Families { get; set; }
+        public virtual ICollection<FamilyMember> FamilyMembers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HighSchoolResult> HighSchoolResults { get; set; }
