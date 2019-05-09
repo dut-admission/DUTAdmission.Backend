@@ -52,6 +52,13 @@ namespace DUTAdmissionSystem.Areas.Public
                 constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
             );
 
+            context.Routes.MapHttpRoute(
+                name: "GetProfileForStudent",
+                routeTemplate: "api/public/student-profile",
+                defaults: new { controller = "Profile", action = "GetStudentProfile", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
+
         }
     }
 }

@@ -13,13 +13,12 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         }
 
         [HttpGet]
-        [Authorize]
-        [ActionName("GetStudentProfileByIdUser")]
-        public IHttpActionResult GetStudentProfileByIdAccount(int id)
+        [ActionName("GetStudentProfile")]
+        public IHttpActionResult GetStudentProfileByIdAccount()
         {
             try
             {
-                var result = _studentProfileService.GetStudentProfileByIdAccount(id);
+                var result = _studentProfileService.GetStudentProfileByIdAccount(1);
                 if (result == null)
                     return BadRequest(AppMessage.BadRequestNotFound);
                 return Ok(result);
