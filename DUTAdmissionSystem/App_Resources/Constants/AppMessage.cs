@@ -11,5 +11,11 @@
         {
             get { return ""; }
         }
+
+        public static string NoAccount
+        {
+            get { return ""; }
+        }
+        
     }
 }
