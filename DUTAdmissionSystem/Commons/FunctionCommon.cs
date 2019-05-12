@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
-using System.Web;
 
 namespace DUTAdmissionSystem.Commons
 {
@@ -37,6 +34,7 @@ namespace DUTAdmissionSystem.Commons
             arrBytes = myMd5.ComputeHash(arrBytes);
             return arrBytes.Aggregate("", (current, b) => current + b.ToString("x2"));
         }
+
         /// <summary>
         /// Mã hóa MD5 của 1 chuỗi không có thêm chuối khóa đầu và cuối.
         /// Author       :   AnMT - 30/04/2019 - create

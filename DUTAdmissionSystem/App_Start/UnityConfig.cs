@@ -22,6 +22,7 @@ namespace DUTAdmissionSystem
             container.RegisterType<ISlideService, SlideService>();
             container.RegisterType<IUniversityInfoService, UniversityInfoService>();
             container.RegisterType<IAuthenticationService, AuthenticationService>();
+            container.RegisterType<IStudentProfileService, StudentProfileService>();
 
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

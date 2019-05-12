@@ -89,21 +89,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201904220238434_InitDatabase.cs" />
-    <Compile Include="Migrations\201904220238434_InitDatabase.Designer.cs">
-      <DependentUpon>201904220238434_InitDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905050554496_AddYouthGroupInfo.cs" />
-    <Compile Include="Migrations\201905050554496_AddYouthGroupInfo.Designer.cs">
-      <DependentUpon>201905050554496_AddYouthGroupInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905060705582_StringLengthForIdentityNumber.cs" />
-    <Compile Include="Migrations\201905060705582_StringLengthForIdentityNumber.Designer.cs">
-      <DependentUpon>201905060705582_StringLengthForIdentityNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905071127362_AddRequiredForEntities.cs" />
-    <Compile Include="Migrations\201905071127362_AddRequiredForEntities.Designer.cs">
-      <DependentUpon>201905071127362_AddRequiredForEntities.cs</DependentUpon>
+    <Compile Include="Migrations\201905080951428_InitialDatabase.cs" />
+    <Compile Include="Migrations\201905080951428_InitialDatabase.Designer.cs">
+      <DependentUpon>201905080951428_InitialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,7 +119,6 @@
     <Compile Include="Schema\Entity\ErrorMsg.cs" />
     <Compile Include="Schema\Entity\Ethnic.cs" />
     <Compile Include="Schema\Entity\Faculty.cs" />
-    <Compile Include="Schema\Entity\Family.cs" />
     <Compile Include="Schema\Entity\FamilyMember.cs" />
     <Compile Include="Schema\Entity\FunctionInScreen.cs" />
     <Compile Include="Schema\Entity\HighSchoolResult.cs" />
@@ -162,17 +149,8 @@
     <Compile Include="Schema\Entity\YouthGroupInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904220238434_InitDatabase.resx">
-      <DependentUpon>201904220238434_InitDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905050554496_AddYouthGroupInfo.resx">
-      <DependentUpon>201905050554496_AddYouthGroupInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905060705582_StringLengthForIdentityNumber.resx">
-      <DependentUpon>201905060705582_StringLengthForIdentityNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905071127362_AddRequiredForEntities.resx">
-      <DependentUpon>201905071127362_AddRequiredForEntities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905080951428_InitialDatabase.resx">
+      <DependentUpon>201905080951428_InitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

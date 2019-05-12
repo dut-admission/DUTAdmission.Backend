@@ -41,7 +41,6 @@
         public virtual DbSet<ErrorMsg> ErrorMsgs { get; set; }
         public virtual DbSet<Ethnic> Ethnics { get; set; }
         public virtual DbSet<Faculty> Faculties { get; set; }
-        public virtual DbSet<Family> Families { get; set; }
         public virtual DbSet<FamilyMember> FamilyMembers { get; set; }
         public virtual DbSet<FunctionInScreen> FunctionInScreens { get; set; }
         public virtual DbSet<HighSchoolResult> HighSchoolResults { get; set; }
@@ -243,12 +242,6 @@
                 .HasForeignKey(e => e.FacultyId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<FamilyMember>()
-                .HasMany(e => e.Families)
-                .WithRequired(e => e.FamilyMember)
-                .HasForeignKey(e => e.MemberId)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<FunctionInScreen>()
                 .HasMany(e => e.Permissions)
                 .WithRequired(e => e.FunctionInScreen)
@@ -293,8 +286,8 @@
 
             modelBuilder.Entity<PersonalInfo>()
                 .HasMany(e => e.FamilyMembers)
-                .WithRequired(e => e.PersonalInfo1)
-                .HasForeignKey(e => e.PersonalInfo)
+                .WithRequired(e => e.PersonalInfo)
+                .HasForeignKey(e => e.PersonalInfoId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PersonalInfo>()
@@ -346,7 +339,7 @@
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Student>()
-                .HasMany(e => e.Families)
+                .HasMany(e => e.FamilyMembers)
                 .WithRequired(e => e.Student)
                 .HasForeignKey(e => e.StudentId)
                 .WillCascadeOnDelete(false);

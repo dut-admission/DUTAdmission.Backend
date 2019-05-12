@@ -202,6 +202,7 @@
     <Compile Include="App_Resources\Constants\AppMessage.cs" />
     <Compile Include="App_Resources\Constants\AppString.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\PreflightRequestsHandler.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
@@ -257,9 +258,11 @@
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IAdmissionNewsService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\ISlideService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\IStudentProfileService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IUniversityInfoService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\AdmissionNewsService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Implementations\StudentProfileService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />
