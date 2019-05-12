@@ -269,8 +269,10 @@
     <Compile Include="Commons\AuthenticationValidation.cs" />
     <Compile Include="Commons\Constants.cs" />
     <Compile Include="Commons\FunctionCommon.cs" />
+    <Compile Include="Commons\HeThong.cs" />
     <Compile Include="Commons\JwtAuthenticationExtensions.cs" />
     <Compile Include="Commons\Paging.cs" />
+    <Compile Include="Commons\SendMail.cs" />
     <Compile Include="Commons\TokenValidationHandler.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
