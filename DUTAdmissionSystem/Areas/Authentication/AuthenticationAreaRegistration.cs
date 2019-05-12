@@ -20,8 +20,7 @@ namespace DUTAdmissionSystem.Areas.Authentication
             context.Routes.MapHttpRoute(
                 name: "LoginToSystem",
                 routeTemplate: "api/login",
-                defaults: new { controller = "Authentication", action = "Login", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+                defaults: new { controller = "Authentication", action = "Login", id = RouteParameter.Optional }
             );
             context.MapRoute(
                 "Authentication_default",
