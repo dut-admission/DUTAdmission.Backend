@@ -6,6 +6,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
     public interface IStudentProfileService
     {
         ProfileResponseDto GetStudentProfileByIdAccount(int id);
-        void UpdatePass(UpdatePassword updatePassword);
+        bool UpdatePass(UpdatePassword updatePassword,string token);
     }
 }

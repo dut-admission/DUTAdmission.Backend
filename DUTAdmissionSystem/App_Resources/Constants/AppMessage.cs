@@ -6,5 +6,10 @@
         {
             get { return "Cannot found"; }
         }
+
+        public static string NeverPassword
+        {
+            get { return ""; }
+        }
     }
 }
