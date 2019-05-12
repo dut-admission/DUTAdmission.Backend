@@ -72,7 +72,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
                 }
                 else
                 {
-                    return BadRequest(AppMessage.NeverPassword);
+                    return BadRequest(AppMessage.NoAccount);
                 };
             }
             catch (System.Exception e)
