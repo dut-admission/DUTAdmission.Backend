@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace DUTAdmissionSystem.Commons
@@ -60,6 +61,29 @@ namespace DUTAdmissionSystem.Commons
             return tokenInformation.GroupName == "Admin" ||
                    tokenInformation.GroupName == "Mod" ||
                    tokenInformation.UserId == userId;
+        }
+
+        /// <summary>
+        /// Tạo mật khẩu mới cho tài khoản
+        /// Author       :   AnMT - 12/05/2019 - create
+        /// </summary>
+        /// <returns>
+        /// mật khẩu tài khoản
+        /// </returns>
+        ///
+        public static string AutoPassword()
+        {
+            string token = "";
+            Random ran = new Random();
+            string tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            token += tmp.Substring(ran.Next(0, 61), 1);
+            tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            for (int i = 0; i < 7; i++)
+            {
+                token += tmp.Substring(ran.Next(0, 61), 1);
+            }
+
+            return token;
         }
     }
 }

@@ -66,6 +66,13 @@ namespace DUTAdmissionSystem.Areas.Public
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
            );
 
+            context.Routes.MapHttpRoute(
+               name: "ForgetPassword",
+               routeTemplate: "api/public/student-profile/password",
+               defaults: new { controller = "Profile", action = "ForgetPassword", id = RouteParameter.Optional },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+           );
+
         }
     }
 }

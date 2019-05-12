@@ -250,6 +250,7 @@
     <Compile Include="Areas\Public\Controllers\SlideController.cs" />
     <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\InputDtos\ForgetPassword.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UpdatePassword.cs" />
