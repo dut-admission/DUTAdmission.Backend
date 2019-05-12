@@ -1,5 +1,9 @@
 ﻿using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
+using DUTAdmissionSystem.Commons;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.Public.Controllers
@@ -24,6 +28,30 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
                 return Ok(result);
             }
             catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("UpdatePassword")]
+        public IHttpActionResult UpdatePassword(UpdatePassword updatePassword) 
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                if (_studentProfileService.UpdatePass(updatePassword, Request.GetAuthorizationHeader()))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(AppMessage.NeverPassword);
+                };
+            }
+            catch(System.Exception e)
             {
                 return InternalServerError(e);
             }
