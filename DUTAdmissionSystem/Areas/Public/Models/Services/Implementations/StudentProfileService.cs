@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
+﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Database;
 using System.Linq;
@@ -104,6 +105,11 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 UniversityInfo = universityInfo,
                 HightSchoolInfo = hightSchoolInfo
             };
+        }
+
+        public void UpdatePass(UpdatePassword updatePassword)
+        {
+
         }
     }
 }
