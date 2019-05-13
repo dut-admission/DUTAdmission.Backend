@@ -68,8 +68,7 @@
         public virtual DbSet<UniversityInfo> UniversityInfoes { get; set; }
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
         public virtual DbSet<YouthGroupInfo> YouthGroupInfos { get; set; }
-
-
+        public virtual DbSet<ContactMessage> ContactMessages { get; set; }
 
 
         public override int SaveChanges()

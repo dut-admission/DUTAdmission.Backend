@@ -115,6 +115,7 @@
     <Compile Include="Schema\Entity\Confiuration.cs" />
     <Compile Include="Schema\Entity\ContactInfo.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="Schema\Entity\ContactMessage.cs" />
     <Compile Include="Schema\Entity\Department.cs" />
     <Compile Include="Schema\Entity\Document.cs" />
     <Compile Include="Schema\Entity\DocumentType.cs" />
