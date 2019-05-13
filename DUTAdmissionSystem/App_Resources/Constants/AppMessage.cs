@@ -16,6 +16,16 @@
         {
             get { return ""; }
         }
-        
+
+        public static string OkSucceeded
+        {
+            get { return "Succeeded"; }
+        }
+
+        public static string BadRequestFailed
+        {
+            get { return "Failed"; }
+        }
+
     }
 }
