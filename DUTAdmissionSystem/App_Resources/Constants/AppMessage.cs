@@ -4,7 +4,7 @@
     {
         public static string BadRequestNotFound
         {
-            get { return "Cannot found"; }
+            get { return "Không tìm thấy"; }
         }
 
         public static string NeverPassword
@@ -19,12 +19,12 @@
 
         public static string OkSucceeded
         {
-            get { return "Succeeded"; }
+            get { return "Thành công"; }
         }
 
         public static string BadRequestFailed
         {
-            get { return "Failed"; }
+            get { return "Thất bại"; }
         }
 
     }
