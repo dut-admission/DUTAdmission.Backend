@@ -57,28 +57,6 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
-        [HttpPost]
-        [ActionName("ForgetPassword")]
-        public IHttpActionResult ForgetPassword(ForgetPassword input)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-
-                if (_studentProfileService.ForgetPass(input))
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return BadRequest(AppMessage.NoAccount);
-                };
-            }
-            catch (System.Exception e)
-            {
-                return InternalServerError(e);
-            }
-        }
+        
     }
 }

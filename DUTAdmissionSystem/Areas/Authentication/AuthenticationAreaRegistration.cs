@@ -22,6 +22,14 @@ namespace DUTAdmissionSystem.Areas.Authentication
                 routeTemplate: "api/login",
                 defaults: new { controller = "Authentication", action = "Login", id = RouteParameter.Optional }
             );
+
+            context.Routes.MapHttpRoute(
+               name: "ForgetPassword",
+               routeTemplate: "api/public/student-profile/password",
+               defaults: new { controller = "Authentication", action = "ForgetPassword", id = RouteParameter.Optional },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+           );
+
             context.MapRoute(
                 "Authentication_default",
                 "Authentication/{controller}/{action}/{id}",

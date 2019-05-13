@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using System;
@@ -35,6 +36,30 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
             output.Headers.Add("Authorization", result.AccessToken);
 
             return ResponseMessage(output);
+        }
+
+        [HttpPost]
+        [ActionName("ForgetPassword")]
+        public IHttpActionResult ForgetPassword(ForgetPassword input)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                if (authenticationService.ForgetPass(input))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest(AppMessage.NoAccount);
+                };
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
 
         private IHttpActionResult CreateUnauthorizedResponse(string message)

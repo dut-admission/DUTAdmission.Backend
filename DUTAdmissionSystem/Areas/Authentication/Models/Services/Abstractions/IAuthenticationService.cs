@@ -6,5 +6,6 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions
     public interface IAuthenticationService
     {
         LoginResponseDto Login(LoginDto dto);
+        bool ForgetPass(ForgetPassword input);
     }
 }
