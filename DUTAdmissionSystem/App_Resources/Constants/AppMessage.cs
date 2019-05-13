@@ -9,12 +9,12 @@
 
         public static string NeverPassword
         {
-            get { return ""; }
+            get { return "Bạn nhập mật khẩu cũ không chính xác, vui lòng kiểm tra lại"; }
         }
 
         public static string NoAccount
         {
-            get { return ""; }
+            get { return "Không tồn tại tài khoản, bạn vui lòng kiểm tra lại username và email"; }
         }
 
         public static string OkSucceeded
