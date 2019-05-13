@@ -15,7 +15,6 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             _admissionNewsService = admissionNewsService;
         }
 
-        [DUTAuthorize]
         [HttpGet]
         [ActionName("GetAdmissionNews")]
         public IHttpActionResult GetAdmissionNews([FromBody]AdmissionNewsConditionSearch conditionSearch)
@@ -29,7 +28,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
                 return InternalServerError(e);
             }
         }
-
+        
         [HttpGet]
         [ActionName("GetAdmissionNewsById")]
         public IHttpActionResult GetAdmissionNewsById(int id)
