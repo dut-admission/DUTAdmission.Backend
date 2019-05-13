@@ -250,8 +250,10 @@
     <Compile Include="Areas\Public\Controllers\SlideController.cs" />
     <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
+    <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\ForgetPassword.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\InputDtos\UpdatePassword.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\AdmissionNewsResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\ProfileResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\SlideResponseDto.cs" />
@@ -269,8 +271,10 @@
     <Compile Include="Commons\AuthenticationValidation.cs" />
     <Compile Include="Commons\Constants.cs" />
     <Compile Include="Commons\FunctionCommon.cs" />
+    <Compile Include="Commons\HeThong.cs" />
     <Compile Include="Commons\JwtAuthenticationExtensions.cs" />
     <Compile Include="Commons\Paging.cs" />
+    <Compile Include="Commons\SendMail.cs" />
     <Compile Include="Commons\TokenValidationHandler.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

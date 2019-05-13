@@ -33,5 +33,26 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
             return result;
         }
+
+        public bool ForgetPass(ForgetPassword input)
+        {
+
+            var taikhoan = db.Accounts.FirstOrDefault(x => string.Compare(x.UserName, input.Username) == 0 && string.Compare(x.UserInfo.ContactInfo.Email, input.Email) == 0 && !x.DelFlag);
+            if (taikhoan == null)
+            {
+                return false;
+            }
+            else
+            {
+                string newPass = FunctionCommon.AutoPassword();
+                SendMail.Send(taikhoan.UserInfo.ContactInfo.Email, newPass, "[DUTAdmissionSystem] Forget Password");
+                taikhoan.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(newPass));
+                db.SaveChanges();
+                return true;
+            }
+
+        }
     }
+
+    
 }

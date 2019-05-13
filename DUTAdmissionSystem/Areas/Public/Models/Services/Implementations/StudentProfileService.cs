@@ -1,5 +1,7 @@
-﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
+﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
+using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Linq;
 
@@ -105,5 +107,24 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 HightSchoolInfo = hightSchoolInfo
             };
         }
+
+        public bool UpdatePass(UpdatePassword updatePassword,string token)
+        {
+            int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+
+            if(string.Compare(FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(updatePassword.OldPassword)), context.Accounts.FirstOrDefault(x=>x.UserInfoId==Id && !x.DelFlag).Password) != 0)
+            {
+                return false;
+            }
+            else
+            {
+                var TaiKhoan = context.Accounts.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
+                TaiKhoan.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(updatePassword.NewPassword));
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+       
     }
 }
