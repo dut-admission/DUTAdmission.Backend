@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Commons;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Commons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace DUTAdmissionSystem.Fillters
         {
             if (actionContext.Request.Headers.Authorization == null)
             {
-                actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized, "Not allowed.");
+                actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized, AppMessage.NotAllowed);
             }
             else
             {
@@ -39,11 +40,11 @@ namespace DUTAdmissionSystem.Fillters
                 var tokenInformation = JwtAuthenticationExtensions.ExtractTokenInformation(token);
                 if (tokenInformation == null)
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized, "Not allowed.");
+                    actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized, AppMessage.NotAllowed);
                 }
                 else if(tokenInformation.IsStudent)
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, "Not accept.");
+                    actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, AppMessage.NotAccept);
                 }
                 else
                 {
@@ -52,7 +53,7 @@ namespace DUTAdmissionSystem.Fillters
                     string action = (string)route.Values["action"];
                     if (!AccountVerification.CheckAuthentication(token, controller, action))
                     {
-                        actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, "Not accept.");
+                        actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, AppMessage.NotAccept);
                     }
                 }
             }
