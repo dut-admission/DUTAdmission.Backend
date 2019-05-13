@@ -125,23 +125,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }
         }
 
-        public bool ForgetPass(ForgetPassword input)
-        {
-
-            var taikhoan=context.Accounts.FirstOrDefault(x=> (string.Compare(x.UserName,input.Input)==0 || string.Compare(x.UserInfo.ContactInfo.Email,input.Input)==0)&& !x.DelFlag) ;
-            if (taikhoan == null)
-            {
-                return false;
-            }
-            else
-            {
-                string newPass = FunctionCommon.AutoPassword();
-                SendMail.Send(taikhoan.UserInfo.ContactInfo.Email, newPass, "[DUTAdmissionSystem] Forget Password");
-                taikhoan.Password= FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(newPass));
-                context.SaveChanges();
-                return true;
-            }
-            
-        }
+       
     }
 }
