@@ -13,7 +13,7 @@
 
         protected override void Seed(DUTAdmissionSystem.Database.DataContext context)
         {
-            context.AccountGroups.AddOrUpdate(x => x.Name,
+          /*  context.AccountGroups.AddOrUpdate(x => x.Name,
                 new AccountGroup() { Name = "Admin" },
                 new AccountGroup() { Name = "Employee" }
                 );
@@ -225,7 +225,7 @@
             context.UniversityExamResults.AddOrUpdate(x => x.Id, universityExamResult);
             context.Talents.AddOrUpdate(x => x.Id, talent);
             context.HightSchoolPositions.AddOrUpdate(x => x.Id, hightSchoolPosition);
-            context.FamilyMembers.AddOrUpdate(x => x.Id, familyMember);
+            context.FamilyMembers.AddOrUpdate(x => x.Id, familyMember);*/
         }
     }
 }

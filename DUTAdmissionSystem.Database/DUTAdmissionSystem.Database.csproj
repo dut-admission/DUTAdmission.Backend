@@ -97,6 +97,10 @@
     <Compile Include="Migrations\201905130457531_AddContactMessage.Designer.cs">
       <DependentUpon>201905130457531_AddContactMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905131603143_EditContactMessage.cs" />
+    <Compile Include="Migrations\201905131603143_EditContactMessage.Designer.cs">
+      <DependentUpon>201905131603143_EditContactMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -159,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905130457531_AddContactMessage.resx">
       <DependentUpon>201905130457531_AddContactMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905131603143_EditContactMessage.resx">
+      <DependentUpon>201905131603143_EditContactMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,7 +17,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
 
         [StringLength(50)]
         [Required]
-        public string Emai { get; set; }
+        public string Email { get; set; }
 
         [StringLength(500)]
         [Required]
