@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Web;
 
 namespace DUTAdmissionSystem.Commons
 {
@@ -37,6 +35,7 @@ namespace DUTAdmissionSystem.Commons
             arrBytes = myMd5.ComputeHash(arrBytes);
             return arrBytes.Aggregate("", (current, b) => current + b.ToString("x2"));
         }
+
         /// <summary>
         /// Mã hóa MD5 của 1 chuỗi không có thêm chuối khóa đầu và cuối.
         /// Author       :   AnMT - 30/04/2019 - create
@@ -62,6 +61,29 @@ namespace DUTAdmissionSystem.Commons
             return tokenInformation.GroupName == "Admin" ||
                    tokenInformation.GroupName == "Mod" ||
                    tokenInformation.UserId == userId;
+        }
+
+        /// <summary>
+        /// Tạo mật khẩu mới cho tài khoản
+        /// Author       :   AnMT - 12/05/2019 - create
+        /// </summary>
+        /// <returns>
+        /// mật khẩu tài khoản
+        /// </returns>
+        ///
+        public static string AutoPassword()
+        {
+            string token = "";
+            Random ran = new Random();
+            string tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            token += tmp.Substring(ran.Next(0, 61), 1);
+            tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            for (int i = 0; i < 7; i++)
+            {
+                token += tmp.Substring(ran.Next(0, 61), 1);
+            }
+
+            return token;
         }
     }
 }

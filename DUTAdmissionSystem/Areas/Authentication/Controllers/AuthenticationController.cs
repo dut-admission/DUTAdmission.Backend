@@ -1,5 +1,5 @@
 ﻿using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
-using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using System;
 using System.Collections.Generic;
@@ -18,8 +18,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
         {
             this.authenticationService = authenticationService;
         }
-
-        [Route("login")]
+        
         [HttpPost]
         public IHttpActionResult Login([FromBody] LoginDto dto)
         {
@@ -33,11 +32,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
 
-            var accessToken = JwtAuthenticationExtensions.CreateToken(result);
-
-            result.AccessToken = accessToken;
-
-            output.Headers.Add("Authorization", accessToken);
+            output.Headers.Add("Authorization", result.AccessToken);
 
             return ResponseMessage(output);
         }

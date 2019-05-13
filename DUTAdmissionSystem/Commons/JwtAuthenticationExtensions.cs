@@ -10,7 +10,7 @@ namespace DUTAdmissionSystem.Commons
 {
     public static class JwtAuthenticationExtensions
     {
-        public static string CreateToken(LoginResponseDto result)
+        public static string CreateToken(DUTAdmissionSystem.Database.Schema.Entity.Account accountInfo)
         {
             var issuedAt = DateTime.UtcNow;
             //set the time when it expires
@@ -21,10 +21,10 @@ namespace DUTAdmissionSystem.Commons
             //create a identity and add claims to the user which we want to log in
             var claimsIdentity = new ClaimsIdentity(new[]
             {
-                new Claim(Constants.UserIdClaimKey, result.User.Id.ToString()),
-                new Claim(Constants.UsernameClaimKey, result.User.Username),
-                new Claim(Constants.GroupIdClaimKey, result.Group.Id.ToString()), 
-                new Claim(Constants.GroupNameClaimKey, result.Group.Name)
+                new Claim(Constants.UserIdClaimKey, accountInfo.UserInfoId.ToString()),
+                new Claim(Constants.UsernameClaimKey, accountInfo.UserName),
+                new Claim(Constants.GroupIdClaimKey, accountInfo.AccountGroupId.ToString()), 
+                new Claim(Constants.GroupNameClaimKey, accountInfo.AccountGroup.Name)
             });
 
             var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(Constants.TokenSecretKey));

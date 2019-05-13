@@ -1,6 +1,6 @@
 ﻿using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.OutputDtos;
-using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Linq;
@@ -24,23 +24,9 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
                 return null;
             }
 
-            var user = db.UserInfoes.FirstOrDefault(u => u.Id == accountFromDb.UserInfoId && !u.DelFlag);
-            if (user != null)
-            {
-                result.User = new UserResponseDto(user, accountFromDb.UserName);
-            }
+            var accessToken = JwtAuthenticationExtensions.CreateToken(accountFromDb);
 
-            var group = db.AccountGroups.FirstOrDefault(g => g.Id == accountFromDb.AccountGroupId && !g.DelFlag);
-            if (group != null)
-            {
-                result.Group = new GroupResponseDto
-                {
-                    Id = group.Id,
-                    Name = group.Name
-                };
-            }
-
-            db.SaveChanges();
+            result.AccessToken = accessToken;
 
             return result;
         }

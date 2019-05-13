@@ -7,12 +7,16 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
     [Table("Achievement")]
     public partial class Achievement : TableHaveIdInt
     {
+        [Required]
         public int StudentId { get; set; }
 
+        [Required]
         public int AchievementTypeId { get; set; }
 
+        [Required]
         public int AchievementLevelId { get; set; }
 
+        [Required]
         public int AchievementPrizeId { get; set; }
 
         [StringLength(255)]

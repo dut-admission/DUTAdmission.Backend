@@ -14,13 +14,17 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Students = new HashSet<Student>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Required]
         public int DepartmentId { get; set; }
 
+        [Required]
         public int ProgramId { get; set; }
 
+        [Required]
         public int SchoolYear { get; set; }
 
         public virtual Department Department { get; set; }

@@ -16,7 +16,8 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Departments = new HashSet<Department>();
         }
 
-        [StringLength(50)]
+        [Required]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

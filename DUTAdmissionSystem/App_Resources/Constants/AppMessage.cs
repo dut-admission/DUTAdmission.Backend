@@ -6,5 +6,16 @@
         {
             get { return "Cannot found"; }
         }
+
+        public static string NeverPassword
+        {
+            get { return ""; }
+        }
+
+        public static string NoAccount
+        {
+            get { return ""; }
+        }
+        
     }
 }

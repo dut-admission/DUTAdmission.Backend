@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         {
             Achievements = new HashSet<Achievement>();
             Documents = new HashSet<Document>();
-            Families = new HashSet<Family>();
+            FamilyMembers = new HashSet<FamilyMember>();
             HighSchoolResults = new HashSet<HighSchoolResult>();
             HightSchoolPositions = new HashSet<HightSchoolPosition>();
             Insurances = new HashSet<Insurance>();
@@ -22,21 +22,29 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UniversityExamResults = new HashSet<UniversityExamResult>();
         }
 
+        [Required]
         [StringLength(50)]
         public string IdentificationNumber { get; set; }
 
+        [Required]
         public int UserInfoId { get; set; }
 
+        [Required]
         public int ClassId { get; set; }
 
+        [Required]
         public int PersonalInfoId { get; set; }
 
-        public int CircumstanceId { get; set; }
+        [Required]
+        public int CircumstanceTypeId { get; set; }
 
+        [Required]
         public int EnrollmentAreaId { get; set; }
 
-        public int ElectionId { get; set; }
+        [Required]
+        public int ElectionTypeId { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string HightSchoolName { get; set; }
 
@@ -55,7 +63,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         public virtual EnrollmentArea EnrollmentArea { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Family> Families { get; set; }
+        public virtual ICollection<FamilyMember> FamilyMembers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HighSchoolResult> HighSchoolResults { get; set; }
