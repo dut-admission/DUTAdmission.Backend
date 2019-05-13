@@ -4,6 +4,7 @@ using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Linq;
+using System.Data.Entity;
 
 namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementations
 {
@@ -24,7 +25,9 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
                 return null;
             }
 
-            var accessToken = JwtAuthenticationExtensions.CreateToken(accountFromDb);
+            var isStudent = db.AccountGroups.FirstOrDefault(x => !x.DelFlag && x.Name.ToLower().Equals("student")).Id == accountFromDb.AccountGroupId;
+
+            var accessToken = JwtAuthenticationExtensions.CreateToken(accountFromDb, isStudent);
 
             result.AccessToken = accessToken;
 

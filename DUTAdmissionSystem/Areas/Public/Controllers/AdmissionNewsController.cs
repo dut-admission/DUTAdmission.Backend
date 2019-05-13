@@ -1,6 +1,7 @@
-﻿    using DUTAdmissionSystem.App_Resources.Constants;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
+using DUTAdmissionSystem.Fillters;
 using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.Public.Controllers
@@ -14,6 +15,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             _admissionNewsService = admissionNewsService;
         }
 
+        [DUTAuthorize]
         [HttpGet]
         [ActionName("GetAdmissionNews")]
         public IHttpActionResult GetAdmissionNews([FromBody]AdmissionNewsConditionSearch conditionSearch)

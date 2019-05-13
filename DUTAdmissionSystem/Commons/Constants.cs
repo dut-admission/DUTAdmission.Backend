@@ -12,8 +12,11 @@
 
         public const string GroupIdClaimKey = "group_id";
 
+        public const string IsStudentClaimKey = "is_student";
+
         public const string ValidAudience = "dut_team_audience";
 
         public const string ValidIssuer = "dut_team_issuer";
+
     }
 }

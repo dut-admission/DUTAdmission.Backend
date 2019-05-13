@@ -10,7 +10,7 @@ namespace DUTAdmissionSystem.Commons
 {
     public static class JwtAuthenticationExtensions
     {
-        public static string CreateToken(DUTAdmissionSystem.Database.Schema.Entity.Account accountInfo)
+        public static string CreateToken(DUTAdmissionSystem.Database.Schema.Entity.Account accountInfo, bool isStudent)
         {
             var issuedAt = DateTime.UtcNow;
             //set the time when it expires
@@ -24,7 +24,8 @@ namespace DUTAdmissionSystem.Commons
                 new Claim(Constants.UserIdClaimKey, accountInfo.UserInfoId.ToString()),
                 new Claim(Constants.UsernameClaimKey, accountInfo.UserName),
                 new Claim(Constants.GroupIdClaimKey, accountInfo.AccountGroupId.ToString()), 
-                new Claim(Constants.GroupNameClaimKey, accountInfo.AccountGroup.Name)
+                new Claim(Constants.GroupNameClaimKey, accountInfo.AccountGroup.Name),
+                new Claim(Constants.IsStudentClaimKey, isStudent.ToString()),
             });
 
             var securityKey = new SymmetricSecurityKey(System.Text.Encoding.Default.GetBytes(Constants.TokenSecretKey));
@@ -59,7 +60,9 @@ namespace DUTAdmissionSystem.Commons
 
                     GroupId = Convert.ToInt32(jwtSecurityToken.Claims.First(c => c.Type == Constants.GroupIdClaimKey).Value),
 
-                    GroupName = jwtSecurityToken.Claims.First(c => c.Type == Constants.GroupNameClaimKey).Value
+                    GroupName = jwtSecurityToken.Claims.First(c => c.Type == Constants.GroupNameClaimKey).Value,
+
+                    IsStudent = Convert.ToBoolean(jwtSecurityToken.Claims.First(c => c.Type == Constants.IsStudentClaimKey).Value)
                 };
             }
                
