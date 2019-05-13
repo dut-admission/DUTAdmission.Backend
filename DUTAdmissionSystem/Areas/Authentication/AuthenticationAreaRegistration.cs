@@ -25,7 +25,7 @@ namespace DUTAdmissionSystem.Areas.Authentication
 
             context.Routes.MapHttpRoute(
                name: "ForgetPassword",
-               routeTemplate: "api/student-profile/password",
+               routeTemplate: "api/forget-password",
                defaults: new { controller = "Authentication", action = "ForgetPassword", id = RouteParameter.Optional }
            );
 
