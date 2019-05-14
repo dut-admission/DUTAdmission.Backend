@@ -73,17 +73,17 @@ namespace DUTAdmissionSystem.Commons
         ///
         public static string AutoPassword()
         {
-            string token = "";
+            string pass = "";
             Random ran = new Random();
             string tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            token += tmp.Substring(ran.Next(0, 61), 1);
+            pass += tmp.Substring(ran.Next(0, 61), 1);
             tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             for (int i = 0; i < 7; i++)
             {
-                token += tmp.Substring(ran.Next(0, 61), 1);
+                pass += tmp.Substring(ran.Next(0, 61), 1);
             }
 
-            return token;
+            return pass;
         }
     }
 }
