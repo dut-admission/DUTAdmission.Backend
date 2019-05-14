@@ -57,6 +57,23 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
-        
+        [HttpGet]
+        [ActionName("GetLibrariesOfProFile")]
+        public IHttpActionResult GetLibrariesOfProFile()
+        {
+            try
+            {
+                var result = _studentProfileService.GetLibrariesOfProFile();
+                if (result == null)
+                    return BadRequest(AppMessage.BadRequestNotFound);
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+
     }
 }
