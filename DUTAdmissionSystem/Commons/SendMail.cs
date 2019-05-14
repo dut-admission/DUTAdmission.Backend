@@ -21,14 +21,14 @@ namespace DUTAdmissionSystem.Commons
                 smtpClient.Port = 25;
                 smtpClient.UseDefaultCredentials = true;
                 smtpClient.Credentials = new NetworkCredential(
-                    heThong.email,
-                    heThong.matkhau);
+                    heThong.Email,
+                    heThong.Matkhau);
                 var msg = new MailMessage
                 {
                     IsBodyHtml = true,
                     BodyEncoding = Encoding.UTF8,
                     From = new MailAddress(
-                        heThong.email),
+                        heThong.Email),
                     Subject = Subject,
                     Body = body,
                     Priority = MailPriority.Normal,

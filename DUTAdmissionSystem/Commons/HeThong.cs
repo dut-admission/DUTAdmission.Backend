@@ -7,12 +7,12 @@ namespace DUTAdmissionSystem.Commons
 {
     public class HeThong
     {
-        public string email { get; set; }
-        public string matkhau { get; set; }
+        public string Email { get; set; }
+        public string Matkhau { get; set; }
         public HeThong()
         {
-            email = "truyendatk@gmail.com";
-            matkhau = "Rocklee97";
+            Email = "truyendatk@gmail.com";
+            Matkhau = "Rocklee97";
         }
     }
 }
