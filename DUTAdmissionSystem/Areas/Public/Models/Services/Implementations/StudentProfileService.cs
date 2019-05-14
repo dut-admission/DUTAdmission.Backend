@@ -21,14 +21,20 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             var student = user.Students.FirstOrDefault();
             var familyMembers = student.FamilyMembers.Select(x => new FamilyMemberResponseDto()
             {
+                Name = x.Name,
                 Address = x.ContactInfo.Address,
                 CareerTypeId = x.CareerTypeId,
+                CareerTypeName = x.CareerType.Name,
                 Email = x.ContactInfo.Email,
                 EthnicId = x.PersonalInfo.EthnicId,
+                EthnicName = x.PersonalInfo.Ethnic.Name,
                 NationalityId = x.PersonalInfo.NationalityId,
+                NationalityName = x.PersonalInfo.Nationality.Name,
                 PhoneNumber = x.ContactInfo.PhoneNumber,
                 RelationId = x.RelationId,
+                RelationName = x.RelationType.Name,
                 ReligionId = x.PersonalInfo.ReligionId,
+                ReligionName = x.PersonalInfo.Religion.Name,
                 YearOfBirth = x.YearOfBirth
             }).ToList();
             var personalInfo = new PersonalInfoResponseDto()
@@ -53,8 +59,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 DepartmentName = student.Class.Department.Name,
                 ProgramName = student.Class.Program.Name,
                 FacultyName = student.Class.Department.Faculty.Name,
-                ElectionId = student.ElectionTypeId,
-                EnrollmentAreaId = student.EnrollmentAreaId,
+                ElectionName = student.ElectionType.Name,
+                EnrollmentAreaName = student.EnrollmentArea.Name,
                 UniversityExamResults = student.UniversityExamResults
                 .Select(e => new UniversityExamResultResponseDto()
                 {
@@ -78,8 +84,11 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 Achievements = student.Achievements.Select(a => new AchievementResponseDto()
                 {
                     AchievementLevelId = a.AchievementLevelId,
+                    AchievementLevelName = a.AchievementLevel.Name,
                     AchievementPrizeId = a.AchievementPrizeId,
+                    AchievementPrizeName = a.AchievementPrize.Name,
                     AchievementTypeId = a.AchievementTypeId,
+                    AchievementTypeName = a.AchievementType.Name,
                     Description = a.Description
                 }).ToList(),
                 HighSchoolResults = student.HighSchoolResults.Select(h => new HighSchoolResultResponseInfo()
@@ -87,7 +96,10 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     ConductTypeId = h.ConductTypeId,
                     GPAScore = h.GPAScore,
                     HightSchoolYearId = h.HightSchoolYearId,
-                    LearningAbilityId = h.LearningAbilityId
+                    LearningAbilityId = h.LearningAbilityId,
+                    ConductTypeName = h.ConductType.Level,
+                    HightSchoolYear = h.HightSchoolYear.Year,
+                    LearningAbilityName = h.LearningAbility.Level
                 }).ToList(),
                 Positions = student.HightSchoolPositions.Select(p => p.PositionTypeId).ToList(),
                 Talents = student.Talents.Select(t=>t.TalentTypeId).ToList()
@@ -129,7 +141,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
         {
             LibrariesOfProFile librariesOfProFile = new LibrariesOfProFile();
 
-            librariesOfProFile.NationlityList = context.Nationalities.Where(x => !x.DelFlag).Select(x => new Nationlity
+            librariesOfProFile.NationalityList = context.Nationalities.Where(x => !x.DelFlag).Select(x => new Nationality
             {
                 Id=x.Id,
                 Name=x.Name

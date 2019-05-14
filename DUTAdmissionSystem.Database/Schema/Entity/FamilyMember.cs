@@ -12,7 +12,9 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         public FamilyMember()
         {
         }
-
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
         [Required]
         public int RelationId { get; set; }
 

@@ -46,8 +46,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
         public string DepartmentName { get; set; }
         public string FacultyName { get; set; }
         public string ProgramName { get; set; }
-        public int EnrollmentAreaId { get; set; }
-        public int ElectionId { get; set; }
+        public string EnrollmentAreaName { get; set; }
+        public string ElectionName { get; set; }
         public List<UniversityExamResultResponseDto> UniversityExamResults { get; set; }
     }
 
@@ -73,16 +73,22 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
     public class HighSchoolResultResponseInfo
     {
         public int HightSchoolYearId { get; set; }
+        public int HightSchoolYear { get; set; }
         public int ConductTypeId { get; set; }
+        public string ConductTypeName { get; set; }
         public int LearningAbilityId { get; set; }
+        public string LearningAbilityName { get; set; }
         public double GPAScore { get; set; }
     }
 
     public class AchievementResponseDto
     {
         public int AchievementTypeId { get; set; }
+        public string AchievementTypeName { get; set; }
         public int AchievementLevelId { get; set; }
+        public string AchievementLevelName { get; set; }
         public int AchievementPrizeId { get; set; }
+        public string AchievementPrizeName { get; set; }
         public string Description { get; set; }
     }
     public class YouthGroupInfoResponseDto
@@ -99,14 +105,18 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
 
     public class FamilyMemberResponseDto
     {
+        public string Name { get; set; }
         public int RelationId { get; set; }
+        public string RelationName { get; set; }
         public int YearOfBirth { get; set; }
         public int CareerTypeId { get; set; }
-
+        public string CareerTypeName { get; set; }
         public int EthnicId { get; set; }
+        public string EthnicName { get; set; }
         public int ReligionId { get; set; }
+        public string ReligionName { get; set; }
         public int NationalityId { get; set; }
-
+        public string NationalityName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -115,8 +125,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
 
     public class LibrariesOfProFile
     {
-        [JsonProperty("nationlity_list")]
-        public List<Nationlity> NationlityList { get; set; }
+        [JsonProperty("nationality_list")]
+        public List<Nationality> NationalityList { get; set; }
 
         [JsonProperty("religion_list")]
         public List<Religion> ReligionList { get; set; }
@@ -185,7 +195,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
         public List<PositionType> PositionTypeList { get; set; }
     }
 
-    public class Nationlity
+    public class Nationality
     {
         [JsonProperty("id")]
         public int Id { get; set; }
