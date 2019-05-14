@@ -66,7 +66,12 @@ namespace DUTAdmissionSystem.Areas.Public
                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) }
            );
 
-            
+            context.Routes.MapHttpRoute(
+                name: "GetLibrariesOfProFile",
+                routeTemplate: "api/public/profile-library",
+                defaults: new { controller = "Profile", action = "GetLibrariesOfProFile", id = RouteParameter.Optional },
+                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+            );
 
         }
     }

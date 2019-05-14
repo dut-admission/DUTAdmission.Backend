@@ -7,6 +7,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
     {
         ProfileResponseDto GetStudentProfileByIdAccount(int id);
         bool UpdatePass(UpdatePassword updatePassword,string token);
+        LibrariesOfProFile GetLibrariesOfProFile();
        
     }
 }

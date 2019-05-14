@@ -125,6 +125,158 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }
         }
 
-       
+        public LibrariesOfProFile GetLibrariesOfProFile()
+        {
+            LibrariesOfProFile librariesOfProFile = new LibrariesOfProFile();
+
+            librariesOfProFile.NationlityList = context.Nationalities.Where(x => !x.DelFlag).Select(x => new Nationlity
+            {
+                Id=x.Id,
+                Name=x.Name
+            }).ToList();
+
+            librariesOfProFile.ReligionList = context.Religions.Where(x => !x.DelFlag).Select(x => new Religion
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.EthnicList = context.Ethnics.Where(x => !x.DelFlag).Select(x => new Ethnic
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.ProgramList = context.Programs.Where(x => !x.DelFlag).Select(x => new Program
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Fees=x.Fees
+            }).ToList();
+
+            librariesOfProFile.FacultyList= context.Faculties.Where(x => !x.DelFlag).Select(x => new Faculty
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.DepartmentList = context.Departments.Where(x => !x.DelFlag).Select(x => new Department
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Faculty = new Faculty { Id=x.Faculty.Id,Name=x.Faculty.Name}
+            }).ToList();
+
+            librariesOfProFile.ElectionTypeList = context.ElectionTypes.Where(x => !x.DelFlag).Select(x => new ElectionType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+            
+            librariesOfProFile.EnrollmentAreaList = context.EnrollmentAreas.Where(x => !x.DelFlag).Select(x => new EnrollmentArea
+            {
+                Id = x.Id,
+                Name = x.Name,
+                BonusingPoint=x.BonusingPoint
+            }).ToList();
+
+            librariesOfProFile.CircumstanceTypeList = context.CircumstanceTypes.Where(x => !x.DelFlag).Select(x => new CircumstanceType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.HightSchoolYearList = context.HightSchoolYears.Where(x => !x.DelFlag).Select(x => new HightSchoolYear
+            {
+                Id = x.Id,
+                Year = x.Year
+            }).ToList();
+
+            librariesOfProFile.ConductTypeList= context.ConductTypes.Where(x => !x.DelFlag).Select(x => new ConductType
+            {
+                Id = x.Id,
+                Level = x.Level
+            }).ToList();
+
+            librariesOfProFile.LearningAbilityList= context.LearningAbilities.Where(x => !x.DelFlag).Select(x => new LearningAbility
+            {
+                Id = x.Id,
+                Level = x.Level,
+                StartingPoint=x.StartingPoint,
+                EndingPoint=x.EndingPoint
+            }).ToList();
+
+            librariesOfProFile.CareerTypeList= context.CareerTypes.Where(x => !x.DelFlag).Select(x => new CareerType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.RelationTypeList= context.RelationTypes.Where(x => !x.DelFlag).Select(x => new RelationType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.TalentTypeList = context.TalentTypes.Where(x => !x.DelFlag).Select(x => new TalentType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.DocumentTypeList = context.DocumentTypes.Where(x => !x.DelFlag).Select(x => new DocumentType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.InsuranceDurationList = context.InsuranceDurations.Where(x => !x.DelFlag).Select(x => new InsuranceDuration
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Fees =x.Fees
+            }).ToList();
+
+            librariesOfProFile.InsuranceTypeList = context.InsuranceTypes.Where(x => !x.DelFlag).Select(x => new InsuranceType
+            {
+                Id = x.Id,
+                Name = x.Name,
+                InsuranceDuration = new InsuranceDuration { Id=x.InsuranceDuration.Id, Name=x.InsuranceDuration.Name, Fees=x.InsuranceDuration.Fees}
+            }).ToList();
+
+            librariesOfProFile.AchievementPrizeList = context.AchievementPrizes.Where(x => !x.DelFlag).Select(x => new AchievementPrize
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.AchievementLevelList = context.AchievementLevels.Where(x => !x.DelFlag).Select(x => new AchievementLevel
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.AchievementTypeList = context.AchievementTypes.Where(x => !x.DelFlag).Select(x => new AchievementType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.SubjectList = context.Subjects.Where(x => !x.DelFlag).Select(x => new Subject
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.PositionTypeList = context.PositionTypes.Where(x => !x.DelFlag).Select(x => new PositionType
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            return librariesOfProFile;
+        }
+
+
     }
 }
