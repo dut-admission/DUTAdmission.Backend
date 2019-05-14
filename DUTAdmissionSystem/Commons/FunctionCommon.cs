@@ -76,7 +76,7 @@ namespace DUTAdmissionSystem.Commons
             string pass = "";
             Random ran = new Random();
             string tmp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            pass += tmp.Substring(ran.Next(0, 61), 1);
+            pass += tmp.Substring(ran.Next(0, 25), 1);
             tmp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             for (int i = 0; i < 7; i++)
             {
