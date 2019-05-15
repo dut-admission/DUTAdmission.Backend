@@ -19,7 +19,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos
         public UniversityInfo UniversityInfo { get; set; }
         public HightSchoolInfo HightSchoolInfo { get; set; }
 
-        public List<FamilyMembers> amilyMembers { get; set; }
 
     }
 
@@ -48,22 +47,13 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos
         public string ProgramName { get; set; }
         public string EnrollmentAreaName { get; set; }
         public string ElectionName { get; set; }
-        public List<UniversityExamResult> UniversityExamResults { get; set; }
     }
 
-    public class UniversityExamResult
-    {
-        public string SubjectName { get; set; }
-        public int Score { get; set; }
-    }
+    
 
     public class HightSchoolInfo {
         public string HightSchoolName { get; set; }
         public YouthGroupInfo YouthGroupInfo { get; set; }
-        public List<HighSchoolResults> ighSchoolResults { get; set; }
-        public List<int> Talents { get; set; }
-        public List<int> Positions { get; set; }
-        public List<Achievements> chievements { get; set; }
     }
 
     public class YouthGroupInfo
@@ -74,47 +64,9 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos
         public bool HavingCardsOfYouthGroup { get; set; }
     }
 
-    public class HighSchoolResults
-    {
-        public int HightSchoolYearId { get; set; }
-        public int HightSchoolYear { get; set; }
-        public int ConductTypeId { get; set; }
-        public string ConductTypeName { get; set; }
-        public int LearningAbilityId { get; set; }
-        public string LearningAbilityName { get; set; }
-        public int GPAScore { get; set; }
-    }
-    public class Achievements
-    {
-        public int AchievementTypeId { get; set; }
-        public string AchievementTypeName { get; set; }
-        public int AchievementLevelId { get; set; }
-        public string AchievementLevelName { get; set; }
-        public int AchievementPrizeId { get; set; }
-        public string AchievementPrizeName { get; set; }
-        public string Description { get; set; }
-    }
+    
 
-    public class FamilyMembers
-    {
-        public string Name { get; set; }
-        public int RelationId { get; set; }
-        public string RelationName { get; set; }
-
-        public int YearOfBirth { get; set; }
-        public int CareerTypeId { get; set; }
-        public string CareerTypeName { get; set; }
-        public int EthnicId { get; set; }
-        public string EthnicName { get; set; }
-        public int ReligionId { get; set; }
-        public string ReligionName { get; set; }
-        public int NationalityId { get; set; }
-        public string NationalityName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-
-    }
+  
 
 
     //-----------------------------------------------------------------------
