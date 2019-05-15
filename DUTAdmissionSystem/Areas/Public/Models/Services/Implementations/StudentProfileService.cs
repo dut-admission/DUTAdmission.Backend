@@ -5,6 +5,7 @@ using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Linq;
 using EntityFramework.Extensions;
+using System;
 
 namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 {
@@ -457,6 +458,46 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             context.SaveChanges();
             return result;
         }
+
+        
+        public void UpdateProfile(Profile profile, string token)
+        {
+            int id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var student = context.Students.FirstOrDefault(x => x.UserInfoId == id && !x.DelFlag);
+            var userInfo = context.UserInfoes.FirstOrDefault(x => x.Id == id);
+
+            student.IdentificationNumber = profile.IdentificationNumber;
+            userInfo.IdentityInfo.IdentityNumber = profile.IdentityNumber;
+            userInfo.LastName = profile.LastName;
+            userInfo.FirstName = profile.FirstName;
+            userInfo.Avatar = profile.Avatar;
+            student.CircumstanceTypeId=profile.CircumstanceTypeId;
+
+            userInfo.IdentityInfo.DateOfIssue = Convert.ToDateTime(profile.PersonalInfo.DateOfIssue);
+            userInfo.IdentityInfo.PlaceOfIssue = profile.PersonalInfo.PlaceOfIssue;
+            userInfo.BirthInfo.DateOfBirth = Convert.ToDateTime(profile.PersonalInfo.DateOfBirth);
+            userInfo.BirthInfo.PlaceOfBirth = profile.PersonalInfo.PlaceOfBirth;
+            userInfo.BirthInfo.Sex = profile.PersonalInfo.Sex;
+            userInfo.ContactInfo.PhoneNumber = profile.PersonalInfo.PhoneNumber;
+            userInfo.ContactInfo.Email = profile.PersonalInfo.Email;
+            userInfo.ContactInfo.Address = profile.PersonalInfo.Address;
+            student.PersonalInfo.EthnicId = profile.PersonalInfo.EthnicId;
+            student.PersonalInfo.ReligionId = profile.PersonalInfo.ReligionId;
+            student.PersonalInfo.NationalityId = profile.PersonalInfo.NationalityId;
+            student.PersonalInfo.PermanentResidence = profile.PersonalInfo.PermanentResidence;
+
+            student.Class.Name = profile.UniversityInfo.ClassName;
+            student.Class.Department.Name = profile.UniversityInfo.DepartmentName;
+            student.Class.Department.Faculty.Name = profile.UniversityInfo.FacultyName;
+            student.Class.Program.Name = profile.UniversityInfo.ProgramName;
+            student.EnrollmentArea.Name = profile.UniversityInfo.EnrollmentAreaName;
+            student.ElectionType.Name = profile.UniversityInfo.ElectionName;
+
+
+
+            context.SaveChanges();
+        }
+
 
     }
 }

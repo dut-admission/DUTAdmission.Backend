@@ -17,7 +17,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+     //   [Authorize]
         [ActionName("GetStudentProfile")]
         public IHttpActionResult GetStudentProfileByIdAccount()
         {
@@ -35,7 +35,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         }
 
         [HttpPut]
-        [Authorize]
+       // [Authorize]
         [ActionName("UpdatePassword")]
         public IHttpActionResult UpdatePassword(UpdatePassword updatePassword) 
         {
@@ -78,7 +78,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpPost]
         [ActionName("UpdateAddAchievement")]
-        [Authorize]
+       // [Authorize]
         public IHttpActionResult UpdateAddAchievement(Achievement achievement)
         {
             try
@@ -97,7 +97,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpPost]
         [ActionName("UpdateAddFamilyMember")]
-        [Authorize]
+       // [Authorize]
         public IHttpActionResult UpdateAddFamilyMember(FamilyMember familyMember)
         {
             try
@@ -116,7 +116,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpPost]
         [ActionName("UpdateAddHighSchoolResult")]
-        [Authorize]
+      //  [Authorize]
         public IHttpActionResult UpdateAddHighSchoolResult(HighSchoolResult highSchoolResult)
         {
             try
@@ -135,7 +135,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpDelete]
         [ActionName("DeletionObject")]
-        [Authorize]
+      //  [Authorize]
         public IHttpActionResult DeletionObject(DeletionObject deletionObject)
         {
             try
