@@ -67,6 +67,27 @@ namespace DUTAdmissionSystem.Areas.Public
            );
 
             context.Routes.MapHttpRoute(
+               name: "UpdateAddAchievement",
+               routeTemplate: "api/public/update-profile/achievement",
+               defaults: new { controller = "Profile", action = "UpdateAddAchievement", id = RouteParameter.Optional },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "UpdateAddFamilyMember",
+              routeTemplate: "api/public/update-profile/family-member",
+              defaults: new { controller = "Profile", action = "UpdateAddFamilyMember", id = RouteParameter.Optional },
+              constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+          );
+
+            context.Routes.MapHttpRoute(
+              name: "UpdateAddHighSchoolResult",
+              routeTemplate: "api/public/update-profile/high-school-result",
+              defaults: new { controller = "Profile", action = "UpdateAddHighSchoolResult", id = RouteParameter.Optional },
+              constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+          );
+
+            context.Routes.MapHttpRoute(
                 name: "GetLibrariesOfProFile",
                 routeTemplate: "api/public/profile-library",
                 defaults: new { controller = "Profile", action = "GetLibrariesOfProFile", id = RouteParameter.Optional },

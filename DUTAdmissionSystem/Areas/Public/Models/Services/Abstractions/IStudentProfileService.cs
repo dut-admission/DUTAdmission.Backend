@@ -8,6 +8,11 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
         ProfileResponseDto GetStudentProfileByIdAccount(int id);
         bool UpdatePass(UpdatePassword updatePassword,string token);
         LibrariesOfProFile GetLibrariesOfProFile();
-       
+
+        void UpdateAddAchievement(Achievement achievement, string token);
+        void UpdateAddFamilyMember(FamilyMember FamilyMember, string token);
+        void UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token);
+
+
     }
 }

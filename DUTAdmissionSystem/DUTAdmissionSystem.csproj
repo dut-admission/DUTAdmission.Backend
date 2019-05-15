@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
@@ -251,6 +254,7 @@
     <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\ForgetPassword.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\InputDtos\Profile.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UpdatePassword.cs" />
@@ -337,7 +341,9 @@
     <Content Include="Areas\Public\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Authentication\Views\web.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
