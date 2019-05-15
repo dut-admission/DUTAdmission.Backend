@@ -3,15 +3,16 @@ using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
-using System.Linq;
-using EntityFramework.Extensions;
 using System;
+using System.Linq;
+using Z.EntityFramework.Plus;
 
 namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 {
     public class StudentProfileService : IStudentProfileService
     {
         private DataContext context = new DataContext();
+
         public ProfileResponseDto GetStudentProfileByIdAccount(string token)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
@@ -248,18 +249,10 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 Name = x.Name
             }).ToList();
 
-            librariesOfProFile.InsuranceDurationList = context.InsuranceDurations.Where(x => !x.DelFlag).Select(x => new InsuranceDuration
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Fees = x.Fees
-            }).ToList();
-
             librariesOfProFile.InsuranceTypeList = context.InsuranceTypes.Where(x => !x.DelFlag).Select(x => new InsuranceType
             {
                 Id = x.Id,
-                Name = x.Name,
-                InsuranceDuration = new InsuranceDuration { Id = x.InsuranceDuration.Id, Name = x.InsuranceDuration.Name, Fees = x.InsuranceDuration.Fees }
+                Name = x.Name
             }).ToList();
 
             librariesOfProFile.AchievementPrizeList = context.AchievementPrizes.Where(x => !x.DelFlag).Select(x => new AchievementPrize
@@ -295,7 +288,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             return librariesOfProFile;
         }
 
-
         public void UpdateAddAchievement(Achievement achievement, string token)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
@@ -310,7 +302,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     AchievementTypeId = achievement.AchievementTypeId,
                     Description = achievement.Description
                 });
-
             }
             else
             {
@@ -323,7 +314,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 });
             }
             context.SaveChanges();
-
         }
 
         public void UpdateAddFamilyMember(FamilyMember FamilyMember, string token)
@@ -398,7 +388,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     LearningAbilityId = HighSchoolResult.LearningAbilityId,
                     GPAScore = HighSchoolResult.GPAScore
                 });
-
             }
             else
             {
@@ -422,19 +411,18 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             {
                 case 0:
                     {
-                        
                         var achievement = context.Achievements.FirstOrDefault(x => x.Id == deletionObject.Id && !x.DelFlag);
-                        if(achievement != null)
+                        if (achievement != null)
                         {
                             achievement.DelFlag = true;
-                            result= true;
+                            result = true;
                         }
                         break;
                     }
                 case 1:
                     {
                         var familyMembers = context.FamilyMembers.FirstOrDefault(x => x.Id == deletionObject.Id && !x.DelFlag);
-                        if(familyMembers != null)
+                        if (familyMembers != null)
                         {
                             familyMembers.DelFlag = true;
                             familyMembers.ContactInfo.DelFlag = true;
@@ -454,12 +442,11 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                         break;
                     }
             }
-            
+
             context.SaveChanges();
             return result;
         }
 
-        
         public void UpdateProfile(Profile profile, string token)
         {
             int id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
@@ -471,7 +458,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             userInfo.LastName = profile.LastName;
             userInfo.FirstName = profile.FirstName;
             userInfo.Avatar = profile.Avatar;
-            student.CircumstanceTypeId=profile.CircumstanceTypeId;
+            student.CircumstanceTypeId = profile.CircumstanceTypeId;
 
             userInfo.IdentityInfo.DateOfIssue = Convert.ToDateTime(profile.PersonalInfo.DateOfIssue);
             userInfo.IdentityInfo.PlaceOfIssue = profile.PersonalInfo.PlaceOfIssue;
@@ -503,7 +490,5 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }
             context.SaveChanges();
         }
-
-
     }
 }
