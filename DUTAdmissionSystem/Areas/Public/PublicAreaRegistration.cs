@@ -102,6 +102,12 @@ namespace DUTAdmissionSystem.Areas.Public
                 defaults: new { controller = "Profile", action = "GetLibrariesOfProFile", id = RouteParameter.Optional }
             );
 
+            context.Routes.MapHttpRoute(
+                name: "TestSaveAnh",
+                routeTemplate: "api/public/test-save-anh",
+                defaults: new { controller = "Profile", action = "TestSaveAnh", id = RouteParameter.Optional }
+            );
+
             //<<--ContactMessage controller-->>
             context.Routes.MapHttpRoute(
                name: "SubmitContactMessageApi",

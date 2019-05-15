@@ -177,5 +177,24 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
+        [HttpPost]
+        [ActionName("TestSaveAnh")]
+        //  [Authorize]
+        public IHttpActionResult TestSaveAnh(TestAnh profile)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.TestAnh(profile);
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
     }
 }
