@@ -34,6 +34,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [ActionName("UpdatePassword")]
         public IHttpActionResult UpdatePassword(UpdatePassword updatePassword) 
         {
@@ -67,6 +68,63 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
                 if (result == null)
                     return BadRequest(AppMessage.BadRequestNotFound);
                 return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("UpdateAddAchievement")]
+        [Authorize]
+        public IHttpActionResult UpdateAddAchievement(Achievement achievement)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                 _studentProfileService.UpdateAddAchievement(achievement, Request.GetAuthorizationHeader());
+              
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("UpdateAddFamilyMember")]
+        [Authorize]
+        public IHttpActionResult UpdateAddFamilyMember(FamilyMember familyMember)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.UpdateAddFamilyMember(familyMember, Request.GetAuthorizationHeader());
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("UpdateAddHighSchoolResult")]
+        [Authorize]
+        public IHttpActionResult UpdateAddHighSchoolResult(HighSchoolResult highSchoolResult)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.UpdateAddHighSchoolResult(highSchoolResult, Request.GetAuthorizationHeader());
+
+                return Ok();
             }
             catch (System.Exception e)
             {

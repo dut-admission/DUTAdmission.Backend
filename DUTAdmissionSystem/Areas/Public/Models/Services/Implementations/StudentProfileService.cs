@@ -4,6 +4,7 @@ using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Linq;
+using EntityFramework.Extensions;
 
 namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 {
@@ -73,7 +74,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             var hightSchoolInfo = new HightSchoolInfoResponseDto()
             {
                 HightSchoolName = student.HightSchoolName,
-                YouthGroupInfo = student.YouthGroupInfo != null 
+                YouthGroupInfo = student.YouthGroupInfo != null
                 ? new YouthGroupInfoResponseDto()
                 {
                     DateOfJoiningYouthGroup = student.YouthGroupInfo.DateOfJoiningYouthGroup,
@@ -105,7 +106,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     LearningAbilityName = h.LearningAbility.Level
                 }).ToList(),
                 Positions = student.HightSchoolPositions.Select(p => p.PositionTypeId).ToList(),
-                Talents = student.Talents.Select(t=>t.TalentTypeId).ToList()
+                Talents = student.Talents.Select(t => t.TalentTypeId).ToList()
             };
 
             return new ProfileResponseDto()
@@ -123,11 +124,11 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             };
         }
 
-        public bool UpdatePass(UpdatePassword updatePassword,string token)
+        public bool UpdatePass(UpdatePassword updatePassword, string token)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
 
-            if(string.Compare(FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(updatePassword.OldPassword)), context.Accounts.FirstOrDefault(x=>x.UserInfoId==Id && !x.DelFlag).Password) != 0)
+            if (string.Compare(FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(updatePassword.OldPassword)), context.Accounts.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag).Password) != 0)
             {
                 return false;
             }
@@ -146,8 +147,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 
             librariesOfProFile.NationalityList = context.Nationalities.Where(x => !x.DelFlag).Select(x => new Nationality
             {
-                Id=x.Id,
-                Name=x.Name
+                Id = x.Id,
+                Name = x.Name
             }).ToList();
 
             librariesOfProFile.ReligionList = context.Religions.Where(x => !x.DelFlag).Select(x => new Religion
@@ -166,10 +167,10 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             {
                 Id = x.Id,
                 Name = x.Name,
-                Fees=x.Fees
+                Fees = x.Fees
             }).ToList();
 
-            librariesOfProFile.FacultyList= context.Faculties.Where(x => !x.DelFlag).Select(x => new Faculty
+            librariesOfProFile.FacultyList = context.Faculties.Where(x => !x.DelFlag).Select(x => new Faculty
             {
                 Id = x.Id,
                 Name = x.Name
@@ -179,7 +180,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             {
                 Id = x.Id,
                 Name = x.Name,
-                Faculty = new Faculty { Id=x.Faculty.Id,Name=x.Faculty.Name}
+                Faculty = new Faculty { Id = x.Faculty.Id, Name = x.Faculty.Name }
             }).ToList();
 
             librariesOfProFile.ElectionTypeList = context.ElectionTypes.Where(x => !x.DelFlag).Select(x => new ElectionType
@@ -187,12 +188,12 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 Id = x.Id,
                 Name = x.Name
             }).ToList();
-            
+
             librariesOfProFile.EnrollmentAreaList = context.EnrollmentAreas.Where(x => !x.DelFlag).Select(x => new EnrollmentArea
             {
                 Id = x.Id,
                 Name = x.Name,
-                BonusingPoint=x.BonusingPoint
+                BonusingPoint = x.BonusingPoint
             }).ToList();
 
             librariesOfProFile.CircumstanceTypeList = context.CircumstanceTypes.Where(x => !x.DelFlag).Select(x => new CircumstanceType
@@ -207,27 +208,27 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 Year = x.Year
             }).ToList();
 
-            librariesOfProFile.ConductTypeList= context.ConductTypes.Where(x => !x.DelFlag).Select(x => new ConductType
+            librariesOfProFile.ConductTypeList = context.ConductTypes.Where(x => !x.DelFlag).Select(x => new ConductType
             {
                 Id = x.Id,
                 Level = x.Level
             }).ToList();
 
-            librariesOfProFile.LearningAbilityList= context.LearningAbilities.Where(x => !x.DelFlag).Select(x => new LearningAbility
+            librariesOfProFile.LearningAbilityList = context.LearningAbilities.Where(x => !x.DelFlag).Select(x => new LearningAbility
             {
                 Id = x.Id,
                 Level = x.Level,
-                StartingPoint=x.StartingPoint,
-                EndingPoint=x.EndingPoint
+                StartingPoint = x.StartingPoint,
+                EndingPoint = x.EndingPoint
             }).ToList();
 
-            librariesOfProFile.CareerTypeList= context.CareerTypes.Where(x => !x.DelFlag).Select(x => new CareerType
+            librariesOfProFile.CareerTypeList = context.CareerTypes.Where(x => !x.DelFlag).Select(x => new CareerType
             {
                 Id = x.Id,
                 Name = x.Name
             }).ToList();
 
-            librariesOfProFile.RelationTypeList= context.RelationTypes.Where(x => !x.DelFlag).Select(x => new RelationType
+            librariesOfProFile.RelationTypeList = context.RelationTypes.Where(x => !x.DelFlag).Select(x => new RelationType
             {
                 Id = x.Id,
                 Name = x.Name
@@ -249,14 +250,14 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             {
                 Id = x.Id,
                 Name = x.Name,
-                Fees =x.Fees
+                Fees = x.Fees
             }).ToList();
 
             librariesOfProFile.InsuranceTypeList = context.InsuranceTypes.Where(x => !x.DelFlag).Select(x => new InsuranceType
             {
                 Id = x.Id,
                 Name = x.Name,
-                InsuranceDuration = new InsuranceDuration { Id=x.InsuranceDuration.Id, Name=x.InsuranceDuration.Name, Fees=x.InsuranceDuration.Fees}
+                InsuranceDuration = new InsuranceDuration { Id = x.InsuranceDuration.Id, Name = x.InsuranceDuration.Name, Fees = x.InsuranceDuration.Fees }
             }).ToList();
 
             librariesOfProFile.AchievementPrizeList = context.AchievementPrizes.Where(x => !x.DelFlag).Select(x => new AchievementPrize
@@ -290,6 +291,124 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }).ToList();
 
             return librariesOfProFile;
+        }
+
+
+        public void UpdateAddAchievement(Achievement achievement, string token)
+        {
+            int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
+            if (achievement.Id == 0)
+            {
+                context.Achievements.Add(new Database.Schema.Entity.Achievement
+                {
+                    StudentId = Student.Id,
+                    AchievementLevelId = achievement.AchievementLevelId,
+                    AchievementPrizeId = achievement.AchievementPrizeId,
+                    AchievementTypeId = achievement.AchievementTypeId,
+                    Description = achievement.Description
+                });
+
+            }
+            else
+            {
+                context.Achievements.Where(x => x.StudentId == Student.Id && x.Id == achievement.Id && !x.DelFlag).Update(x => new Database.Schema.Entity.Achievement
+                {
+                    AchievementLevelId = achievement.AchievementLevelId,
+                    AchievementPrizeId = achievement.AchievementPrizeId,
+                    AchievementTypeId = achievement.AchievementTypeId,
+                    Description = achievement.Description
+                });
+            }
+            context.SaveChanges();
+
+        }
+
+        public void UpdateAddFamilyMember(FamilyMember FamilyMember, string token)
+        {
+            int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
+
+            if (FamilyMember.Id == 0)
+            {
+                var familyMember = context.FamilyMembers.Add(new Database.Schema.Entity.FamilyMember
+                {
+                    StudentId = Student.Id,
+                    Name = FamilyMember.Name,
+                    RelationId = FamilyMember.RelationId,
+                    YearOfBirth = FamilyMember.YearOfBirth,
+                    CareerTypeId = FamilyMember.CareerTypeId,
+                });
+                context.PersonalInfoes.Add(new Database.Schema.Entity.PersonalInfo
+                {
+                    Id = familyMember.PersonalInfoId,
+                    EthnicId = FamilyMember.EthnicId,
+                    ReligionId = FamilyMember.ReligionId,
+                    NationalityId = FamilyMember.NationalityId
+                });
+                context.ContactInfoes.Add(new Database.Schema.Entity.ContactInfo
+                {
+                    Id = familyMember.ContactId,
+                    PhoneNumber = FamilyMember.PhoneNumber,
+                    Email = FamilyMember.Email,
+                    Address = FamilyMember.Address
+                });
+            }
+            else
+            {
+                var family = context.FamilyMembers.FirstOrDefault(x => x.Id == FamilyMember.Id && !x.DelFlag);
+                context.FamilyMembers.Where(x => x.StudentId == Student.Id && x.Id == FamilyMember.Id && !x.DelFlag).Update(x => new Database.Schema.Entity.FamilyMember
+                {
+                    Name = FamilyMember.Name,
+                    RelationId = FamilyMember.RelationId,
+                    YearOfBirth = FamilyMember.YearOfBirth,
+                    CareerTypeId = FamilyMember.CareerTypeId
+                });
+
+                context.PersonalInfoes.Where(x => x.Id == family.PersonalInfoId && !x.DelFlag).Update(x => new Database.Schema.Entity.PersonalInfo
+                {
+                    EthnicId = FamilyMember.EthnicId,
+                    ReligionId = FamilyMember.ReligionId,
+                    NationalityId = FamilyMember.NationalityId
+                });
+                context.ContactInfoes.Where(x => x.Id == family.ContactId && !x.DelFlag).Update(x => new Database.Schema.Entity.ContactInfo
+                {
+                    PhoneNumber = FamilyMember.PhoneNumber,
+                    Email = FamilyMember.Email,
+                    Address = FamilyMember.Address
+                });
+            }
+            context.SaveChanges();
+        }
+
+        public void UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token)
+        {
+            int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
+
+            if (HighSchoolResult.Id == 0)
+            {
+                context.HighSchoolResults.Add(new Database.Schema.Entity.HighSchoolResult
+                {
+                    StudentId = Student.Id,
+                    HightSchoolYearId = HighSchoolResult.HightSchoolYearId,
+                    ConductTypeId = HighSchoolResult.ConductTypeId,
+                    LearningAbilityId = HighSchoolResult.LearningAbilityId,
+                    GPAScore = HighSchoolResult.GPAScore
+                });
+
+            }
+            else
+            {
+                context.HighSchoolResults.Where(x => x.StudentId == Student.Id && x.Id == HighSchoolResult.Id && !x.DelFlag).Update(x => new Database.Schema.Entity.HighSchoolResult
+                {
+                    HightSchoolYearId = HighSchoolResult.HightSchoolYearId,
+                    ConductTypeId = HighSchoolResult.ConductTypeId,
+                    LearningAbilityId = HighSchoolResult.LearningAbilityId,
+                    GPAScore = HighSchoolResult.GPAScore
+                });
+            }
+            context.SaveChanges();
         }
 
 
