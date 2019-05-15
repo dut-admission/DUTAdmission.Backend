@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
         void UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token);
         bool DeletionObject(DeletionObject deletionObject, string token);
         void UpdateProfile(Profile profile, string token);
-
+        void TestAnh(TestAnh testAnh);
 
     }
 }
