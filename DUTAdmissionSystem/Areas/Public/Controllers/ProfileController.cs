@@ -133,6 +133,31 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
+        [HttpDelete]
+        [ActionName("DeletionObject")]
+        [Authorize]
+        public IHttpActionResult DeletionObject(DeletionObject deletionObject)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                if (_studentProfileService.DeletionObject(deletionObject, Request.GetAuthorizationHeader()))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                };
+
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
 
     }
 }
