@@ -249,11 +249,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Public\Controllers\AdmissionNewsController.cs" />
+    <Compile Include="Areas\Public\Controllers\ContactMessageController.cs" />
     <Compile Include="Areas\Public\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Public\Controllers\SlideController.cs" />
     <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\ForgetPassword.cs" />
+	<Compile Include="Areas\Public\Models\Dtos\InputDtos\ContactMessageDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\Profile.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
@@ -263,10 +265,12 @@
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IAdmissionNewsService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\IContactMessageService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\ISlideService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IStudentProfileService.cs" />
     <Compile Include="Areas\Public\Models\Services\Abstractions\IUniversityInfoService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\AdmissionNewsService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Implementations\ContactMessageService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\StudentProfileService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
