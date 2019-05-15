@@ -48,7 +48,6 @@
         public virtual DbSet<HightSchoolYear> HightSchoolYears { get; set; }
         public virtual DbSet<IdentityInfo> IdentityInfoes { get; set; }
         public virtual DbSet<Insurance> Insurances { get; set; }
-        public virtual DbSet<InsuranceDuration> InsuranceDurations { get; set; }
         public virtual DbSet<InsuranceType> InsuranceTypes { get; set; }
         public virtual DbSet<LearningAbility> LearningAbilities { get; set; }
         public virtual DbSet<Nationality> Nationalities { get; set; }
@@ -70,6 +69,8 @@
         public virtual DbSet<UserInfo> UserInfoes { get; set; }
         public virtual DbSet<YouthGroupInfo> YouthGroupInfos { get; set; }
         public virtual DbSet<ContactMessage> ContactMessages { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
+        public virtual DbSet<StatusType> StatusTypes { get; set; }
 
 
         public override int SaveChanges()
@@ -262,12 +263,6 @@
                 .HasForeignKey(e => e.IdentityId)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<InsuranceDuration>()
-                .HasMany(e => e.InsuranceTypes)
-                .WithRequired(e => e.InsuranceDuration)
-                .HasForeignKey(e => e.DurationId)
-                .WillCascadeOnDelete(false);
-
             modelBuilder.Entity<InsuranceType>()
                 .HasMany(e => e.Insurances)
                 .WithRequired(e => e.InsuranceType)
@@ -399,6 +394,19 @@
                 .WithRequired(e => e.UserInfo)
                 .HasForeignKey(e => e.UserInfoId)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<StatusType>()
+                .HasMany(e => e.Statuses)
+                .WithRequired(e => e.StatusType)
+                .HasForeignKey(e => e.StatusTypeId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Status>()
+                .HasMany(e => e.Documents)
+                .WithRequired(e => e.Status)
+                .HasForeignKey(e => e.StatusId)
+                .WillCascadeOnDelete(false);
+
         }
 
         /// <summary>
