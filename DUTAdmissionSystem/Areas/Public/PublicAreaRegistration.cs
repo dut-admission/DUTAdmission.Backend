@@ -17,6 +17,7 @@ namespace DUTAdmissionSystem.Areas.Public
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
+            //<<--AdmissionNews controller-->>
             context.Routes.MapHttpRoute(
                 name: "GetAdmissionNewsApi",
                 routeTemplate: "api/public/admission-news",
@@ -101,6 +102,13 @@ namespace DUTAdmissionSystem.Areas.Public
                 defaults: new { controller = "Profile", action = "GetLibrariesOfProFile", id = RouteParameter.Optional }
             );
 
+            //<<--ContactMessage controller-->>
+            context.Routes.MapHttpRoute(
+               name: "SubmitContactMessageApi",
+               routeTemplate: "api/public/contact-message",
+               defaults: new { controller = "ContactMessage", action = "SubmitContactMessage" },
+               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+           );
         }
     }
 }

@@ -53,6 +53,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
 
     public class UniversityExamResultResponseDto
     {
+        public int Id { get; set; }
         public string SubjectName { get; set; }
         public double Score { get; set; }
     }
@@ -72,6 +73,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
     }
     public class HighSchoolResultResponseInfo
     {
+        public int Id { get; set; }
         public int HightSchoolYearId { get; set; }
         public int HightSchoolYear { get; set; }
         public int ConductTypeId { get; set; }
@@ -83,6 +85,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
 
     public class AchievementResponseDto
     {
+        public int Id { get; set; }
         public int AchievementTypeId { get; set; }
         public string AchievementTypeName { get; set; }
         public int AchievementLevelId { get; set; }

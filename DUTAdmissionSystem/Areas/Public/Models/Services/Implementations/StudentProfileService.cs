@@ -67,6 +67,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 UniversityExamResults = student.UniversityExamResults
                 .Select(e => new UniversityExamResultResponseDto()
                 {
+                    Id = e.Id,
                     Score = e.Score,
                     SubjectName = e.Subject.Name
                 }).ToList()
@@ -86,6 +87,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 : null,
                 Achievements = student.Achievements.Select(a => new AchievementResponseDto()
                 {
+                    Id = a.Id,
                     AchievementLevelId = a.AchievementLevelId,
                     AchievementLevelName = a.AchievementLevel.Name,
                     AchievementPrizeId = a.AchievementPrizeId,
@@ -96,6 +98,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 }).ToList(),
                 HighSchoolResults = student.HighSchoolResults.Select(h => new HighSchoolResultResponseInfo()
                 {
+                    Id = h.Id,
                     ConductTypeId = h.ConductTypeId,
                     GPAScore = h.GPAScore,
                     HightSchoolYearId = h.HightSchoolYearId,
