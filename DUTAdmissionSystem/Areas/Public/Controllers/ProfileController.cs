@@ -17,12 +17,13 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         }
 
         [HttpGet]
+     //   [Authorize]
         [ActionName("GetStudentProfile")]
         public IHttpActionResult GetStudentProfileByIdAccount()
         {
             try
             {
-                var result = _studentProfileService.GetStudentProfileByIdAccount(1);
+                var result = _studentProfileService.GetStudentProfileByIdAccount(Request.GetAuthorizationHeader());
                 if (result == null)
                     return BadRequest(AppMessage.BadRequestNotFound);
                 return Ok(result);
@@ -34,6 +35,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         }
 
         [HttpPut]
+       // [Authorize]
         [ActionName("UpdatePassword")]
         public IHttpActionResult UpdatePassword(UpdatePassword updatePassword) 
         {
@@ -57,6 +59,105 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
-        
+        [HttpGet]
+        [ActionName("GetLibrariesOfProFile")]
+        public IHttpActionResult GetLibrariesOfProFile()
+        {
+            try
+            {
+                var result = _studentProfileService.GetLibrariesOfProFile();
+                if (result == null)
+                    return BadRequest(AppMessage.BadRequestNotFound);
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("UpdateAddAchievement")]
+       // [Authorize]
+        public IHttpActionResult UpdateAddAchievement(Achievement achievement)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                 _studentProfileService.UpdateAddAchievement(achievement, Request.GetAuthorizationHeader());
+              
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("UpdateAddFamilyMember")]
+       // [Authorize]
+        public IHttpActionResult UpdateAddFamilyMember(FamilyMember familyMember)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.UpdateAddFamilyMember(familyMember, Request.GetAuthorizationHeader());
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("UpdateAddHighSchoolResult")]
+      //  [Authorize]
+        public IHttpActionResult UpdateAddHighSchoolResult(HighSchoolResult highSchoolResult)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.UpdateAddHighSchoolResult(highSchoolResult, Request.GetAuthorizationHeader());
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpDelete]
+        [ActionName("DeletionObject")]
+      //  [Authorize]
+        public IHttpActionResult DeletionObject(DeletionObject deletionObject)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                if (_studentProfileService.DeletionObject(deletionObject, Request.GetAuthorizationHeader()))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                };
+
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+
     }
 }

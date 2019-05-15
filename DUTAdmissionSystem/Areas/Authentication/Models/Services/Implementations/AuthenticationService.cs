@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
         public LoginResponseDto Login(LoginDto dto)
         {
-            var result = new LoginResponseDto();
+            
 
             dto.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(dto.Password));
 
@@ -30,6 +30,14 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
             var accessToken = JwtAuthenticationExtensions.CreateToken(accountFromDb, isStudent);
 
             result.AccessToken = accessToken;
+
+            result.FirstName = accountFromDb.UserInfo.FirstName;
+
+            result.LastName = accountFromDb.UserInfo.LastName;
+
+            result.Avatar = accountFromDb.UserInfo.Avatar;
+
+            result.UserName = accountFromDb.UserName;
 
             return result;
         }
