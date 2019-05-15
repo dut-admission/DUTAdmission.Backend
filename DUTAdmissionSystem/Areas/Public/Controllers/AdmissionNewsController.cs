@@ -1,6 +1,7 @@
-﻿    using DUTAdmissionSystem.App_Resources.Constants;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
+using DUTAdmissionSystem.Fillters;
 using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.Public.Controllers
@@ -27,7 +28,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
                 return InternalServerError(e);
             }
         }
-
+        
         [HttpGet]
         [ActionName("GetAdmissionNewsById")]
         public IHttpActionResult GetAdmissionNewsById(int id)

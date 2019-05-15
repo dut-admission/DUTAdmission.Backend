@@ -11,5 +11,6 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Dtos.OutputDtos
         public string Username { get; set; }
         public int GroupId { get; set; }
         public string GroupName { get; set; }
+        public bool IsStudent { get; set; }
     }
 }

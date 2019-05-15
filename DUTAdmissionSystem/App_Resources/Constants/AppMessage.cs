@@ -16,6 +16,25 @@
         {
             get { return "Không tồn tại tài khoản, bạn vui lòng kiểm tra lại username và email"; }
         }
+
+
+
+
+
+
+
+
+
+
+        public static string NotAllowed
+        {
+            get { return "Không cho phép truy cập"; }
+        }
+
+        public static string NotAccept
+        {
+            get { return "Không chấp nhận được thực hiện quyền này"; }
+        }
         
     }
 }
