@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
         public LoginResponseDto Login(LoginDto dto)
         {
-            
+            var result = new LoginResponseDto();
 
             dto.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(dto.Password));
 
