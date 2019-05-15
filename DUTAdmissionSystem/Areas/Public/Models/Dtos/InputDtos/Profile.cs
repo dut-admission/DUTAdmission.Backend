@@ -42,4 +42,10 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos
         public int GPAScore { get; set; }
 
     }
+
+    public class DeletionObject
+    {
+        public int Id { get; set; }
+        public int ObjectType { get; set; }
+    }
 }

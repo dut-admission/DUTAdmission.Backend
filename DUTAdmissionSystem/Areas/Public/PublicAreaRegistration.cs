@@ -88,6 +88,13 @@ namespace DUTAdmissionSystem.Areas.Public
           );
 
             context.Routes.MapHttpRoute(
+              name: "DeletionObject",
+              routeTemplate: "api/public/update-profile",
+              defaults: new { controller = "Profile", action = "DeletionObject", id = RouteParameter.Optional },
+              constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
+          );
+
+            context.Routes.MapHttpRoute(
                 name: "GetLibrariesOfProFile",
                 routeTemplate: "api/public/profile-library",
                 defaults: new { controller = "Profile", action = "GetLibrariesOfProFile", id = RouteParameter.Optional },

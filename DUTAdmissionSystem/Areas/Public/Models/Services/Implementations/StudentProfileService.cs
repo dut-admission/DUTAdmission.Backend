@@ -409,6 +409,51 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             context.SaveChanges();
         }
 
+        public bool DeletionObject(DeletionObject deletionObject, string token)
+        {
+            int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
+            bool result = false;
+            switch (deletionObject.ObjectType)
+            {
+                case 0:
+                    {
+                        
+                        var achievement = context.Achievements.FirstOrDefault(x => x.Id == deletionObject.Id && !x.DelFlag);
+                        if(achievement != null)
+                        {
+                            achievement.DelFlag = true;
+                            result= true;
+                        }
+                        break;
+                    }
+                case 1:
+                    {
+                        var familyMembers = context.FamilyMembers.FirstOrDefault(x => x.Id == deletionObject.Id && !x.DelFlag);
+                        if(familyMembers != null)
+                        {
+                            familyMembers.DelFlag = true;
+                            familyMembers.ContactInfo.DelFlag = true;
+                            familyMembers.PersonalInfo.DelFlag = true;
+                            result = true;
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        var highSchoolResult = context.HighSchoolResults.FirstOrDefault(x => x.Id == deletionObject.Id && !x.DelFlag);
+                        if (highSchoolResult != null)
+                        {
+                            highSchoolResult.DelFlag = true;
+                            result = true;
+                        }
+                        break;
+                    }
+            }
+            
+            context.SaveChanges();
+            return result;
+        }
 
     }
 }

@@ -12,6 +12,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
         void UpdateAddAchievement(Achievement achievement, string token);
         void UpdateAddFamilyMember(FamilyMember FamilyMember, string token);
         void UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token);
+        bool DeletionObject(DeletionObject deletionObject, string token);
 
 
     }
