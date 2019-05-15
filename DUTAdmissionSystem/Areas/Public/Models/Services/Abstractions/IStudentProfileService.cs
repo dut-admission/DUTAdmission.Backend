@@ -5,7 +5,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
 {
     public interface IStudentProfileService
     {
-        ProfileResponseDto GetStudentProfileByIdAccount(int id);
+        ProfileResponseDto GetStudentProfileByIdAccount(string token);
         bool UpdatePass(UpdatePassword updatePassword,string token);
         LibrariesOfProFile GetLibrariesOfProFile();
 

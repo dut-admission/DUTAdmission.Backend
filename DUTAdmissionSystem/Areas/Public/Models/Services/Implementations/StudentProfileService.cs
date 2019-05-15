@@ -11,9 +11,10 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
     public class StudentProfileService : IStudentProfileService
     {
         private DataContext context = new DataContext();
-        public ProfileResponseDto GetStudentProfileByIdAccount(int id)
+        public ProfileResponseDto GetStudentProfileByIdAccount(string token)
         {
-            var account = context.Accounts.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var account = context.Accounts.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
             if (account == null)
             {
                 return null;
