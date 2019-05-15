@@ -158,6 +158,24 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
+        [HttpPut]
+        [ActionName("UpdateProfile")]
+        //  [Authorize]
+        public IHttpActionResult UpdateProfile(Profile profile)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.UpdateProfile(profile, Request.GetAuthorizationHeader());
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
 
     }
 }

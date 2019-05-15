@@ -493,8 +493,14 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             student.EnrollmentArea.Name = profile.UniversityInfo.EnrollmentAreaName;
             student.ElectionType.Name = profile.UniversityInfo.ElectionName;
 
-
-
+            student.HightSchoolName = profile.HightSchoolInfo.HightSchoolName;
+            if (student.YouthGroupInfoId != null)
+            {
+                student.YouthGroupInfo.DateOfJoiningYouthGroup = Convert.ToDateTime(profile.HightSchoolInfo.YouthGroupInfo.DateOfJoiningYouthGroup);
+                student.YouthGroupInfo.PlaceOfJoinYouthGroup = profile.HightSchoolInfo.YouthGroupInfo.PlaceOfJoinYouthGroup;
+                student.YouthGroupInfo.HavingBooksOfYouthGroup = profile.HightSchoolInfo.YouthGroupInfo.HavingBooksOfYouthGroup;
+                student.YouthGroupInfo.HavingCardsOfYouthGroup = profile.HightSchoolInfo.YouthGroupInfo.HavingCardsOfYouthGroup;
+            }
             context.SaveChanges();
         }
 
