@@ -111,8 +111,5 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos
         public int ObjectType { get; set; }
     }
 
-    public class TestAnh { 
-        public string Anh { get; set; }
-        public string NameAnh { get; set; }
-    }
+   
 }
