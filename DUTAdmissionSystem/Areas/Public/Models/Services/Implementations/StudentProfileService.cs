@@ -493,10 +493,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             context.SaveChanges();
         }
 
-        public void TestAnh(TestAnh testAnh)
-        {
-            FunctionCommon.SaveImage(testAnh.Anh, 1, testAnh.NameAnh);
-        }
+       
 
     }
 }
