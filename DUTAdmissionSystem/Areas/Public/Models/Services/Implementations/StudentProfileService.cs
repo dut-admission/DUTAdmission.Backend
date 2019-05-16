@@ -346,14 +346,15 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     Id = familyMember.PersonalInfoId,
                     EthnicId = FamilyMember.EthnicId,
                     ReligionId = FamilyMember.ReligionId,
-                    NationalityId = FamilyMember.NationalityId
+                    NationalityId = FamilyMember.NationalityId,
+                    PermanentResidence = FamilyMember.Address
                 });
                 context.ContactInfoes.Add(new Database.Schema.Entity.ContactInfo
                 {
                     Id = familyMember.ContactId,
                     PhoneNumber = FamilyMember.PhoneNumber,
                     Email = FamilyMember.Email,
-                    Address = FamilyMember.Address
+                    Address = FamilyMember.Address,
                 });
             }
             else
@@ -371,7 +372,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 {
                     EthnicId = FamilyMember.EthnicId,
                     ReligionId = FamilyMember.ReligionId,
-                    NationalityId = FamilyMember.NationalityId
+                    NationalityId = FamilyMember.NationalityId,
+                    PermanentResidence = FamilyMember.Address
                 });
                 context.ContactInfoes.Where(x => x.Id == family.ContactId && !x.DelFlag).Update(x => new Database.Schema.Entity.ContactInfo
                 {
