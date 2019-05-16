@@ -105,6 +105,10 @@
     <Compile Include="Migrations\201905140655084_AddFamilyMemberName.Designer.cs">
       <DependentUpon>201905140655084_AddFamilyMemberName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905151707252_AddStatusTable.cs" />
+    <Compile Include="Migrations\201905151707252_AddStatusTable.Designer.cs">
+      <DependentUpon>201905151707252_AddStatusTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -139,7 +143,6 @@
     <Compile Include="Schema\Entity\HightSchoolYear.cs" />
     <Compile Include="Schema\Entity\IdentityInfo.cs" />
     <Compile Include="Schema\Entity\Insurance.cs" />
-    <Compile Include="Schema\Entity\InsuranceDuration.cs" />
     <Compile Include="Schema\Entity\InsuranceType.cs" />
     <Compile Include="Schema\Entity\LearningAbility.cs" />
     <Compile Include="Schema\Entity\Nationality.cs" />
@@ -151,6 +154,8 @@
     <Compile Include="Schema\Entity\Religion.cs" />
     <Compile Include="Schema\Entity\Screen.cs" />
     <Compile Include="Schema\Entity\Slide.cs" />
+    <Compile Include="Schema\Entity\Status.cs" />
+    <Compile Include="Schema\Entity\StatusType.cs" />
     <Compile Include="Schema\Entity\Student.cs" />
     <Compile Include="Schema\Entity\Subject.cs" />
     <Compile Include="Schema\Entity\sysdiagram.cs" />
@@ -173,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905140655084_AddFamilyMemberName.resx">
       <DependentUpon>201905140655084_AddFamilyMemberName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151707252_AddStatusTable.resx">
+      <DependentUpon>201905151707252_AddStatusTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

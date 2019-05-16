@@ -255,7 +255,7 @@
     <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\ForgetPassword.cs" />
-	<Compile Include="Areas\Public\Models\Dtos\InputDtos\ContactMessageDto.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\InputDtos\ContactMessageDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\Profile.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
@@ -340,6 +340,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Public\Views\Shared\" />
+    <Folder Include="Imagers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

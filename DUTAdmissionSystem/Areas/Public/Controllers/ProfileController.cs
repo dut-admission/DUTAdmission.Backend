@@ -158,6 +158,43 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
+        [HttpPut]
+        [ActionName("UpdateProfile")]
+        //  [Authorize]
+        public IHttpActionResult UpdateProfile(Profile profile)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.UpdateProfile(profile, Request.GetAuthorizationHeader());
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("TestSaveAnh")]
+        //  [Authorize]
+        public IHttpActionResult TestSaveAnh(TestAnh profile)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _studentProfileService.TestAnh(profile);
+
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
 
     }
 }

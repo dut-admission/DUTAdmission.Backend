@@ -80,14 +80,31 @@ namespace DUTAdmissionSystem.Areas.Public
 
             context.Routes.MapHttpRoute(
               name: "DeletionObject",
-              routeTemplate: "api/public/update-profile",
+              routeTemplate: "api/public/update-profile/deletion",
               defaults: new { controller = "Profile", action = "DeletionObject", id = RouteParameter.Optional }
+          );
+            context.Routes.MapHttpRoute(
+                  name: "UpdateProfile",
+                  routeTemplate: "api/public/update-profile",
+                  defaults: new { controller = "Profile", action = "UpdateProfile", id = RouteParameter.Optional }
+              );
+            context.Routes.MapHttpRoute(
+              name: "DeletionObject",
+                routeTemplate: "api/public/update-profile",
+              defaults: new { controller = "Profile", action = "DeletionObject", id = RouteParameter.Optional },
+              constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) }
           );
 
             context.Routes.MapHttpRoute(
                 name: "GetLibrariesOfProFile",
                 routeTemplate: "api/public/profile-library",
                 defaults: new { controller = "Profile", action = "GetLibrariesOfProFile", id = RouteParameter.Optional }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "TestSaveAnh",
+                routeTemplate: "api/public/test-save-anh",
+                defaults: new { controller = "Profile", action = "TestSaveAnh", id = RouteParameter.Optional }
             );
 
             //<<--ContactMessage controller-->>
