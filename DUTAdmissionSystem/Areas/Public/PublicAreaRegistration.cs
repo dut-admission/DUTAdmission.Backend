@@ -21,43 +21,37 @@ namespace DUTAdmissionSystem.Areas.Public
             context.Routes.MapHttpRoute(
                 name: "GetAdmissionNewsApi",
                 routeTemplate: "api/public/admission-news",
-                defaults: new { controller = "AdmissionNews", action = "GetAdmissionNews", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "AdmissionNews", action = "GetAdmissionNews", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
                 name: "GetAdmissionNewsByIdApi",
                 routeTemplate: "api/public/admission-news/{id}",
-                defaults: new { controller = "AdmissionNews", action = "GetAdmissionNewsById", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "AdmissionNews", action = "GetAdmissionNewsById", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
                 name: "GetSlides",
                 routeTemplate: "api/public/slides",
-                defaults: new { controller = "Slide", action = "GetSlides", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "Slide", action = "GetSlides", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
                 name: "GetSlideById",
                 routeTemplate: "api/public/slides/{id}",
-                defaults: new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
                 name: "GetUniversityInfo",
                 routeTemplate: "api/public/university-info",
-                defaults: new { controller = "UniversityInfo", action = "GetUniversityInfo", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "UniversityInfo", action = "GetUniversityInfo", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
                 name: "GetProfileForStudent",
                 routeTemplate: "api/public/student-profile",
-                defaults: new { controller = "Profile", action = "GetStudentProfile", id = RouteParameter.Optional },
-                constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) }
+                defaults: new { controller = "Profile", action = "GetStudentProfile", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
@@ -76,25 +70,25 @@ namespace DUTAdmissionSystem.Areas.Public
               name: "UpdateAddFamilyMember",
               routeTemplate: "api/public/update-profile/family-member",
               defaults: new { controller = "Profile", action = "UpdateAddFamilyMember", id = RouteParameter.Optional }
-          );
+            );
 
             context.Routes.MapHttpRoute(
               name: "UpdateAddHighSchoolResult",
               routeTemplate: "api/public/update-profile/high-school-result",
               defaults: new { controller = "Profile", action = "UpdateAddHighSchoolResult", id = RouteParameter.Optional }
-          );
+            );
 
             context.Routes.MapHttpRoute(
               name: "DeletionObject",
               routeTemplate: "api/public/update-profile/deletion",
               defaults: new { controller = "Profile", action = "DeletionObject", id = RouteParameter.Optional }
-          );
+            );
 
             context.Routes.MapHttpRoute(
-             name: "UpdateProfile",
-             routeTemplate: "api/public/update-profile",
-             defaults: new { controller = "Profile", action = "UpdateProfile", id = RouteParameter.Optional }
-         );
+                name: "UpdateProfile",
+                routeTemplate: "api/public/update-profile",
+                defaults: new { controller = "Profile", action = "UpdateProfile", id = RouteParameter.Optional }
+            );
 
             context.Routes.MapHttpRoute(
                 name: "GetLibrariesOfProFile",
@@ -113,8 +107,7 @@ namespace DUTAdmissionSystem.Areas.Public
             context.Routes.MapHttpRoute(
                name: "SubmitContactMessageApi",
                routeTemplate: "api/public/contact-message",
-               defaults: new { controller = "ContactMessage", action = "SubmitContactMessage" },
-               constraints: new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) }
+               defaults: new { controller = "ContactMessage", action = "SubmitContactMessage" }
            );
         }
     }
