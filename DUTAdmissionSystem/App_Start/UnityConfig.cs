@@ -1,3 +1,5 @@
+using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
+using DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations;
 using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementations;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
@@ -25,6 +27,7 @@ namespace DUTAdmissionSystem
             container.RegisterType<IStudentProfileService, StudentProfileService>();
             container.RegisterType<IContactMessageService, ContactMessageService>();
             container.RegisterType<IDocumentService, DocumentService>();
+            container.RegisterType<IAdmissionNewsManagerService, AdmissionNewsManagerService>();
 
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
