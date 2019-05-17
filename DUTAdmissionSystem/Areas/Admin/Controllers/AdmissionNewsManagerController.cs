@@ -49,5 +49,23 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpDelete]
+        [ActionName("DeleteAdmissionNews")]
+        public IHttpActionResult DeleteAdmissionNews(int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                _admissionNewsManagerService.DelAdmissionNews(id);
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
