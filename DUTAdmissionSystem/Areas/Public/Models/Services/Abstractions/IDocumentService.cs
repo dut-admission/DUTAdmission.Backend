@@ -1,4 +1,5 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
     public interface IDocumentService
     {
         void UpdateFile(DocumentDto documentDto, string token);
+        List<DocumentResponseDto> GetListDocument(string token);
     }
 }

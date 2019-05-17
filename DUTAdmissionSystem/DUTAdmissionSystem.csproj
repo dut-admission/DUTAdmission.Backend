@@ -263,6 +263,7 @@
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\Public\Models\Dtos\InputDtos\UpdatePassword.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\AdmissionNewsResponseDto.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\OutputDtos\DocumentResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\ProfileResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\SlideResponseDto.cs" />
     <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
