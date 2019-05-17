@@ -31,5 +31,23 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpPost]
+        [ActionName("Add_EditAdmissionNews")]
+        public IHttpActionResult Add_EditAdmissionNews([FromBody]AdmissionNews admissionNews)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                _admissionNewsManagerService.Add_EditAdmissionNews(admissionNews);
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
