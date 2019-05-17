@@ -71,5 +71,15 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             context.SaveChanges();
         }
 
+        public void DelAdmissionNews(int id)
+        {
+            var admissionNews = context.AdmissionNews.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            if (admissionNews != null)
+            {
+                admissionNews.DelFlag = true;
+            }
+            context.SaveChanges();
+        }
+
     }
 }

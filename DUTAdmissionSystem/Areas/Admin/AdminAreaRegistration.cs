@@ -27,6 +27,11 @@ namespace DUTAdmissionSystem.Areas.Admin
                 routeTemplate: "api/admin/admission-news/add-edit",
                 defaults: new { controller = "AdmissionNewsManager", action = "Add_EditAdmissionNews", id = RouteParameter.Optional }
             );
+            context.Routes.MapHttpRoute(
+                name: "DeleteAdmissionNews",
+                routeTemplate: "api/admin/admission-news/{id}",
+                defaults: new { controller = "AdmissionNewsManager", action = "DeleteAdmissionNews", id = RouteParameter.Optional }
+            );
 
             context.MapRoute(
                 "Admin_default",
