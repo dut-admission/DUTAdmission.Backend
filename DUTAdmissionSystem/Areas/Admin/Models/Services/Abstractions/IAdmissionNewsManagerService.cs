@@ -11,5 +11,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
     public interface IAdmissionNewsManagerService
     {
         List<AdmissionsNewsManagerResponseDto> GetAdmissionNewsList(AdmissionNewsManagerConditionSearch conditionSearch);
+        void Add_EditAdmissionNews(AdmissionNews admissionNews);
     }
 }

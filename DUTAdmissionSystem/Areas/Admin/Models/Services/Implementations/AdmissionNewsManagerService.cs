@@ -3,6 +3,7 @@ using DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
+using EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Web;
 
 namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
 {
-    public class AdmissionNewsManagerService: IAdmissionNewsManagerService
+    public class AdmissionNewsManagerService : IAdmissionNewsManagerService
     {
         private readonly DataContext context = new DataContext();
 
@@ -43,6 +44,31 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                     Content = x.Content
                 }).ToList();
             return listOfNews == null ? null : listOfNews;
+        }
+
+        public void Add_EditAdmissionNews(AdmissionNews admissionNews)
+        {
+            if (admissionNews.Id == 0)
+            {
+                context.AdmissionNews.Add(new Database.Schema.Entity.AdmissionNews
+                {
+                    Title = admissionNews.Title,
+                    ImageUrl = admissionNews.ImageUrl,
+                    Content = admissionNews.Content,
+                    Summary = admissionNews.Summary
+                });
+            }
+            else
+            {
+                context.AdmissionNews.Where(x => x.Id == admissionNews.Id && !x.DelFlag).Update(x => new Database.Schema.Entity.AdmissionNews
+                {
+                    Title = admissionNews.Title,
+                    ImageUrl = admissionNews.ImageUrl,
+                    Content = admissionNews.Content,
+                    Summary = admissionNews.Summary
+                });
+            }
+            context.SaveChanges();
         }
 
     }
