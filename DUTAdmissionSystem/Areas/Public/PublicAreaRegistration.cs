@@ -103,6 +103,12 @@ namespace DUTAdmissionSystem.Areas.Public
                defaults: new { controller = "Document", action = "UpdateFile", id = RouteParameter.Optional }
            );
 
+            context.Routes.MapHttpRoute(
+               name: "GetListDocument",
+               routeTemplate: "api/public/list-document",
+               defaults: new { controller = "Document", action = "GetListDocument", id = RouteParameter.Optional }
+           );
+
             //<<--ContactMessage controller-->>
             context.Routes.MapHttpRoute(
                name: "SubmitContactMessageApi",

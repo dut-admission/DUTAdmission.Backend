@@ -34,5 +34,20 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetListDocument")]
+        //[Authorize]
+        public IHttpActionResult GetListDocument()
+        {
+            try
+            {
+                return Ok(_documentService.GetListDocument(Request.GetAuthorizationHeader()));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
