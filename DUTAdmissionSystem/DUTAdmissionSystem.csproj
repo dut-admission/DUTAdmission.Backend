@@ -211,6 +211,11 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdmissionNewsManagerController.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AdmissionNewsManagerConditionSearch.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AdmissionsNewsManagerResponseDto.cs" />
+    <Compile Include="Areas\Admin\Models\Services\Abstractions\IAdmissionNewsManagerService.cs" />
+    <Compile Include="Areas\Admin\Models\Services\Implementations\AdmissionNewsManagerService.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\LoginDto.cs" />
@@ -340,8 +345,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Resources\Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Public\Views\Shared\" />
