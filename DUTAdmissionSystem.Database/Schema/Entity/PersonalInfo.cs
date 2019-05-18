@@ -24,7 +24,6 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         [Required]
         public int NationalityId { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string PermanentResidence { get; set; }
 
