@@ -407,6 +407,12 @@
                 .HasForeignKey(e => e.StatusId)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Status>()
+                .HasMany(e => e.ContactMessages)
+                .WithRequired(e => e.Status)
+                .HasForeignKey(e => e.StatusId)
+                .WillCascadeOnDelete(false);
+
         }
 
         /// <summary>
