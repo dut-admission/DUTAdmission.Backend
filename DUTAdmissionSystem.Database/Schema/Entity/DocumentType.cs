@@ -15,8 +15,15 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         }
 
         [Required]
+        public bool IsRequired { get; set; }
+
+        [Required]
         [StringLength(100)]
         public string Name { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string Description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Document> Documents { get; set; }
