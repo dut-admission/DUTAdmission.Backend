@@ -29,6 +29,7 @@ namespace DUTAdmissionSystem
             container.RegisterType<IDocumentService, DocumentService>();
             container.RegisterType<IEmployeeProfileService, EmployeeProfileService>();
             container.RegisterType<IAdmissionNewsManagerService, AdmissionNewsManagerService>();
+            container.RegisterType<IContactMessageManagerServiece, ContactMessageManagerServiece>();
            
 
 
