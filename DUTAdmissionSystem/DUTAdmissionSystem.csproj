@@ -214,6 +214,7 @@
     <Compile Include="Areas\Admin\Controllers\AdmissionNewsManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeProfileController.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AdmissionNewsManagerConditionSearch.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\InputDtos\UpdateEmployeeProfile.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AdmissionsNewsManagerResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\EmployeeProfile.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IAdmissionNewsManagerService.cs" />

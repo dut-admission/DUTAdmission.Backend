@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
+﻿using DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Fillters;
 using System;
@@ -21,12 +22,31 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
 
         [HttpGet]
         [ActionName("GetEmployeeProfile")]
-       // [DUTAuthorize]
+        // [DUTAuthorize]
         public IHttpActionResult GetEmployeeProfile()
         {
             try
             {
                 return Ok(_employeeProfileService.GetEmployeeProfile(Request.GetAuthorizationHeader()));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("UpdateEmployeeProfile")]
+        // [DUTAuthorize]
+        public IHttpActionResult UpdateEmployeeProfile([FromBody]UpdateEmployeeProfile updateEmployeeProfile)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                _employeeProfileService.UpdateEmployeeProfile(updateEmployeeProfile, Request.GetAuthorizationHeader());
+                return Ok();
             }
             catch (System.Exception e)
             {

@@ -1,7 +1,9 @@
-﻿using DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos;
+﻿using DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
+using EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,28 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             employeeProfile.UserName = account.UserName;
             employeeProfile.AccountGroupName = account.AccountGroup.Name;
             return employeeProfile;
+        }
+
+        public void UpdateEmployeeProfile(UpdateEmployeeProfile updateEmployeeProfile,string token)
+        {
+            int id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var userInfo = context.UserInfoes.FirstOrDefault(x => !x.DelFlag && x.Id == id);
+            if(userInfo != null)
+            {
+                userInfo.FirstName = updateEmployeeProfile.FirstName;
+                userInfo.LastName = updateEmployeeProfile.LastName;
+                userInfo.Avatar = updateEmployeeProfile.Avatar;
+                userInfo.BirthInfo.DateOfBirth = updateEmployeeProfile.DateOfBirth;
+                userInfo.BirthInfo.PlaceOfBirth = updateEmployeeProfile.PlaceOfBirth;
+                userInfo.BirthInfo.Sex = updateEmployeeProfile.Sex;
+                userInfo.ContactInfo.PhoneNumber = updateEmployeeProfile.PhoneNumber;
+                userInfo.ContactInfo.Email = updateEmployeeProfile.Email;
+                userInfo.ContactInfo.Address = updateEmployeeProfile.Address;
+                userInfo.IdentityInfo.IdentityNumber = updateEmployeeProfile.IdentityNumber;
+            }
+            context.SaveChanges();
+
+
         }
     }
 }
