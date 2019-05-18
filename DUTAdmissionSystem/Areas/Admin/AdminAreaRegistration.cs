@@ -39,6 +39,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "EmployeeProfile", action = "GetEmployeeProfile", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+              name: "UpdateEmployeeProfile",
+              routeTemplate: "api/admin/employee-profile/update",
+              defaults: new { controller = "EmployeeProfile", action = "UpdateEmployeeProfile", id = RouteParameter.Optional }
+          );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",

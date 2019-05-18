@@ -37,7 +37,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         [HttpPut]
        // [Authorize]
         [ActionName("UpdatePassword")]
-        public IHttpActionResult UpdatePassword(UpdatePassword updatePassword) 
+        public IHttpActionResult UpdatePassword([FromBody]UpdatePassword updatePassword) 
         {
             try
             {
@@ -79,7 +79,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         [HttpPost]
         [ActionName("UpdateAddAchievement")]
        // [Authorize]
-        public IHttpActionResult UpdateAddAchievement(Achievement achievement)
+        public IHttpActionResult UpdateAddAchievement([FromBody]Achievement achievement)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         [HttpPost]
         [ActionName("UpdateAddFamilyMember")]
        // [Authorize]
-        public IHttpActionResult UpdateAddFamilyMember(FamilyMember familyMember)
+        public IHttpActionResult UpdateAddFamilyMember([FromBody]FamilyMember familyMember)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         [HttpPost]
         [ActionName("UpdateAddHighSchoolResult")]
       //  [Authorize]
-        public IHttpActionResult UpdateAddHighSchoolResult(HighSchoolResult highSchoolResult)
+        public IHttpActionResult UpdateAddHighSchoolResult([FromBody]HighSchoolResult highSchoolResult)
         {
             try
             {
@@ -136,7 +136,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         [HttpDelete]
         [ActionName("DeletionObject")]
       //  [Authorize]
-        public IHttpActionResult DeletionObject(DeletionObject deletionObject)
+        public IHttpActionResult DeletionObject([FromBody]DeletionObject deletionObject)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         [HttpPut]
         [ActionName("UpdateProfile")]
         //  [Authorize]
-        public IHttpActionResult UpdateProfile(Profile profile)
+        public IHttpActionResult UpdateProfile([FromBody]Profile profile)
         {
             try
             {
