@@ -19,11 +19,13 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             int idStudent = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag).Id;
             string url = FunctionCommon.SaveFile(documentDto.File, documentDto.DocumentId, documentDto.FileName);
-            var document = context.Documents.FirstOrDefault(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag);
-            string urlFile = document.Url;
-            document.Url = host+"/" + url;
+            string urlFile = context.Documents.FirstOrDefault(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Url;
+            context.Documents.Where(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Update(x => new Database.Schema.Entity.Document
+            {
+                Url = host + "/" + url
+            });
             context.SaveChanges();
-            FunctionCommon.DeleteFile(urlFile.Substring(host.Length, urlFile.Length-1));
+            FunctionCommon.DeleteFile(urlFile.Substring(host.Length, urlFile.Length - host.Length));
         }
 
         public List<DocumentResponseDto> GetListDocument(string token)
@@ -40,7 +42,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 StatusName = x.Status.Name,
                 IsRequired = x.DocumentType.IsRequired,
                 ResponseMessage=x.ResponseMessage,
-                Description=x.DocumentType.Description
+                Description=x.DocumentType.Description,
+                FileName=x.FileName
             }).ToList();
         }
     }

@@ -16,6 +16,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
         public bool IsRequired { get; set; }
         public string ResponseMessage { get; set; }
         public string Description { get; set; }
+        public string FileName { get; set; }
 
     }
 }
