@@ -22,5 +22,8 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         [StringLength(500)]
         [Required]
         public string Message { get; set; }
+
+        public int StatusId { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

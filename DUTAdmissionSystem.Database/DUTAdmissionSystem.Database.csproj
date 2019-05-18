@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201905180228008_EditDocumentTable.Designer.cs">
       <DependentUpon>201905180228008_EditDocumentTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905180623329_AddStatusForContactMessage.cs" />
+    <Compile Include="Migrations\201905180623329_AddStatusForContactMessage.Designer.cs">
+      <DependentUpon>201905180623329_AddStatusForContactMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -188,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905180228008_EditDocumentTable.resx">
       <DependentUpon>201905180228008_EditDocumentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180623329_AddStatusForContactMessage.resx">
+      <DependentUpon>201905180623329_AddStatusForContactMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
