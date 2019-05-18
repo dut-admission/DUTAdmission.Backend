@@ -45,6 +45,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "EmployeeProfile", action = "UpdateEmployeeProfile", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+              name: "GetContactMessagerList",
+              routeTemplate: "api/admin/contact-messager",
+              defaults: new { controller = "ContactMassagerManager", action = "GetContactMessagerList", id = RouteParameter.Optional }
+          );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
