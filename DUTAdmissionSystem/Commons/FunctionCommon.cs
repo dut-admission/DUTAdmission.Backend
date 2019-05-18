@@ -218,11 +218,35 @@ namespace DUTAdmissionSystem.Commons
             if (!string.IsNullOrEmpty(stringPath))
             {
                 byte[] bytes = Convert.FromBase64String(stringPath);
-                strFileName = "Document/" + DateTime.Now.ToString("yyyyMMddHHmmss_") + IdCommon + "_" + name + ".pdf";
+                strFileName = "Document/" + DateTime.Now.ToString("yyyyMMddHHmmss_") + IdCommon + "_" + name;
                 File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/" + strFileName), bytes);
 
             }
             return strFileName;
+        }
+
+        /// <summary>
+        /// Xóa file theo danh sách url đã cung cấp.
+        /// Author       :    AnMT - 18/05/2019 - create
+        /// </summary>
+        /// <param name="fileUrl">url file sẽ xóa</param>
+        /// <returns>True nếu xóa thành công tất cả ccs file. Exception nếu có lỗi.</returns>
+        public static bool DeleteFile(string fileUrl)
+        {
+            try
+            {
+                string path = HostingEnvironment.MapPath("~" + fileUrl);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
     }
