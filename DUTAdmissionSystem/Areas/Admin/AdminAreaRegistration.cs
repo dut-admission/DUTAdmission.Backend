@@ -33,6 +33,12 @@ namespace DUTAdmissionSystem.Areas.Admin
                 defaults: new { controller = "AdmissionNewsManager", action = "DeleteAdmissionNews", id = RouteParameter.Optional }
             );
 
+            context.Routes.MapHttpRoute(
+              name: "GetEmployeeProfile",
+              routeTemplate: "api/admin/employee-profile",
+              defaults: new { controller = "EmployeeProfile", action = "GetEmployeeProfile", id = RouteParameter.Optional }
+          );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
