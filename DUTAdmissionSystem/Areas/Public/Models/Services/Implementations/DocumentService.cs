@@ -14,18 +14,20 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
     public class DocumentService : IDocumentService
     {
         private DataContext context = new DataContext();
-        public void UpdateFile(DocumentDto documentDto, string token,string host)
+        public string UpdateFile(DocumentDto documentDto, string token,string host)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             int idStudent = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag).Id;
             string url = FunctionCommon.SaveFile(documentDto.File, documentDto.DocumentId, documentDto.FileName);
             string urlFile = context.Documents.FirstOrDefault(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Url;
+            string strUrl = host + "/" + url;
             context.Documents.Where(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Update(x => new Database.Schema.Entity.Document
             {
-                Url = host + "/" + url
+                Url = strUrl
             });
             context.SaveChanges();
             FunctionCommon.DeleteFile(urlFile.Substring(host.Length, urlFile.Length - host.Length));
+            return strUrl;
         }
 
         public List<DocumentResponseDto> GetListDocument(string token)

@@ -26,8 +26,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
         {
             try
             {
-                _documentService.UpdateFile(documentDto, Request.GetAuthorizationHeader(), Request.RequestUri.Host);
-                return Ok();
+                return Ok(_documentService.UpdateFile(documentDto, Request.GetAuthorizationHeader(), Request.RequestUri.GetLeftPart(UriPartial.Authority)));
             }
             catch (System.Exception e)
             {
