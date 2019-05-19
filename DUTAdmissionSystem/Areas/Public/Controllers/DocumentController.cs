@@ -1,6 +1,7 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
+using DUTAdmissionSystem.Fillters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpPut]
         [ActionName("UpdateFile")]
-        //[Authorize]
+        [DUTAuthorize]
         public IHttpActionResult UpdateFile([FromBody]DocumentDto documentDto)
         {
             try
@@ -36,7 +37,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpGet]
         [ActionName("GetListDocument")]
-        //[Authorize]
+        [DUTAuthorize]
         public IHttpActionResult GetListDocument()
         {
             try

@@ -23,7 +23,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             string strUrl = host + "/" + url;
             context.Documents.Where(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Update(x => new Database.Schema.Entity.Document
             {
-                Url = strUrl
+                Url = strUrl,
+                FileName=documentDto.FileName
             });
             context.SaveChanges();
             FunctionCommon.DeleteFile(urlFile.Substring(host.Length, urlFile.Length - host.Length));
