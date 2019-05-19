@@ -121,6 +121,10 @@
     <Compile Include="Migrations\201905180724222_AddFileNameForDocument.Designer.cs">
       <DependentUpon>201905180724222_AddFileNameForDocument.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905190730110_AddTuitionTypeTable.cs" />
+    <Compile Include="Migrations\201905190730110_AddTuitionTypeTable.Designer.cs">
+      <DependentUpon>201905190730110_AddTuitionTypeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -173,6 +177,7 @@
     <Compile Include="Schema\Entity\sysdiagram.cs" />
     <Compile Include="Schema\Entity\Talent.cs" />
     <Compile Include="Schema\Entity\TalentType.cs" />
+    <Compile Include="Schema\Entity\TuitionType.cs" />
     <Compile Include="Schema\Entity\UniversityExamResult.cs" />
     <Compile Include="Schema\Entity\UniversityInfo.cs" />
     <Compile Include="Schema\Entity\UserInfo.cs" />
@@ -202,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905180724222_AddFileNameForDocument.resx">
       <DependentUpon>201905180724222_AddFileNameForDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905190730110_AddTuitionTypeTable.resx">
+      <DependentUpon>201905190730110_AddTuitionTypeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

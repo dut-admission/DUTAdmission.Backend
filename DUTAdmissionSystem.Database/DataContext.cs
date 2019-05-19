@@ -71,6 +71,7 @@
         public virtual DbSet<ContactMessage> ContactMessages { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<StatusType> StatusTypes { get; set; }
+        public virtual DbSet<TuitionType> TuitionTypes { get; set; }
 
 
         public override int SaveChanges()
