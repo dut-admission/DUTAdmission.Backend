@@ -61,7 +61,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             {
                 ClassName = student.Class.Name,
                 DepartmentName = student.Class.Department.Name,
-                ProgramName = student.Class.Program.Name,
+                ProgramName = student.Class.Department.Program.Name,
                 FacultyName = student.Class.Department.Faculty.Name,
                 ElectionName = student.ElectionType.Name,
                 EnrollmentAreaName = student.EnrollmentArea.Name,
@@ -478,7 +478,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             student.Class.Name = profile.UniversityInfo.ClassName;
             student.Class.Department.Name = profile.UniversityInfo.DepartmentName;
             student.Class.Department.Faculty.Name = profile.UniversityInfo.FacultyName;
-            student.Class.Program.Name = profile.UniversityInfo.ProgramName;
+            student.Class.Department.Program.Name = profile.UniversityInfo.ProgramName;
             student.EnrollmentArea.Name = profile.UniversityInfo.EnrollmentAreaName;
             student.ElectionType.Name = profile.UniversityInfo.ElectionName;
 
