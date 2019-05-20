@@ -11,7 +11,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Program()
         {
-            Classes = new HashSet<Class>();
+            Departments = new HashSet<Department>();
         }
 
         [Required]
@@ -21,7 +21,6 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         [Required]
         public double Fees { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Class> Classes { get; set; }
+        public virtual ICollection<Department> Departments { get; set; }
     }
 }

@@ -301,7 +301,7 @@
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Program>()
-                .HasMany(e => e.Classes)
+                .HasMany(e => e.Departments)
                 .WithRequired(e => e.Program)
                 .HasForeignKey(e => e.ProgramId)
                 .WillCascadeOnDelete(false);
