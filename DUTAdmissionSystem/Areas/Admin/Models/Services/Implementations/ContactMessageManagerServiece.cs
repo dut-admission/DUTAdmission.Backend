@@ -49,12 +49,23 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             return listOfContactMessager;
         }
 
-        public void UpdateContactMessage(UpdateContactMessage updateContactMessage)
+        public void UpdateContactMessage(int id, UpdateContactMessage updateContactMessage)
         {
-            context.ContactMessages.Where(x => x.Id == updateContactMessage.Id && !x.DelFlag).Update(x => new Database.Schema.Entity.ContactMessage
+            context.ContactMessages.Where(x => x.Id == id && !x.DelFlag).Update(x => new Database.Schema.Entity.ContactMessage
             {
                 StatusId = updateContactMessage.StatusId
             });
+        }
+
+        public void ReplyContactMessage(int id, ReplyContactMessage replyContactMessage)
+        {
+            var contactMessage = context.ContactMessages.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            SendMail.Send(contactMessage.Email, replyContactMessage.ResponseMessage, "TUYỂN SINH ĐẠI HỌC BÁCH KHOA ĐÀ NẴNG");
+            context.ContactMessages.Where(x => x.Id == id && !x.DelFlag).Update(x => new Database.Schema.Entity.ContactMessage
+            {
+                StatusId = 1
+            });
+
         }
     }
 }

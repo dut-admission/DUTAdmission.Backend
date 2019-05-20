@@ -26,7 +26,11 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos
 
     public class UpdateContactMessage
     {
-        public int Id { get; set; }
         public int StatusId { get; set; }
+    }
+
+    public class ReplyContactMessage
+    {
+        public string ResponseMessage { get; set; }
     }
 }

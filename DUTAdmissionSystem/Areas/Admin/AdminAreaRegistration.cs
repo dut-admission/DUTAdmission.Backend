@@ -54,8 +54,14 @@ namespace DUTAdmissionSystem.Areas.Admin
 
             context.Routes.MapHttpRoute(
               name: "UpdateContactMessager",
-              routeTemplate: "api/admin/contact-messager/update",
+              routeTemplate: "api/admin/contact-messager/{id}/update",
               defaults: new { controller = "ContactMassagerManager", action = "UpdateContactMessager", id = RouteParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+              name: "ReplyContactMessager",
+              routeTemplate: "api/admin/contact-messager/{id}/reply",
+              defaults: new { controller = "ContactMassagerManager", action = "ReplyContactMessager", id = RouteParameter.Optional }
           );
 
             context.MapRoute(
