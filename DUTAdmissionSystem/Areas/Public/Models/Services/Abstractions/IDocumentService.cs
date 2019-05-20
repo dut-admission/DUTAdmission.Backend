@@ -10,7 +10,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
 {
     public interface IDocumentService
     {
-        string UpdateFile(DocumentDto documentDto, string token, string host);
+        DocumentResponseDto UpdateFile(DocumentDto documentDto, string token, string host);
         List<DocumentResponseDto> GetListDocument(string token);
     }
 }

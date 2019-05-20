@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
     public class DocumentService : IDocumentService
     {
         private DataContext context = new DataContext();
-        public string UpdateFile(DocumentDto documentDto, string token,string host)
+        public DocumentResponseDto UpdateFile(DocumentDto documentDto, string token,string host)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             int idStudent = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag).Id;
@@ -24,11 +24,25 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             context.Documents.Where(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Update(x => new Database.Schema.Entity.Document
             {
                 Url = strUrl,
-                FileName=documentDto.FileName
+                FileName=documentDto.FileName,
+                StatusId=2,
+                DocumentTypeId =1
             });
             context.SaveChanges();
             FunctionCommon.DeleteFile(urlFile.Substring(host.Length, urlFile.Length - host.Length));
-            return strUrl;
+            return context.Documents.Where(x=>x.Id==documentDto.DocumentId && !x.DelFlag).Select(x => new DocumentResponseDto
+            {
+                Id = x.Id,
+                DocumentTypeId = x.DocumentTypeId,
+                DocumentTypeName = x.DocumentType.Name,
+                Url = x.Url,
+                StatusId = x.StatusId,
+                StatusName = x.Status.Name,
+                IsRequired = x.DocumentType.IsRequired,
+                ResponseMessage = x.ResponseMessage,
+                Description = x.DocumentType.Description,
+                FileName = x.FileName
+            }).FirstOrDefault();
         }
 
         public List<DocumentResponseDto> GetListDocument(string token)
