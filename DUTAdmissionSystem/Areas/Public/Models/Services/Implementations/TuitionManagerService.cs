@@ -25,7 +25,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 Description =x.Description
             }).ToList();
 
-            tuitionDetail.TuitionFee = classOfStudent.Program.Fees;
+            tuitionDetail.TuitionFee = classOfStudent.Department.Program.Fees;
             tuitionDetail.TotalOfFee = tuitionDetail.TuitionFee;
             foreach(TuitionType tuitionType in tuitionDetail.TuitionTypes)
             {

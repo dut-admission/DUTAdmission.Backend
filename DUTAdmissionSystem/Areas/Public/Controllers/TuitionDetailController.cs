@@ -1,5 +1,6 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
+using DUTAdmissionSystem.Fillters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
 
         [HttpGet]
         [ActionName("GetTuitionDetail")]
+        [DUTAuthorize]
         public IHttpActionResult GetTuitionDetail()
         {
             try
