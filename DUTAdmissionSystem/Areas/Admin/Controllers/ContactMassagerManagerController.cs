@@ -35,13 +35,30 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
 
         [HttpPut]
         [ActionName("UpdateContactMessager")]
-        public IHttpActionResult UpdateContactMessager(UpdateContactMessage updateContactMessage)
+        public IHttpActionResult UpdateContactMessager(int id,UpdateContactMessage updateContactMessage)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _contactMessageManagerServiece.UpdateContactMessage(updateContactMessage);
+                _contactMessageManagerServiece.UpdateContactMessage(id,updateContactMessage);
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("ReplyContactMessager")]
+        public IHttpActionResult ReplyContactMessager(int id, ReplyContactMessage replyContactMessage)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _contactMessageManagerServiece.ReplyContactMessage(id, replyContactMessage);
                 return Ok();
             }
             catch (System.Exception e)
