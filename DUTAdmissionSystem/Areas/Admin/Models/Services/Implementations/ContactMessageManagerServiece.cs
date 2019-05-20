@@ -3,6 +3,7 @@ using DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
+using EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,14 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                     StatusId = x.StatusId
                 }).ToList();
             return listOfContactMessager;
+        }
+
+        public void UpdateContactMessage(UpdateContactMessage updateContactMessage)
+        {
+            context.ContactMessages.Where(x => x.Id == updateContactMessage.Id && !x.DelFlag).Update(x => new Database.Schema.Entity.ContactMessage
+            {
+                StatusId = updateContactMessage.StatusId
+            });
         }
     }
 }

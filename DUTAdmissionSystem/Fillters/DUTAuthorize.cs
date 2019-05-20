@@ -44,7 +44,7 @@ namespace DUTAdmissionSystem.Fillters
                 }
                 else if(tokenInformation.IsStudent)
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, AppMessage.NotAccept);
+                    //actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, AppMessage.NotAccept);
                 }
                 else
                 {

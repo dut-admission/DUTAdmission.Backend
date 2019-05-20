@@ -23,4 +23,10 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos
             this.CurrentPage = 1;
         }
     }
+
+    public class UpdateContactMessage
+    {
+        public int Id { get; set; }
+        public int StatusId { get; set; }
+    }
 }

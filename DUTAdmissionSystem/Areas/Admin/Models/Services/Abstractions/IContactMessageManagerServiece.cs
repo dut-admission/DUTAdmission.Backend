@@ -11,5 +11,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
     public interface IContactMessageManagerServiece
     {
         List<ContactMessageResponseDto> GetContactMessageList(ContactMessageConditionSearch conditionSearch);
+        void UpdateContactMessage(UpdateContactMessage updateContactMessage);
     }
 }

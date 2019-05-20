@@ -44,11 +44,18 @@ namespace DUTAdmissionSystem.Areas.Admin
               routeTemplate: "api/admin/employee-profile/update",
               defaults: new { controller = "EmployeeProfile", action = "UpdateEmployeeProfile", id = RouteParameter.Optional }
           );
+            //<<--ContactMassagerManager controller-->>
 
             context.Routes.MapHttpRoute(
               name: "GetContactMessagerList",
               routeTemplate: "api/admin/contact-messager",
               defaults: new { controller = "ContactMassagerManager", action = "GetContactMessagerList", id = RouteParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+              name: "UpdateContactMessager",
+              routeTemplate: "api/admin/contact-messager/update",
+              defaults: new { controller = "ContactMassagerManager", action = "UpdateContactMessager", id = RouteParameter.Optional }
           );
 
             context.MapRoute(

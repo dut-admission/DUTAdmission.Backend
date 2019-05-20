@@ -1,5 +1,6 @@
 ﻿using DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
+using DUTAdmissionSystem.Fillters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,23 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
             try
             {
                 return Ok(_contactMessageManagerServiece.GetContactMessageList(conditionSearch));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("UpdateContactMessager")]
+        public IHttpActionResult UpdateContactMessager(UpdateContactMessage updateContactMessage)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _contactMessageManagerServiece.UpdateContactMessage(updateContactMessage);
+                return Ok();
             }
             catch (System.Exception e)
             {
