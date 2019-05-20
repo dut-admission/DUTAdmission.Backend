@@ -220,9 +220,12 @@
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AdmissionsNewsManagerResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\ContactMessageResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\EmployeeProfile.cs" />
+    <Compile Include="Areas\Public\Controllers\TuitionDetailController.cs" />
+    <Compile Include="Areas\Public\Models\Dtos\OutputDtos\TuitionDetail.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IAdmissionNewsManagerService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IContactMessageManagerServiece.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IEmployeeProfileService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Abstractions\ITuitionManagerService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\AdmissionNewsManagerService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\ContactMessageManagerServiece.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\EmployeeProfileService.cs" />
@@ -293,6 +296,7 @@
     <Compile Include="Areas\Public\Models\Services\Implementations\DocumentService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\StudentProfileService.cs" />
+    <Compile Include="Areas\Public\Models\Services\Implementations\TuitionManagerService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />

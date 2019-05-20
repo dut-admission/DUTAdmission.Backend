@@ -115,6 +115,13 @@ namespace DUTAdmissionSystem.Areas.Public
                routeTemplate: "api/public/contact-message",
                defaults: new { controller = "ContactMessage", action = "SubmitContactMessage" }
            );
+
+            //<<--TuitionDetail controller-->>
+            context.Routes.MapHttpRoute(
+               name: "GetTuitionDetail",
+               routeTemplate: "api/public/tuition-deital",
+               defaults: new { controller = "TuitionDetail", action = "GetTuitionDetail" }
+           );
         }
     }
 }
