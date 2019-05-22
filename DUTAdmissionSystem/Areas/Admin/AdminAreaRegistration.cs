@@ -64,6 +64,14 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "ContactMassagerManager", action = "ReplyContactMessager", id = RouteParameter.Optional }
           );
 
+            //<<--StudentManagement controller-->>
+
+            context.Routes.MapHttpRoute(
+              name: "GetStudents",
+              routeTemplate: "api/admin/student",
+              defaults: new { controller = "StudentManagement", action = "GetStudents", id = RouteParameter.Optional }
+          );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
