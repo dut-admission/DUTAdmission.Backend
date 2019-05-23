@@ -72,6 +72,14 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "StudentManagement", action = "GetStudents", id = RouteParameter.Optional }
           );
 
+            //<<--AccountGroupManagement controller-->>
+
+            context.Routes.MapHttpRoute(
+              name: "GetAccountGroups",
+              routeTemplate: "api/admin/account-group",
+              defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroups", id = RouteParameter.Optional }
+          );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
