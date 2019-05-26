@@ -39,6 +39,8 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
             result.UserName = accountFromDb.UserName;
 
+            result.IsStudent = isStudent;
+
             return result;
         }
 

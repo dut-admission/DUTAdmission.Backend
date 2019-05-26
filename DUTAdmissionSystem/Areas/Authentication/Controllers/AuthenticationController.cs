@@ -29,7 +29,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
             var result = authenticationService.Login(dto);
 
             if (result == null)
-                return CreateUnauthorizedResponse("Invalid username or password");
+                return CreateUnauthorizedResponse("Username hoặc mật khẩu không chính xác.");
 
             var output = Request.CreateResponse(HttpStatusCode.OK, result);
 
