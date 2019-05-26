@@ -32,6 +32,7 @@ namespace DUTAdmissionSystem
             container.RegisterType<IContactMessageManagerServiece, ContactMessageManagerServiece>();
             container.RegisterType<ITuitionManagerService, TuitionManagerService>();
             container.RegisterType<IStudentManagementService, StudentManagementService>();
+            container.RegisterType<IAccountGroupManagementService, AccountGroupManagementService>();
 
 
 
