@@ -72,6 +72,7 @@
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<StatusType> StatusTypes { get; set; }
         public virtual DbSet<TuitionType> TuitionTypes { get; set; }
+        public virtual DbSet<Receipt> Receipts { get; set; }
 
 
         public override int SaveChanges()
@@ -412,6 +413,18 @@
                 .HasMany(e => e.ContactMessages)
                 .WithRequired(e => e.Status)
                 .HasForeignKey(e => e.StatusId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserInfo>()
+                .HasMany(e => e.ReceiptsForPayer)
+                .WithRequired(e => e.Payer)
+                .HasForeignKey(e => e.PayerUserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserInfo>()
+                .HasMany(e => e.ReceiptsForCollector)
+                .WithRequired(e => e.Collector)
+                .HasForeignKey(e => e.CollectorUserId)
                 .WillCascadeOnDelete(false);
 
         }
