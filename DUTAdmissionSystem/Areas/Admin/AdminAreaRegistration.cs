@@ -19,18 +19,18 @@ namespace DUTAdmissionSystem.Areas.Admin
             context.Routes.MapHttpRoute(
                 name: "GetAdmissionNewsList",
                 routeTemplate: "api/admin/admission-news",
-                defaults: new { controller = "AdmissionNewsManager", action = "GetAdmissionNewsList", id = RouteParameter.Optional }
+                defaults: new { controller = "AdmissionNewsManagement", action = "GetAdmissionNewsList", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
                 name: "Add_EditAdmissionNews",
                 routeTemplate: "api/admin/admission-news/add-edit",
-                defaults: new { controller = "AdmissionNewsManager", action = "Add_EditAdmissionNews", id = RouteParameter.Optional }
+                defaults: new { controller = "AdmissionNewsManagement", action = "Add_EditAdmissionNews", id = RouteParameter.Optional }
             );
             context.Routes.MapHttpRoute(
                 name: "DeleteAdmissionNews",
                 routeTemplate: "api/admin/admission-news/{id}",
-                defaults: new { controller = "AdmissionNewsManager", action = "DeleteAdmissionNews", id = RouteParameter.Optional }
+                defaults: new { controller = "AdmissionNewsManagement", action = "DeleteAdmissionNews", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
@@ -49,19 +49,19 @@ namespace DUTAdmissionSystem.Areas.Admin
             context.Routes.MapHttpRoute(
               name: "GetContactMessagerList",
               routeTemplate: "api/admin/contact-messager",
-              defaults: new { controller = "ContactMassagerManager", action = "GetContactMessagerList", id = RouteParameter.Optional }
+              defaults: new { controller = "ContactMassagerManagement", action = "GetContactMessagerList", id = RouteParameter.Optional }
           );
 
             context.Routes.MapHttpRoute(
               name: "UpdateContactMessager",
               routeTemplate: "api/admin/contact-messager/{id}/update",
-              defaults: new { controller = "ContactMassagerManager", action = "UpdateContactMessager", id = RouteParameter.Optional }
+              defaults: new { controller = "ContactMassagerManagement", action = "UpdateContactMessager", id = RouteParameter.Optional }
           );
 
             context.Routes.MapHttpRoute(
               name: "ReplyContactMessager",
               routeTemplate: "api/admin/contact-messager/{id}/reply",
-              defaults: new { controller = "ContactMassagerManager", action = "ReplyContactMessager", id = RouteParameter.Optional }
+              defaults: new { controller = "ContactMassagerManagement", action = "ReplyContactMessager", id = RouteParameter.Optional }
           );
 
             //<<--StudentManagement controller-->>

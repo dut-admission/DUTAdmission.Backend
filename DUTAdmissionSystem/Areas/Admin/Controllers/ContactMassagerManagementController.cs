@@ -10,11 +10,11 @@ using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.Admin.Controllers
 {
-    public class ContactMassagerManagerController : ApiController
+    public class ContactMassagerManagementController : ApiController
     {
         private readonly IContactMessageManagerServiece _contactMessageManagerServiece;
 
-        public ContactMassagerManagerController(IContactMessageManagerServiece contactMessageManagerServiece)
+        public ContactMassagerManagementController(IContactMessageManagerServiece contactMessageManagerServiece)
         {
             _contactMessageManagerServiece = contactMessageManagerServiece;
         }
