@@ -216,6 +216,7 @@
     <Compile Include="Areas\Admin\Controllers\ContactMassagerManagerController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentManagementController.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AccountGroupDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AdmissionNewsManagerConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\ContactMessageConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\StudentConditionSearch.cs" />

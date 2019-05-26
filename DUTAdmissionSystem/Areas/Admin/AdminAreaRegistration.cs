@@ -80,6 +80,24 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroups", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+           name: "GetAccountGroupById",
+           routeTemplate: "api/admin/account-group/{id}",
+           defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroupById", id = RouteParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+           name: "AddAccountGroup",
+           routeTemplate: "api/admin/account-group/add",
+           defaults: new { controller = "AccountGroupManagement", action = "AddAccountGroup", id = RouteParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+           name: "EditAccountGroup",
+           routeTemplate: "api/admin/account-group/{id}/edit",
+           defaults: new { controller = "AccountGroupManagement", action = "EditAccountGroup", id = RouteParameter.Optional }
+          );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
