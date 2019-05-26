@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
+﻿using DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,54 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
             try
             {
                 return Ok(_accountGroupManagementService.GetListAccountGroups());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetAccountGroupById")]
+        public IHttpActionResult GetAccountGroupById(int id)
+        {
+            try
+            {
+                return Ok(_accountGroupManagementService.GetAccountGroupById(id));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("AddAccountGroup")]
+        public IHttpActionResult AddAccountGroup([FromBody]AccountGroupDto accountGroup)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_accountGroupManagementService.AddAccountGroup(accountGroup));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("EditAccountGroup")]
+        public IHttpActionResult EditAccountGroup(int id, [FromBody]AccountGroupDto accountGroup)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_accountGroupManagementService.EditAccountGroup(accountGroup, id));
             }
             catch (System.Exception e)
             {
