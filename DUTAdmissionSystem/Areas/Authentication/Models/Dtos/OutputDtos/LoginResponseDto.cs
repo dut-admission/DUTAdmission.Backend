@@ -18,5 +18,8 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Dtos.OutputDtos
 
         [JsonProperty("username")]
         public string UserName { get; set; }
+
+        [JsonProperty("isStudent")]
+        public bool IsStudent { get; set; }
     }
 }

@@ -13,6 +13,9 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         {
             Accounts = new HashSet<Account>();
             Students = new HashSet<Student>();
+            ReceiptsForCollector = new HashSet<Receipt>();
+            ReceiptsForPayer = new HashSet<Receipt>();
+
         }
 
         [Required]
@@ -47,5 +50,10 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
+
+        public virtual ICollection<Receipt> ReceiptsForCollector { get; set; }
+
+        public virtual ICollection<Receipt> ReceiptsForPayer { get; set; }
+
     }
 }
