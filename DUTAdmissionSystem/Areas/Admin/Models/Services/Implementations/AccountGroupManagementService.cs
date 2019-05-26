@@ -16,7 +16,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
 
         public AccountGroupResponseDto AddAccountGroup(AccountGroupDto accountGroup)
         {
-            var accountGroupdb = new AccountGroup { Name = accountGroup.Name, Description = accountGroup.Description };
+            var accountGroupdb = new Database.Schema.Entity.AccountGroup{ Name = accountGroup.Name, Description = accountGroup.Description };
             db.AccountGroups.Add(accountGroupdb);
             db.SaveChanges();
             return new AccountGroupResponseDto(accountGroupdb);
