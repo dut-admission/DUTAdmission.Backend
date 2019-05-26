@@ -98,6 +98,14 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "StudentManagement", action = "GetStudents", id = RouteParameter.Optional }
           );
 
+            //<<--DocumentManagement controller-->>
+
+            context.Routes.MapHttpRoute(
+              name: "GetDocuments",
+              routeTemplate: "api/admin/document",
+              defaults: new { controller = "DocumentManagement", action = "GetDocuments", id = RouteParameter.Optional }
+          );
+
 
             context.MapRoute(
                 "Admin_default",
