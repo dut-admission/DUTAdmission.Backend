@@ -72,7 +72,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 .OrderBy(x => x.Id)
                 .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
                 .Take(paging.NumberOfRecord)
-                .Select(x => new StudentForDocumentDto(x))
+                .Select(x => new StudentForDocumentDto(x, GetListDocumentByStudentId(x.Id)))
                 .ToList();
 
 
@@ -120,6 +120,13 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             var list = db.Documents.Where(x => !x.DelFlag && (x.DocumentTypeId == documentTypeId || x.StatusId == statusId)).ToList()
                 .Select(x => x.StudentId).ToList();
             return list ?? new List<int>();
+        }
+
+        private List<DocumentInfoDto> GetListDocumentByStudentId(int id)
+        {
+            var list = db.Documents.Include(d => d.DocumentType).Include(d => d.Status).Where(x => !x.DelFlag && x.StudentId == id).ToList()
+                .Select(x => new DocumentInfoDto(x)).ToList();
+            return list ?? new List<DocumentInfoDto>();
         }
     }
 }

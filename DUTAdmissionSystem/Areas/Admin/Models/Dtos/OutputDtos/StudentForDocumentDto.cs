@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DUTAdmissionSystem.Database.Schema.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,30 +20,14 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
 
         public string ClassName { set; get; }
 
-        public int DocumentTypeId { set; get; }
-
-        public string DocumentTypeName { set; get; }
-
-        public string Description { set; get; }
-
-        public bool IsRequied { set; get; }
-
-        public string Url { set; get; }
-
-        public string FileName { set; get; }
-
-        public string ResponseMessage { set; get; }
-
-        public int StatusId { set; get; }
-
-        public string StatusName { set; get; }
+        public List<DocumentInfoDto> DocumentInfoes { set; get; }
 
         public StudentForDocumentDto()
         {
 
         }
 
-        public StudentForDocumentDto(int id, string firstName, string lastName, string identityNumber, int classId, string className, int documentTypeId, string documentTypeName, string description, bool isRequied, string url, string fileName, string responseMessage, int statusId, string statusName)
+        public StudentForDocumentDto(int id, string firstName, string lastName, string identityNumber, int classId, string className, List<DocumentInfoDto> documentInfoes)
         {
             Id = id;
             FirstName = firstName;
@@ -50,15 +35,18 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
             IdentityNumber = identityNumber;
             ClassId = classId;
             ClassName = className;
-            DocumentTypeId = documentTypeId;
-            DocumentTypeName = documentTypeName;
-            Description = description;
-            IsRequied = isRequied;
-            Url = url;
-            FileName = fileName;
-            ResponseMessage = responseMessage;
-            StatusId = statusId;
-            StatusName = statusName;
+            DocumentInfoes = documentInfoes;
+        }
+
+        public StudentForDocumentDto(Student student, List<DocumentInfoDto> list)
+        {
+            Id = student.Id;
+            FirstName = student.UserInfo.FirstName;
+            LastName = student.UserInfo.LastName;
+            IdentityNumber = student.IdentificationNumber;
+            ClassId = student.ClassId;
+            ClassName = student.Class.Name;
+            DocumentInfoes = list;
         }
     }
 }
