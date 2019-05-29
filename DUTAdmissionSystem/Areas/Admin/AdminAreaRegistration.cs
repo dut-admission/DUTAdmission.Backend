@@ -15,6 +15,32 @@ namespace DUTAdmissionSystem.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+            //<<--AccountGroupManagement controller-->>
+
+            context.Routes.MapHttpRoute(
+                  name: "GetAccountGroups",
+                  routeTemplate: "api/admin/account-group",
+                  defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroups", id = RouteParameter.Optional }
+              );
+
+            context.Routes.MapHttpRoute(
+                  name: "GetAccountGroupById",
+                  routeTemplate: "api/admin/account-group/{id}",
+                  defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroupById", id = RouteParameter.Optional }
+              );
+
+            context.Routes.MapHttpRoute(
+                name: "AddAccountGroup",
+                routeTemplate: "api/admin/account-group/add",
+                defaults: new { controller = "AccountGroupManagement", action = "AddAccountGroup", id = RouteParameter.Optional }
+            );
+
+            context.Routes.MapHttpRoute(
+           name: "EditAccountGroup",
+           routeTemplate: "api/admin/account-group/{id}/edit",
+           defaults: new { controller = "AccountGroupManagement", action = "EditAccountGroup", id = RouteParameter.Optional }
+          );
+
             //<<--AdmissionNewsManager controller-->>
             context.Routes.MapHttpRoute(
                 name: "GetAdmissionNewsList",
@@ -72,12 +98,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "StudentManagement", action = "GetStudents", id = RouteParameter.Optional }
           );
 
-            //<<--AccountGroupManagement controller-->>
+            //<<--DocumentManagement controller-->>
 
             context.Routes.MapHttpRoute(
-              name: "GetAccountGroups",
-              routeTemplate: "api/admin/account-group",
-              defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroups", id = RouteParameter.Optional }
+              name: "GetDocuments",
+              routeTemplate: "api/admin/document",
+              defaults: new { controller = "DocumentManagement", action = "GetDocuments", id = RouteParameter.Optional }
           );
 
             //<<--TuitionManagementController controller-->>
