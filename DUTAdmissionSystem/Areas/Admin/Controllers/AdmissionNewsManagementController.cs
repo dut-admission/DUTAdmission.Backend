@@ -9,11 +9,11 @@ using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.Admin.Controllers
 {
-    public class AdmissionNewsManagerController : ApiController
+    public class AdmissionNewsManagementController : ApiController
     {
         private readonly IAdmissionNewsManagerService _admissionNewsManagerService;
 
-        public AdmissionNewsManagerController(IAdmissionNewsManagerService admissionNewsManagerService)
+        public AdmissionNewsManagementController(IAdmissionNewsManagerService admissionNewsManagerService)
         {
             _admissionNewsManagerService = admissionNewsManagerService;
         }
