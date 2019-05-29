@@ -80,6 +80,20 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "AccountGroupManagement", action = "GetAccountGroups", id = RouteParameter.Optional }
           );
 
+            //<<--TuitionManagementController controller-->>
+
+            context.Routes.MapHttpRoute(
+             name: "GetTuitionList",
+             routeTemplate: "api/admin/tuition-list",
+             defaults: new { controller = "TuitionManagement", action = "GetTuitionList", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "GetTuitionLibraries",
+             routeTemplate: "api/admin/tuition/libraries",
+             defaults: new { controller = "TuitionManagement", action = "GetTuitionLibraries", id = RouteParameter.Optional }
+         );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",

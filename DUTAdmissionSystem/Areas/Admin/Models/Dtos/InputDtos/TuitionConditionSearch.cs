@@ -15,7 +15,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos
 
         public int ProgramId { get; set; }
 
-        public bool IsPaid { get; set; }
+        public bool? IsPaid { get; set; }
 
         public int CurrentPage { set; get; }
 
@@ -28,7 +28,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos
             this.DepartmentId = 0;
             this.ProgramId = 0;
             this.ClassId = 0;
-            this.IsPaid = false;
+            this.IsPaid = null;
             this.PageSize = 10;
             this.CurrentPage = 1;
         }

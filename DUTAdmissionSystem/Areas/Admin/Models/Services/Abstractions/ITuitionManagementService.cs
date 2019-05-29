@@ -10,6 +10,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
 {
     public interface ITuitionManagementService
     {
-        List<TuitionResponseDto> GetTuitionListResponseDtos(TuitionConditionSearch conditionSearch);
+        List<TuitionResponseDto> GetTuitionListResponse(TuitionConditionSearch conditionSearch);
+        LibrariesOfTuition GetLibraries();
     }
 }
