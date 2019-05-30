@@ -120,6 +120,20 @@ namespace DUTAdmissionSystem.Areas.Admin
              defaults: new { controller = "TuitionManagement", action = "GetTuitionLibraries", id = RouteParameter.Optional }
          );
 
+            //<<--AccountManagementController controller-->>
+
+            context.Routes.MapHttpRoute(
+             name: "GetAccountList",
+             routeTemplate: "api/admin/account-list",
+             defaults: new { controller = "AccountManagement", action = "GetAccountList", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "GetAccountLibraries",
+             routeTemplate: "api/admin/account-library",
+             defaults: new { controller = "AccountManagement", action = "GetAccountLibraries", id = RouteParameter.Optional }
+         );
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
