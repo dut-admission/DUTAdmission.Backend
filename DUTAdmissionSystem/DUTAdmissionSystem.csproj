@@ -212,11 +212,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountGroupManagementController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdmissionNewsManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContactMassagerManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\DocumentManagementController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentManagementController.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AccountConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AccountGroupDto.cs" />
     <Compile Include="Areas\Admin\Controllers\TuitionManagementController.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AdmissionNewsManagerConditionSearch.cs" />
@@ -226,6 +228,7 @@
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\TuitionConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\UpdateEmployeeProfile.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AccountGroupResponseDto.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AccountReponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AdmissionsNewsManagerResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\ClassDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\ContactMessageResponseDto.cs" />
@@ -241,10 +244,12 @@
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\StudentResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\TuitionResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IAccountGroupManagementService.cs" />
+    <Compile Include="Areas\Admin\Models\Services\Abstractions\IAccountManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IDocumentManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\IStudentManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Abstractions\ITuitionManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\AccountGroupManagementService.cs" />
+    <Compile Include="Areas\Admin\Models\Services\Implementations\AccountManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\DocumentManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\StudentManagementService.cs" />
     <Compile Include="Areas\Admin\Models\Services\Implementations\TuitionManagementService.cs" />
