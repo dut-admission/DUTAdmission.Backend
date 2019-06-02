@@ -10,6 +10,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
     {
         public int Id { set; get; }
         public string Name { set; get; }
+        public string Description { get; set; }
         public DocumentTypeDto()
         {
         }
@@ -17,6 +18,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
         {
             Id = id;
             Name = name;
+
         }
         public DocumentTypeDto(DocumentType c)
         {

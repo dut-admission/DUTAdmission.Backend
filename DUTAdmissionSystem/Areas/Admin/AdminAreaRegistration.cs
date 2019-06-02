@@ -106,6 +106,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "DocumentManagement", action = "GetDocuments", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+              name: "GetDocumentTypeList",
+              routeTemplate: "api/admin/document-type",
+              defaults: new { controller = "DocumentManagement", action = "GetDocumentTypeList", id = RouteParameter.Optional }
+          );
+
             //<<--TuitionManagementController controller-->>
 
             context.Routes.MapHttpRoute(
@@ -118,6 +124,12 @@ namespace DUTAdmissionSystem.Areas.Admin
              name: "GetTuitionLibraries",
              routeTemplate: "api/admin/tuition/libraries",
              defaults: new { controller = "TuitionManagement", action = "GetTuitionLibraries", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "GetTuitionTypeList",
+             routeTemplate: "api/admin/tuition-type",
+             defaults: new { controller = "TuitionManagement", action = "GetTuitionTypeList", id = RouteParameter.Optional }
          );
 
             //<<--AccountManagementController controller-->>

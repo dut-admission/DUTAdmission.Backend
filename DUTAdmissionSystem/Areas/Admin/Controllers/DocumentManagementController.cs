@@ -31,5 +31,19 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetDocumentTypeList")]
+        public IHttpActionResult GetDocumentTypeList()
+        {
+            try
+            {
+                return Ok(_documentManagementService.GetDocumentTypeList());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

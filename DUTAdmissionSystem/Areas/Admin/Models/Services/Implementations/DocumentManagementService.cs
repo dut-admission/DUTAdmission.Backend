@@ -128,5 +128,15 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 .Select(x => new DocumentInfoDto(x)).ToList();
             return list ?? new List<DocumentInfoDto>();
         }
+
+        public List<DocumentTypeDto> GetDocumentTypeList()
+        {
+            return db.DocumentTypes.Where(x => !x.DelFlag).Select(x => new DocumentTypeDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description
+            }).ToList();
+        }
     }
 }

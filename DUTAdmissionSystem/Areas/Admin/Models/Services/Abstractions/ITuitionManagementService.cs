@@ -12,5 +12,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
     {
         List<TuitionResponseDto> GetTuitionListResponse(TuitionConditionSearch conditionSearch);
         LibrariesOfTuition GetLibraries();
+        List<TuitionTypes> GetTuitionTypeList();
     }
 }

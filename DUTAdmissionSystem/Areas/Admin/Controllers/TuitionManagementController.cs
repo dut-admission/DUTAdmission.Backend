@@ -45,5 +45,19 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetTuitionTypeList")]
+        public IHttpActionResult GetTuitionTypeList()
+        {
+            try
+            {
+                return Ok(_tuitionManagementService.GetTuitionTypeList());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

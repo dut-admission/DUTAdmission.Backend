@@ -11,5 +11,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
     public interface IDocumentManagementService
     {
         DocumentResponseDto GetListDocuments(DocumentConditionSearch conditionSearch); 
+        List<DocumentTypeDto> GetDocumentTypeList(); 
     }
 }
