@@ -113,5 +113,16 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             }).ToList();
             return librariesOfTuition;
         }
+
+        public List<TuitionTypes> GetTuitionTypeList()
+        {
+            return context.TuitionTypes.Where(x => !x.DelFlag).Select(x=>new TuitionTypes
+            {
+                Id=x.Id,
+                Money=x.Money,
+                Name=x.Name,
+                Description=x.Description
+            }).ToList();
+        }
     }
 }
