@@ -30,5 +30,20 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpPut]
+        [ActionName("UpdateActive")]
+        public IHttpActionResult UpdateActive(int id)
+        {
+            try
+            {
+                _permissionManagementService.UpdateIsActivePermissionById(id);
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

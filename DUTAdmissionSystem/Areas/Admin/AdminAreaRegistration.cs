@@ -114,6 +114,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "PermissionManagement", action = "GetPermissions", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+           name: "UpdateActive",
+           routeTemplate: "api/admin/permission/{id}/active",
+           defaults: new { controller = "PermissionManagement", action = "UpdateActive", id = RouteParameter.Optional }
+       );
+
 
             context.MapRoute(
                 "Admin_default",

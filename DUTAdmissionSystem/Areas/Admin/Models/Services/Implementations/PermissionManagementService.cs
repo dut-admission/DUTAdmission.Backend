@@ -21,6 +21,34 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             return list ?? new List<PermissionResponseDto>();
         }
 
+        public void UpdateIsActivePermissionById(int id)
+        {
+            var permissionFromdb = db.Permissions.Include(x => x.FunctionInScreen).FirstOrDefault(x => !x.DelFlag && x.Id == id);
+            permissionFromdb.IsActived = !permissionFromdb.IsActived;
+            db.SaveChanges();
+            if (!permissionFromdb.FunctionInScreen.IsToViewIndex)
+            {
+                var functionViewIndex = db.Permissions.Include(x => x.FunctionInScreen)
+                    .FirstOrDefault(x => !x.DelFlag && x.FunctionInScreen.ScreenId == permissionFromdb.FunctionInScreen.ScreenId 
+                    && x.AccountGroupId == permissionFromdb.AccountGroupId && x.FunctionInScreen.IsToViewIndex);
+
+                functionViewIndex.IsActived = true;
+                db.SaveChanges();
+            }
+            else
+            if (permissionFromdb.FunctionInScreen.IsToViewIndex && !permissionFromdb.IsActived)
+            {
+                var listPermissions = db.Permissions.Include(x => x.FunctionInScreen)
+                    .Where(x => !x.DelFlag && x.FunctionInScreen.ScreenId == permissionFromdb.FunctionInScreen.ScreenId
+                    && x.AccountGroupId == permissionFromdb.AccountGroupId).ToList();
+                foreach (var item in listPermissions)
+                {
+                    item.IsActived = false;
+                }
+                db.SaveChanges();
+            }
+            
+        }
 
         private List<PermissionDto> GetListPermissionsByScreenId(int id)
         {
@@ -34,5 +62,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 .Select(x => new ScreenDto(x.FunctionInScreen.Screen, GetListPermissionsByScreenId(x.FunctionInScreen.ScreenId))).ToList();
             return list ?? new List<ScreenDto>();
         }
+
     }
 }

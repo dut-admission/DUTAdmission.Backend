@@ -10,5 +10,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
     public interface IPermissionManagementService
     {
         List<PermissionResponseDto> GetListPermissions();
+        void UpdateIsActivePermissionById(int id);
     }
 }
