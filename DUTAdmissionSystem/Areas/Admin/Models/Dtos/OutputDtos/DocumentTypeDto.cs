@@ -11,6 +11,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
         public int Id { set; get; }
         public string Name { set; get; }
         public string Description { get; set; }
+        public bool IsRequired { get; set; }
         public DocumentTypeDto()
         {
         }

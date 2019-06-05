@@ -112,6 +112,24 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "DocumentManagement", action = "GetDocumentTypeList", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+             name: "AddDocumentType",
+             routeTemplate: "api/admin/add-document-type",
+             defaults: new { controller = "DocumentManagement", action = "AddDocumentType", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "EditDocumentType",
+             routeTemplate: "api/admin/document-type/{id}",
+             defaults: new { controller = "DocumentManagement", action = "EditDocumentType", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "DeleteDocumentType",
+             routeTemplate: "api/admin/document-type/delete/{id}",
+             defaults: new { controller = "DocumentManagement", action = "DeleteDocumentType", id = RouteParameter.Optional }
+         );
+
             //<<--TuitionManagementController controller-->>
 
             context.Routes.MapHttpRoute(
@@ -130,6 +148,24 @@ namespace DUTAdmissionSystem.Areas.Admin
              name: "GetTuitionTypeList",
              routeTemplate: "api/admin/tuition-type",
              defaults: new { controller = "TuitionManagement", action = "GetTuitionTypeList", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "AddTuitionType",
+             routeTemplate: "api/admin/add-tuition-type",
+             defaults: new { controller = "TuitionManagement", action = "AddTuitionType", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "EditTuitionType",
+             routeTemplate: "api/admin/tuition-type/{id}",
+             defaults: new { controller = "TuitionManagement", action = "EditTuitionType", id = RouteParameter.Optional }
+         );
+
+            context.Routes.MapHttpRoute(
+             name: "DeleteTuitionType",
+             routeTemplate: "api/admin/tuition-type/delete/{id}",
+             defaults: new { controller = "TuitionManagement", action = "DeleteTuitionType", id = RouteParameter.Optional }
          );
 
             //<<--AccountManagementController controller-->>

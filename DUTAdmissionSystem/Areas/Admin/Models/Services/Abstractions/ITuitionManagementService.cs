@@ -13,5 +13,9 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
         List<TuitionResponseDto> GetTuitionListResponse(TuitionConditionSearch conditionSearch);
         LibrariesOfTuition GetLibraries();
         List<TuitionTypes> GetTuitionTypeList();
+
+        Database.Schema.Entity.TuitionType AddTuitionType(TuitionTypeManagement tuitionTypeManagement);
+        TuitionTypes EditTuitionType(TuitionTypeManagement tuitionTypeManagement,int id);
+        void DeleteTuitionType(int id);
     }
 }

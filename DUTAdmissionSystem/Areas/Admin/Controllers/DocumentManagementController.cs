@@ -45,5 +45,54 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpPost]
+        [ActionName("AddDocumentType")]
+        public IHttpActionResult AddDocumentType([FromBody]DocumentTypeManagement documentType)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_documentManagementService.AddDocumentType(documentType));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("EditDocumentType")]
+        public IHttpActionResult EditDocumentType([FromBody]DocumentTypeManagement documentType, int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_documentManagementService.EditDocumentType(documentType, id));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpDelete]
+        [ActionName("DeleteDocumentType")]
+        public IHttpActionResult DeleteDocumentType(int id)
+        {
+            try
+            {
+                _documentManagementService.DeleteDocumentType(id);
+                return Ok(true);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

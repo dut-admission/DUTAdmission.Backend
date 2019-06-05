@@ -3,6 +3,7 @@ using DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
+using EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,6 +124,44 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 Name=x.Name,
                 Description=x.Description
             }).ToList();
+        }
+
+        public Database.Schema.Entity.TuitionType AddTuitionType(TuitionTypeManagement tuitionTypeManagement)
+        {
+            var tuitionType=context.TuitionTypes.Add(new Database.Schema.Entity.TuitionType
+            {
+                Money = tuitionTypeManagement.Money,
+                Name = tuitionTypeManagement.Name,
+                Description = tuitionTypeManagement.Description
+            });
+            context.SaveChanges();
+            return tuitionType;
+        }
+        public TuitionTypes EditTuitionType(TuitionTypeManagement tuitionTypeManagement, int id)
+        {
+            context.TuitionTypes.Where(x => x.Id == id && !x.DelFlag).Update(x => new Database.Schema.Entity.TuitionType
+            {
+                Money = tuitionTypeManagement.Money,
+                Name = tuitionTypeManagement.Name,
+                Description = tuitionTypeManagement.Description
+            });
+            context.SaveChanges();
+            return new TuitionTypes{
+                Id =id,
+                Money =tuitionTypeManagement.Money,
+                Name = tuitionTypeManagement.Name,
+                Description = tuitionTypeManagement.Description
+            };
+        }
+        public void DeleteTuitionType(int id)
+        {
+            var tuitionType = context.TuitionTypes.FirstOrDefault(x => !x.DelFlag && x.Id==id);
+            if(tuitionType != null)
+            {
+                tuitionType.DelFlag = true;
+            }
+            context.SaveChanges();
+            
         }
     }
 }

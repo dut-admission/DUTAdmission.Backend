@@ -3,6 +3,7 @@ using DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
+using EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -137,6 +138,44 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 Name = x.Name,
                 Description = x.Description
             }).ToList();
+        }
+
+        public Database.Schema.Entity.DocumentType AddDocumentType(DocumentTypeManagement documentTypeManagement)
+        {
+            var documentType = db.DocumentTypes.Add(new Database.Schema.Entity.DocumentType
+            {
+                IsRequired = documentTypeManagement.IsRequired,
+                Name = documentTypeManagement.Name,
+                Description = documentTypeManagement.Description
+            });
+            db.SaveChanges();
+            return documentType;
+        }
+        public DocumentTypeDto EditDocumentType(DocumentTypeManagement documentTypeManagement, int id)
+        {
+            db.DocumentTypes.Where(x => x.Id == id && !x.DelFlag).Update(x => new Database.Schema.Entity.DocumentType
+            {
+                IsRequired = documentTypeManagement.IsRequired,
+                Name = documentTypeManagement.Name,
+                Description = documentTypeManagement.Description
+            });
+            db.SaveChanges();
+            return new DocumentTypeDto
+            {
+                Id = id,
+                IsRequired = documentTypeManagement.IsRequired,
+                Name = documentTypeManagement.Name,
+                Description = documentTypeManagement.Description
+            };
+        }
+        public void DeleteDocumentType(int id)
+        {
+            var documentType = db.DocumentTypes.FirstOrDefault(x => !x.DelFlag && x.Id==id);
+            if (documentType != null)
+            {
+                documentType.DelFlag = true;
+            }
+            db.SaveChanges();
         }
     }
 }

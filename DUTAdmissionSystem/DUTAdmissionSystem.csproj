@@ -224,8 +224,10 @@
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\AdmissionNewsManagerConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\ContactMessageConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\DocumentConditionSearch.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\InputDtos\DocumentTypeManagement.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\StudentConditionSearch.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\TuitionConditionSearch.cs" />
+    <Compile Include="Areas\Admin\Models\Dtos\InputDtos\TuitionTypeManagement.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\InputDtos\UpdateEmployeeProfile.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AccountGroupResponseDto.cs" />
     <Compile Include="Areas\Admin\Models\Dtos\OutputDtos\AccountReponseDto.cs" />

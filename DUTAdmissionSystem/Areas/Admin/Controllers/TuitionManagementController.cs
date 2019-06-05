@@ -59,5 +59,54 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpPost]
+        [ActionName("AddTuitionType")]
+        public IHttpActionResult AddTuitionType([FromBody]TuitionTypeManagement tuitionType)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_tuitionManagementService.AddTuitionType(tuitionType));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("EditTuitionType")]
+        public IHttpActionResult EditTuitionType([FromBody]TuitionTypeManagement tuitionType,int id)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_tuitionManagementService.EditTuitionType(tuitionType,id));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpDelete]
+        [ActionName("DeleteTuitionType")]
+        public IHttpActionResult DeleteTuitionType(int id)
+        {
+            try
+            {
+                _tuitionManagementService.DeleteTuitionType(id);
+                return Ok(true);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
