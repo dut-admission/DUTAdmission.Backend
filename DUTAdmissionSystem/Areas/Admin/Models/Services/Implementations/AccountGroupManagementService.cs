@@ -16,7 +16,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
 
         public AccountGroupResponseDto AddAccountGroup(AccountGroupDto accountGroup)
         {
-            var accountGroupdb = new Database.Schema.Entity.AccountGroup{ Name = accountGroup.Name, Description = accountGroup.Description };
+            var accountGroupdb = new Database.Schema.Entity.AccountGroup { Name = accountGroup.Name, Description = accountGroup.Description };
             db.AccountGroups.Add(accountGroupdb);
             db.SaveChanges();
             return new AccountGroupResponseDto(accountGroupdb);
@@ -41,6 +41,16 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
         {
             return db.AccountGroups.Where(x => !x.DelFlag).ToList()
                 .Select(x => new AccountGroupResponseDto(x)).ToList();
+        }
+
+        public void DeleteAccountGroup(int id)
+        {
+            var accountGroup = db.AccountGroups.FirstOrDefault(x => !x.DelFlag && x.Id == id);
+            if (accountGroup != null)
+            {
+                accountGroup.DelFlag = true;
+            }
+            db.SaveChanges();
         }
     }
 }

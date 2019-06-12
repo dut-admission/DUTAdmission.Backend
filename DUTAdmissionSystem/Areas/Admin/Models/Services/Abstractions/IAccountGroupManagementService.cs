@@ -14,5 +14,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
         AccountGroupResponseDto GetAccountGroupById(int id);
         AccountGroupResponseDto AddAccountGroup(AccountGroupDto accountGroup);
         AccountGroupResponseDto EditAccountGroup(AccountGroupDto accountGroup, int id);
+        void DeleteAccountGroup(int id);
     }
 }
