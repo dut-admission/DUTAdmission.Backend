@@ -79,5 +79,20 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpDelete]
+        [ActionName("DeleteAccountGroup")]
+        public IHttpActionResult DeleteAccountGroup(int id)
+        {
+            try
+            {
+                _accountGroupManagementService.DeleteAccountGroup(id);
+                return Ok(true);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }
