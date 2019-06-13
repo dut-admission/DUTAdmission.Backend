@@ -14,4 +14,10 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
         public int StatusId { get; set; }
 
     }
+
+    public class StatusContact
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

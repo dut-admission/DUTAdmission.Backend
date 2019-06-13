@@ -31,7 +31,7 @@ namespace DUTAdmissionSystem.Areas.Admin
 
             context.Routes.MapHttpRoute(
                 name: "AddAccountGroup",
-                routeTemplate: "api/admin/account-group/add",
+                routeTemplate: "api/admin/group-account/add",
                 defaults: new { controller = "AccountGroupManagement", action = "AddAccountGroup", id = RouteParameter.Optional }
             );
 
@@ -39,6 +39,12 @@ namespace DUTAdmissionSystem.Areas.Admin
            name: "EditAccountGroup",
            routeTemplate: "api/admin/account-group/{id}/edit",
            defaults: new { controller = "AccountGroupManagement", action = "EditAccountGroup", id = RouteParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+           name: "DeleteAccountGroup",
+           routeTemplate: "api/admin/account-group/delete/{id}",
+           defaults: new { controller = "AccountGroupManagement", action = "DeleteAccountGroup", id = RouteParameter.Optional }
           );
 
             //<<--AdmissionNewsManager controller-->>
@@ -88,6 +94,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               name: "ReplyContactMessager",
               routeTemplate: "api/admin/contact-messager/{id}/reply",
               defaults: new { controller = "ContactMassagerManagement", action = "ReplyContactMessager", id = RouteParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+              name: "GetStatusList",
+              routeTemplate: "api/admin/contact/status-list",
+              defaults: new { controller = "ContactMassagerManagement", action = "GetStatusList", id = RouteParameter.Optional }
           );
 
             //<<--StudentManagement controller-->>

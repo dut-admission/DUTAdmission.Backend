@@ -136,7 +136,8 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             {
                 Id = x.Id,
                 Name = x.Name,
-                Description = x.Description
+                Description = x.Description,
+                IsRequired=x.IsRequired
             }).ToList();
         }
 

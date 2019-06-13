@@ -66,5 +66,19 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetStatusList")]
+        public IHttpActionResult GetStatusList()
+        {
+            try
+            {
+                return Ok(_contactMessageManagerServiece.GetStatusList());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

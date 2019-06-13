@@ -67,5 +67,14 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             });
 
         }
+
+        public List<StatusContact> GetStatusList()
+        {
+            return context.Statuses.Where(x => !x.DelFlag && x.StatusTypeId == 3).Select(x => new StatusContact
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+        }
     }
 }
