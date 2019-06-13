@@ -13,5 +13,6 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
         List<ContactMessageResponseDto> GetContactMessageList(ContactMessageConditionSearch conditionSearch);
         void UpdateContactMessage(int id,UpdateContactMessage updateContactMessage);
         void ReplyContactMessage(int id, ReplyContactMessage replyContactMessage);
+        List<StatusContact> GetStatusList();
     }
 }
