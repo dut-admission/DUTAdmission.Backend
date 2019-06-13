@@ -96,6 +96,12 @@ namespace DUTAdmissionSystem.Areas.Admin
               defaults: new { controller = "ContactMassagerManagement", action = "ReplyContactMessager", id = RouteParameter.Optional }
           );
 
+            context.Routes.MapHttpRoute(
+              name: "GetStatusList",
+              routeTemplate: "api/admin/contact/status-list",
+              defaults: new { controller = "ContactMassagerManagement", action = "GetStatusList", id = RouteParameter.Optional }
+          );
+
             //<<--StudentManagement controller-->>
 
             context.Routes.MapHttpRoute(
