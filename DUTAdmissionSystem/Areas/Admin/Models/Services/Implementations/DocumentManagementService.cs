@@ -71,13 +71,13 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 ((conditionSearch.DocumentTypeId != 0 || conditionSearch.StatusId != 0)
                 && ListStudentId.Contains(x.Id)))).ToList()
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord)
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize)
                 .Select(x => new StudentForDocumentDto(x, GetListDocumentByStudentId(x.Id)))
                 .ToList();
 
 
-            return new DocumentResponseDto(listOfstudent ?? null, GetListClasses(), GetListDepartments(), GetListPrograms(), GetListDocumentTypes(), GetListStatuses());
+            return new DocumentResponseDto(listOfstudent ?? null, GetListClasses(), GetListDepartments(), GetListPrograms(), GetListDocumentTypes(), GetListStatuses(), paging);
         }
         private List<ClassDto> GetListClasses()
         {
@@ -105,7 +105,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
 
         private List<StatusDto> GetListStatuses()
         {
-            return db.Statuses.Where(x => !x.DelFlag).ToList()
+            return db.Statuses.Where(x => !x.DelFlag && x.StatusTypeId == 1).ToList()
                 .Select(x => new StatusDto(x)).ToList();
         }
 

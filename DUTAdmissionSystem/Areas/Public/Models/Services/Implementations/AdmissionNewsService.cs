@@ -31,8 +31,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new AdmissionNewsResponseDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new AdmissionNewsResponseDto
                 {
                     Id = x.Id,
                     Title = x.Title,

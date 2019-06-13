@@ -85,9 +85,9 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                 _studentProfileService.UpdateAddAchievement(achievement, Request.GetAuthorizationHeader());
+                 var result = _studentProfileService.UpdateAddAchievement(achievement, Request.GetAuthorizationHeader());
               
-                return Ok();
+                return Ok(result);
             }
             catch (System.Exception e)
             {
@@ -123,9 +123,9 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _studentProfileService.UpdateAddHighSchoolResult(highSchoolResult, Request.GetAuthorizationHeader());
+                var result = _studentProfileService.UpdateAddHighSchoolResult(highSchoolResult, Request.GetAuthorizationHeader());
 
-                return Ok();
+                return Ok(result);
             }
             catch (System.Exception e)
             {
@@ -133,7 +133,7 @@ namespace DUTAdmissionSystem.Areas.Public.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [ActionName("DeletionObject")]
       //  [Authorize]
         public IHttpActionResult DeletionObject([FromBody]DeletionObject deletionObject)

@@ -10,6 +10,8 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
     {
         public int Id { set; get; }
 
+        public string IdentificationNumber { set; get; }
+
         public string FirstName { set; get; }
 
         public string LastName { set; get; }
@@ -43,9 +45,10 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
 
         }
 
-        public StudentDto(int id, string firstName, string lastName, string identityNumber, DateTime dateOfBirth, bool sex, string phoneNumber, string email, string address, int classId, string className, int departmentId, string departmentName, int programId, string programName)
+        public StudentDto(int id, string username, string firstName, string lastName, string identityNumber, DateTime dateOfBirth, bool sex, string phoneNumber, string email, string address, int classId, string className, int departmentId, string departmentName, int programId, string programName)
         {
             Id = id;
+            IdentificationNumber = username;
             FirstName = firstName;
             LastName = lastName;
             IdentityNumber = identityNumber;

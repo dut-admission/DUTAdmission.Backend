@@ -37,8 +37,8 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 (conditionSearch.StatusId == 0) ||
                 conditionSearch.StatusId != 0 && x.StatusId == conditionSearch.StatusId)))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new ContactMessageResponseDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new ContactMessageResponseDto
                 {
                     Id = x.Id,
                     FullName = x.FullName,

@@ -25,7 +25,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
                 return null;
             }
 
-            var isStudent = db.AccountGroups.FirstOrDefault(x => !x.DelFlag && x.Name.ToLower().Equals("student")).Id == accountFromDb.AccountGroupId;
+            var isStudent = db.AccountGroups.FirstOrDefault(x => !x.DelFlag && x.Name.ToLower().Equals("Sinh viên")).Id == accountFromDb.AccountGroupId;
 
             var accessToken = JwtAuthenticationExtensions.CreateToken(accountFromDb, isStudent);
 

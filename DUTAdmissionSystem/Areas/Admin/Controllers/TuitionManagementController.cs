@@ -18,7 +18,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
             _tuitionManagementService = tuitionManagementService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("GetTuitionList")]
         public IHttpActionResult GetTuitionList([FromBody]TuitionConditionSearch conditionSearch)
         {

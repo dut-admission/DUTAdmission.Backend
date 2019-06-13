@@ -133,6 +133,10 @@
     <Compile Include="Migrations\201905260848054_AddReceiptTable.Designer.cs">
       <DependentUpon>201905260848054_AddReceiptTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906131901450_FixDocumentTable.cs" />
+    <Compile Include="Migrations\201906131901450_FixDocumentTable.Designer.cs">
+      <DependentUpon>201906131901450_FixDocumentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Base\Table.cs" />
@@ -225,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905260848054_AddReceiptTable.resx">
       <DependentUpon>201905260848054_AddReceiptTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131901450_FixDocumentTable.resx">
+      <DependentUpon>201906131901450_FixDocumentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

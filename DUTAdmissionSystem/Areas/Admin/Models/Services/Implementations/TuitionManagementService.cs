@@ -52,8 +52,8 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 // &&x.re)
                 )))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new TuitionResponseDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new TuitionResponseDto
                 {
                     Id = x.Id,
                     FirstName = x.UserInfo.FirstName,

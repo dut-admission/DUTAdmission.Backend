@@ -28,7 +28,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
             var paging = new Paging(db.Students.Include(x => x.UserInfo).Include(d => d.Class).Count(x => !x.DelFlag &&
                 //Search tên hoặc cmnd
                 (conditionSearch.Keyword == null ||
-                (conditionSearch.Keyword != null && (x.UserInfo.FirstName.Contains(conditionSearch.Keyword) 
+                (conditionSearch.Keyword != null && (x.UserInfo.FirstName.Contains(conditionSearch.Keyword)
                 || x.UserInfo.LastName.Contains(conditionSearch.Keyword) || x.IdentificationNumber.Contains(conditionSearch.Keyword))))
                  //Search lớp
                  && (conditionSearch.ClassId == 0 ||
@@ -55,13 +55,13 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 (conditionSearch.ProgramId == 0 ||
                 (conditionSearch.ProgramId != 0 && ListClassId.Contains(x.ClassId)))).ToList()
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord)
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize)
                 .Select(x => new StudentDto(x, GetBirthInfoById(x.UserInfo.BirthInfoId), GetContactInfoById(x.UserInfo.ContactId), GetDepartmentById(x.Class.DepartmentId)))
                 .ToList();
 
 
-            return new StudentResponseDto(listOfstudent ?? null, GetListClasses(), GetListDepartments(), GetListPrograms());
+            return new StudentResponseDto(listOfstudent ?? null, GetListClasses(), GetListDepartments(), GetListPrograms(), paging);
         }
 
         private List<ClassDto> GetListClasses()
@@ -102,6 +102,99 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
         private Department GetDepartmentById(int id)
         {
             return db.Departments.Include(x => x.Program).FirstOrDefault(x => !x.DelFlag && x.Id == id);
+        }
+
+        public StudentDto UpdateStudent(StudentDto studentInput)
+        {
+            if (studentInput.Id == 0)
+            {
+                var user = new UserInfo()
+                {
+                    FirstName = studentInput.FirstName,
+                    LastName = studentInput.LastName,
+                    Avatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_S9DUg_S9CHf-DxgcNbxYzZmibzud95wxTQslnreREOxA1ch1",
+                    BirthInfo = new BirthInfo()
+                    {
+                        Sex = true,
+                        DateOfBirth = studentInput.DateOfBirth,
+                        PlaceOfBirth = "Việt Nam"
+                    },
+                    ContactInfo = new ContactInfo()
+                    {
+                        Address = studentInput.Address,
+                        Email = studentInput.Email,
+                        PhoneNumber = studentInput.PhoneNumber
+                    },
+                    IdentityInfo = new IdentityInfo()
+                    {
+                        IdentityNumber = studentInput.IdentityNumber,
+                        DateOfIssue = DateTime.Now,
+                        PlaceOfIssue = "Việt Nam"
+                    }
+                };
+
+                var student = new Student()
+                {
+                    UserInfo = user,
+                    IdentificationNumber = studentInput.IdentificationNumber,
+                    HightSchoolName = "THPT",
+                    ElectionTypeId = 1,
+                    YouthGroupInfo = null,
+                    CircumstanceTypeId = 1,
+                    EnrollmentAreaId = 1,
+                    ClassId = studentInput.ClassId,
+                    PersonalInfo = new PersonalInfo()
+                    {
+                        EthnicId = 1,
+                        NationalityId = 1,
+                        ReligionId = 1,
+                        PermanentResidence = "Việt Nam"
+                    },
+                };
+
+                var account = new Account()
+                {
+                    UserInfo = user,
+                    AccountGroupId = 2,
+                    Token = "",
+                    UserName = studentInput.IdentificationNumber,
+                    Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(studentInput.IdentificationNumber))
+                };
+
+                db.Accounts.Add(account);
+                db.Students.Add(student);
+            }
+            else
+            {
+                var student = db.Students.FirstOrDefault(x => x.Id == studentInput.Id && !x.DelFlag);
+                if (student != null)
+                {
+                    student.UserInfo.FirstName = studentInput.FirstName;
+                    student.UserInfo.LastName = studentInput.LastName;
+                    student.UserInfo.BirthInfo.DateOfBirth = studentInput.DateOfBirth;
+                    student.UserInfo.IdentityInfo.IdentityNumber = studentInput.IdentityNumber;
+                    student.UserInfo.ContactInfo.PhoneNumber = studentInput.PhoneNumber;
+                    student.UserInfo.ContactInfo.Email = studentInput.Email;
+                    student.UserInfo.ContactInfo.Address = studentInput.Address;
+                    student.ClassId = studentInput.ClassId;
+                }
+            }
+            db.SaveChanges();
+            studentInput.ClassName = db.Classes.FirstOrDefault(x => x.Id == studentInput.ClassId && !x.DelFlag).Name;
+            return studentInput;
+        }
+
+        public bool DeleteStudent(int id)
+        {
+            var student = db.Students.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            if (student != null)
+            {
+                return false;
+            }
+            student.DelFlag = true;
+            student.UserInfo.DelFlag = true;
+            db.SaveChanges();
+            return true;
         }
     }
 }

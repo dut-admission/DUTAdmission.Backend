@@ -108,6 +108,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos
 
     public class FamilyMemberResponseDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public int RelationId { get; set; }
         public string RelationName { get; set; }

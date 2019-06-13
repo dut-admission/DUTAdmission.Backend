@@ -18,7 +18,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
             _accountManagementService = accountManagementService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("GetAccountList")]
         public IHttpActionResult GetAccountList([FromBody]AccountConditionSearch conditionSearch)
         {

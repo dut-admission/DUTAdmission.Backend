@@ -48,13 +48,13 @@ namespace DUTAdmissionSystem.Fillters
                 }
                 else
                 {
-                    var route = actionContext.RequestContext.RouteData;
-                    string controller = (string)route.Values["controller"];
-                    string action = (string)route.Values["action"];
-                    if (!AccountVerification.CheckAuthentication(token, controller, action))
-                    {
-                        actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, AppMessage.NotAccept);
-                    }
+                    //var route = actionContext.RequestContext.RouteData;
+                    //string controller = (string)route.Values["controller"];
+                    //string action = (string)route.Values["action"];
+                    //if (!AccountVerification.CheckAuthentication(token, controller, action))
+                    //{
+                    //    actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.NotAcceptable, AppMessage.NotAccept);
+                    //}
                 }
             }
         }
