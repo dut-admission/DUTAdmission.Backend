@@ -15,7 +15,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
 
         public bool SubmitContactMessage(ContactMessageDto dto)
         {
-            var contactMessage = new ContactMessage { FullName = dto.FullName, Email = dto.Email, Message = dto.Message };
+            var contactMessage = new ContactMessage { FullName = dto.FullName, Email = dto.Email, Message = dto.Message, StatusId = 1 };
             db.ContactMessages.Add(contactMessage);
             db.SaveChanges();
             return true;

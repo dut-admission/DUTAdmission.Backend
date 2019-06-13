@@ -35,8 +35,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 (conditionSearch.KeySearch != null && (x.UniversityName.Contains(conditionSearch.KeySearch))) ||
                 (conditionSearch.KeySearch != null && (x.Email.Contains(conditionSearch.KeySearch)))))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new UniversityInfoDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new UniversityInfoDto
                 {
                     Id = x.Id,
                     UniversityName = x.UniversityName,

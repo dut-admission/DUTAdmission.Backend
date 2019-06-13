@@ -11,5 +11,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions
     public interface IStudentManagementService
     {
         StudentResponseDto GetListStudents(StudentConditionSearch conditionSearch);
+        StudentDto UpdateStudent(StudentDto student);
+        bool DeleteStudent(int id);
     }
 }

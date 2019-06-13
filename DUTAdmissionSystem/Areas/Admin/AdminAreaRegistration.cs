@@ -3,17 +3,17 @@ using System.Web.Mvc;
 
 namespace DUTAdmissionSystem.Areas.Admin
 {
-    public class AdminAreaRegistration : AreaRegistration 
+    public class AdminAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Admin";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             //<<--AccountGroupManagement controller-->>
 
@@ -109,6 +109,16 @@ namespace DUTAdmissionSystem.Areas.Admin
               routeTemplate: "api/admin/student",
               defaults: new { controller = "StudentManagement", action = "GetStudents", id = RouteParameter.Optional }
           );
+            context.Routes.MapHttpRoute(
+               name: "UpdateStudent",
+               routeTemplate: "api/admin/update-student",
+               defaults: new { controller = "StudentManagement", action = "UpdateStudent", id = RouteParameter.Optional }
+           );
+            context.Routes.MapHttpRoute(
+               name: "DeleteStudent",
+               routeTemplate: "api/admin/delete-student/{id}",
+               defaults: new { controller = "StudentManagement", action = "DeleteStudent", id = RouteParameter.Optional }
+           );
 
             //<<--DocumentManagement controller-->>
 

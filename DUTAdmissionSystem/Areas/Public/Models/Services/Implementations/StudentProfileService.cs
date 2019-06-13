@@ -22,9 +22,10 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 return null;
             }
             var user = account.UserInfo;
-            var student = user.Students.FirstOrDefault();
-            var familyMembers = student.FamilyMembers.Select(x => new FamilyMemberResponseDto()
+            var student = user.Students.FirstOrDefault(x => !x.DelFlag);
+            var familyMembers = student.FamilyMembers.Where(x => !x.DelFlag).Select(x => new FamilyMemberResponseDto()
             {
+                Id = x.Id,
                 Name = x.Name,
                 Address = x.ContactInfo.Address,
                 CareerTypeId = x.CareerTypeId,
@@ -86,7 +87,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     PlaceOfJoinYouthGroup = student.YouthGroupInfo.PlaceOfJoinYouthGroup
                 }
                 : null,
-                Achievements = student.Achievements.Select(a => new AchievementResponseDto()
+                Achievements = student.Achievements.Where(x => !x.DelFlag).Select(a => new AchievementResponseDto()
                 {
                     Id = a.Id,
                     AchievementLevelId = a.AchievementLevelId,
@@ -97,7 +98,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     AchievementTypeName = a.AchievementType.Name,
                     Description = a.Description
                 }).ToList(),
-                HighSchoolResults = student.HighSchoolResults.Select(h => new HighSchoolResultResponseInfo()
+                HighSchoolResults = student.HighSchoolResults.Where(x => !x.DelFlag).Select(h => new HighSchoolResultResponseInfo()
                 {
                     Id = h.Id,
                     ConductTypeId = h.ConductTypeId,
@@ -108,8 +109,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                     HightSchoolYear = h.HightSchoolYear.Year,
                     LearningAbilityName = h.LearningAbility.Level
                 }).ToList(),
-                Positions = student.HightSchoolPositions.Select(p => p.PositionTypeId).ToList(),
-                Talents = student.Talents.Select(t => t.TalentTypeId).ToList()
+                Positions = student.HightSchoolPositions.Where(x => !x.DelFlag).Select(p => p.PositionTypeId).ToList(),
+                Talents = student.Talents.Where(x => !x.DelFlag).Select(t => t.TalentTypeId).ToList()
             };
 
             return new ProfileResponseDto()
@@ -288,12 +289,13 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             return librariesOfProFile;
         }
 
-        public void UpdateAddAchievement(Achievement achievement, string token)
+        public AchievementResponseDto UpdateAddAchievement(Achievement achievement, string token)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
             if (achievement.Id == 0)
             {
+                achievement.Id = context.Achievements.Max(x => x.Id) + 1;
                 context.Achievements.Add(new Database.Schema.Entity.Achievement
                 {
                     StudentId = Student.Id,
@@ -314,9 +316,21 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 });
             }
             context.SaveChanges();
+
+            return new AchievementResponseDto()
+            {
+                Id = achievement.Id,
+                AchievementLevelId = achievement.AchievementLevelId,
+                AchievementLevelName = context.AchievementLevels.FirstOrDefault(x=>x.Id == achievement.AchievementLevelId).Name,
+                AchievementPrizeId = achievement.AchievementPrizeId,
+                AchievementPrizeName = context.AchievementPrizes.FirstOrDefault(x => x.Id == achievement.AchievementLevelId).Name,
+                AchievementTypeId = achievement.AchievementTypeId,
+                AchievementTypeName = context.AchievementTypes.FirstOrDefault(x => x.Id == achievement.AchievementTypeId).Name,
+                Description = achievement.Description
+            };
         }
 
-        public void UpdateAddFamilyMember(FamilyMember FamilyMember, string token)
+        public FamilyMemberResponseDto UpdateAddFamilyMember(FamilyMember FamilyMember, string token)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
@@ -343,7 +357,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 {
                     Id = familyMember.ContactId,
                     PhoneNumber = FamilyMember.PhoneNumber,
-                    Email = FamilyMember.Email,
+                    Email = "email@gmail.com",
                     Address = FamilyMember.Address,
                 });
             }
@@ -373,15 +387,20 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 });
             }
             context.SaveChanges();
+            return new FamilyMemberResponseDto()
+            {
+                Id = FamilyMember.Id
+            };
         }
 
-        public void UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token)
+        public HighSchoolResultResponseInfo UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token)
         {
             int Id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             var Student = context.Students.FirstOrDefault(x => x.UserInfoId == Id && !x.DelFlag);
 
             if (HighSchoolResult.Id == 0)
             {
+                HighSchoolResult.Id = context.HighSchoolResults.Max(x => x.Id) + 1;
                 context.HighSchoolResults.Add(new Database.Schema.Entity.HighSchoolResult
                 {
                     StudentId = Student.Id,
@@ -402,6 +421,18 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 });
             }
             context.SaveChanges();
+            return new HighSchoolResultResponseInfo()
+            {
+                Id = HighSchoolResult.Id,
+                ConductTypeId = HighSchoolResult.ConductTypeId,
+                GPAScore = HighSchoolResult.GPAScore,
+                HightSchoolYearId = HighSchoolResult.HightSchoolYearId,
+                LearningAbilityId = HighSchoolResult.LearningAbilityId,
+                ConductTypeName = context.ConductTypes.FirstOrDefault(x => !x.DelFlag && x.Id == HighSchoolResult.ConductTypeId).Level,
+                HightSchoolYear = context.HightSchoolYears.FirstOrDefault(x => !x.DelFlag && x.Id == HighSchoolResult.HightSchoolYearId).Year,
+                LearningAbilityName = context.LearningAbilities.FirstOrDefault(x => !x.DelFlag && x.Id == HighSchoolResult.LearningAbilityId).Level
+            };
+
         }
 
         public bool DeletionObject(DeletionObject deletionObject, string token)
@@ -493,7 +524,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             context.SaveChanges();
         }
 
-       
+
 
     }
 }

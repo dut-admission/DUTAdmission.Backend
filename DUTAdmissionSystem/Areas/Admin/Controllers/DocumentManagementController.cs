@@ -18,7 +18,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Controllers
             _documentManagementService = documentManagementService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("GetDocuments")]
         public IHttpActionResult GetDocuments([FromBody]DocumentConditionSearch conditionSearch)
         {

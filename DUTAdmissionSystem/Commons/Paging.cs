@@ -19,7 +19,7 @@ namespace DUTAdmissionSystem.Commons
     {
         public int CurrentPage { set; get; }
         public int TotalPages { set; get; }
-        public int NumberOfRecord { set; get; }
+        public int PageSize { set; get; }
         public int TotalRecord { set; get; }
         /// <summary>
         /// Hàm khởi tạo mặc định để gán các tham số mặc định khi khởi tạo 1 biến để lưu phân trang.
@@ -27,7 +27,7 @@ namespace DUTAdmissionSystem.Commons
         /// </summary>
         public Paging()
         {
-            this.NumberOfRecord = 10;
+            this.PageSize = 10;
             this.TotalPages = 1;
             this.CurrentPage = 1;
             this.TotalRecord = 0;
@@ -48,8 +48,8 @@ namespace DUTAdmissionSystem.Commons
         public Paging(int TotalRecord, int CurrenPage, int NumberOfRecord = 30)
         {
             this.TotalRecord = TotalRecord;
-            this.NumberOfRecord = NumberOfRecord;
-            this.TotalPages = TotalRecord / this.NumberOfRecord + (TotalRecord % this.NumberOfRecord > 0 ? 1 : 0);
+            this.PageSize = NumberOfRecord;
+            this.TotalPages = TotalRecord / this.PageSize + (TotalRecord % this.PageSize > 0 ? 1 : 0);
             if (CurrenPage > this.TotalPages)
             {
                 CurrenPage = this.TotalPages == 0 ? 1 : this.TotalPages;

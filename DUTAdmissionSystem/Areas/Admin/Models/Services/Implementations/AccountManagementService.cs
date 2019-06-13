@@ -39,8 +39,8 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 (conditionSearch.GroupId == 0 ||
                 conditionSearch.GroupId != 0 && x.AccountGroupId == conditionSearch.GroupId))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new AccountReponseDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new AccountReponseDto
                 {
                     Id = x.Id,
                     UserName =x.UserName,

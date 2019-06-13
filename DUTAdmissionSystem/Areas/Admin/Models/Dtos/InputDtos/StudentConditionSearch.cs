@@ -26,7 +26,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos
             this.ClassId = 0;
             this.ProgramId = 0;
             this.DepartmentId = 0;
-            this.PageSize = 10;
+            this.PageSize = 15;
             this.CurrentPage = 1;
         }
     }

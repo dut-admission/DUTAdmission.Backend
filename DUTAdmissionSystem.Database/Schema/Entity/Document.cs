@@ -16,18 +16,11 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         [Required]
         public int StatusId { get; set; }
 
-        [Required]
-        [StringLength(255)]
         public string ResponseMessage { get; set; }
 
-        [Required]
-        [StringLength(255)]
         public string Url { get; set; }
 
-        [Required]
-        [StringLength(255)]
         public string FileName { get; set; }
-
 
         public virtual DocumentType DocumentType { get; set; }
 

@@ -9,9 +9,9 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions
         bool UpdatePass(UpdatePassword updatePassword,string token);
         LibrariesOfProFile GetLibrariesOfProFile();
 
-        void UpdateAddAchievement(Achievement achievement, string token);
-        void UpdateAddFamilyMember(FamilyMember FamilyMember, string token);
-        void UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token);
+        AchievementResponseDto UpdateAddAchievement(Achievement achievement, string token);
+        FamilyMemberResponseDto UpdateAddFamilyMember(FamilyMember FamilyMember, string token);
+        HighSchoolResultResponseInfo UpdateAddHighSchoolResult(HighSchoolResult HighSchoolResult, string token);
         bool DeletionObject(DeletionObject deletionObject, string token);
         void UpdateProfile(Profile profile, string token);
 

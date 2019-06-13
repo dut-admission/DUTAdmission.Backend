@@ -101,7 +101,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos
         public int HightSchoolYearId { get; set; }
         public int ConductTypeId { get; set; }
         public int LearningAbilityId { get; set; }
-        public int GPAScore { get; set; }
+        public double GPAScore { get; set; }
 
     }
 
