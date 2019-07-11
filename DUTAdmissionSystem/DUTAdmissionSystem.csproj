@@ -418,6 +418,10 @@
       <Project>{7c2bb331-3dd2-4637-a3e4-7fedf9670626}</Project>
       <Name>DUTAdmissionSystem.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DUTAdmissionSystem.NewDatabase\DUTAdmissionSystem.NewDatabase.csproj">
+      <Project>{f8eebb97-fd3d-4b52-9b72-6e8f87553da0}</Project>
+      <Name>DUTAdmissionSystem.NewDatabase</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

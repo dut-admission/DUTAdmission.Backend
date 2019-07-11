@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DUTAdmissionSystem", "DUTAdmissionSystem\DUTAdmissionSystem.csproj", "{FD70B415-6E98-4DD2-A89E-B9F57E8DE057}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DUTAdmissionSystem.Database", "DUTAdmissionSystem.Database\DUTAdmissionSystem.Database.csproj", "{7C2BB331-3DD2-4637-A3E4-7FEDF9670626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DUTAdmissionSystem.NewDatabase", "DUTAdmissionSystem.NewDatabase\DUTAdmissionSystem.NewDatabase.csproj", "{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7C2BB331-3DD2-4637-A3E4-7FEDF9670626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2BB331-3DD2-4637-A3E4-7FEDF9670626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C2BB331-3DD2-4637-A3E4-7FEDF9670626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
