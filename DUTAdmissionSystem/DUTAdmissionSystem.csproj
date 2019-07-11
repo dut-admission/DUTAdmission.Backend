@@ -338,6 +338,7 @@
     <Compile Include="Areas\Public\Models\Services\Implementations\TuitionManagerService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Areas\StudentArea\StudentAreaAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />
     <Compile Include="Commons\AuthenticationValidation.cs" />
     <Compile Include="Commons\Constants.cs" />
@@ -401,6 +402,9 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\Public\Views\Shared\" />
+    <Folder Include="Areas\StudentArea\Controllers\" />
+    <Folder Include="Areas\StudentArea\Models\" />
+    <Folder Include="Areas\StudentArea\Views\Shared\" />
     <Folder Include="Document\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -408,6 +412,7 @@
     <Content Include="Areas\Public\Views\web.config" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Authentication\Views\web.config" />
+    <Content Include="Areas\StudentArea\Views\web.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
