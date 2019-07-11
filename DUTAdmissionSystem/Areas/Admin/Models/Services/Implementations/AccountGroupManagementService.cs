@@ -39,7 +39,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
 
         public List<AccountGroupResponseDto> GetListAccountGroups()
         {
-            return db.AccountGroups.Where(x => !x.DelFlag).ToList()
+            return db.AccountGroups.Where(x => !x.DelFlag && x.Id != 1 && x.Id != 2).ToList()
                 .Select(x => new AccountGroupResponseDto(x)).ToList();
         }
 

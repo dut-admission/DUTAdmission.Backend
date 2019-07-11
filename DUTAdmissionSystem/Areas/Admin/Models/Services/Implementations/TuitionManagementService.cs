@@ -15,7 +15,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
     {
         private readonly DataContext context = new DataContext();
 
-        public List<TuitionResponseDto> GetTuitionListResponse(TuitionConditionSearch conditionSearch)
+        public TuitionResponseDto GetTuitionListResponse(TuitionConditionSearch conditionSearch)
         {
             // Nếu không tồn tại điều kiện tìm kiếm thì khởi tạo giá trị tìm kiếm ban đầu
             if (conditionSearch == null)
@@ -47,13 +47,10 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                 (conditionSearch.DepartmentId != 0 && x.Class.DepartmentId == conditionSearch.DepartmentId)) &&
                 (conditionSearch.ProgramId == 0 ||
                 (conditionSearch.ProgramId != 0 && x.Class.Department.ProgramId == conditionSearch.ProgramId)
-                //&&(conditionSearch.IsPaid==null ||
-                //(conditionSearch.IsPaid!=null && x.)
-                // &&x.re)
                 )))
                 .OrderBy(x => x.Id)
                 .Skip((paging.CurrentPage - 1) * paging.PageSize)
-                .Take(paging.PageSize).Select(x => new TuitionResponseDto
+                .Take(paging.PageSize).Select(x => new TuitionDto
                 {
                     Id = x.Id,
                     FirstName = x.UserInfo.FirstName,
@@ -76,7 +73,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations
                         CollectionDate =y.CollectionDate
                     }).FirstOrDefault(),
                 }).ToList();
-            return listOfTuition;
+            return new TuitionResponseDto(listOfTuition, paging);
         }
 
         public LibrariesOfTuition GetLibraries()

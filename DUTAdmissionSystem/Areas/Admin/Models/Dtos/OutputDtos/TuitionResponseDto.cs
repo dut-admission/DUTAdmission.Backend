@@ -1,11 +1,23 @@
-﻿using System;
+﻿using DUTAdmissionSystem.Commons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
 {
+
     public class TuitionResponseDto
+    {
+        public List<TuitionDto> TuitionDtos { get; set; }
+        public Paging Paging { get; set; }
+        public TuitionResponseDto(List<TuitionDto> tuitionDtos, Paging paging)
+        {
+            this.Paging = paging;
+            this.TuitionDtos = tuitionDtos;
+        }
+    }
+    public class TuitionDto
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
