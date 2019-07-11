@@ -29,7 +29,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos
             this.ProgramId = 0;
             this.ClassId = 0;
             this.IsPaid = null;
-            this.PageSize = 10;
+            this.PageSize = 15;
             this.CurrentPage = 1;
         }
     }

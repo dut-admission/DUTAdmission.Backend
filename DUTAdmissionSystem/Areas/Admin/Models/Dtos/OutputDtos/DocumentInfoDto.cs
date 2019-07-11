@@ -14,7 +14,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
 
         public string Description { set; get; }
 
-        public bool IsRequied { set; get; }
+        public bool IsRequired { set; get; }
 
         public string Url { set; get; }
 
@@ -36,7 +36,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
             DocumentTypeId = documentTypeId;
             DocumentTypeName = documentTypeName;
             Description = description;
-            IsRequied = isRequied;
+            IsRequired = isRequied;
             Url = url;
             FileName = fileName;
             ResponseMessage = responseMessage;
@@ -48,7 +48,7 @@ namespace DUTAdmissionSystem.Areas.Admin.Models.Dtos.OutputDtos
             DocumentTypeId = document.DocumentTypeId;
             DocumentTypeName = document.DocumentType.Name;
             Description = document.DocumentType.Description;
-            IsRequied = document.DocumentType.IsRequired;
+            IsRequired = document.DocumentType.IsRequired;
             Url = document.Url;
             FileName = document.FileName;
             ResponseMessage = document.ResponseMessage;

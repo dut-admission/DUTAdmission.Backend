@@ -21,12 +21,13 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             string url = FunctionCommon.SaveFile(documentDto.File, documentDto.DocumentId, documentDto.FileName);
             string urlFile = context.Documents.FirstOrDefault(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Url;
             string strUrl = host + "/" + url;
+            var doc = context.Documents.FirstOrDefault(x => !x.DelFlag && x.Id == documentDto.DocumentId);
             context.Documents.Where(x => x.Id == documentDto.DocumentId && x.StudentId == idStudent && !x.DelFlag).Update(x => new Database.Schema.Entity.Document
             {
                 Url = strUrl,
                 FileName=documentDto.FileName,
                 StatusId=2,
-                DocumentTypeId =1
+                DocumentTypeId = doc.DocumentTypeId
             });
             context.SaveChanges();
             FunctionCommon.DeleteFile(urlFile.Substring(host.Length, urlFile.Length - host.Length));
