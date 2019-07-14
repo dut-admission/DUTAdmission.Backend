@@ -2,7 +2,7 @@
 using DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.OutputDtos;
 using DUTAdmissionSystem.Areas.StudentArea.Models.Services.Abstractions;
 using DUTAdmissionSystem.Commons;
-using DUTAdmissionSystem.Database;
+using DUTAdmissionSystem.NewDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -338,10 +338,14 @@
     <Compile Include="Areas\Public\Models\Services\Implementations\TuitionManagerService.cs" />
     <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Areas\StudentArea\Controllers\StudentInformationController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\UniversityInfo_2Controller.cs" />
     <Compile Include="Areas\StudentArea\Models\Dtos\InputDtos\UniversityInfo_2ConditionSearch.cs" />
+    <Compile Include="Areas\StudentArea\Models\Dtos\OutputDtos\TuitionDetail_2.cs" />
     <Compile Include="Areas\StudentArea\Models\Dtos\OutputDtos\UniversityInfo_2Dto.cs" />
+    <Compile Include="Areas\StudentArea\Models\Services\Abstractions\IStudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Models\Services\Abstractions\IUniversityInfo_2Service.cs" />
+    <Compile Include="Areas\StudentArea\Models\Services\Implementations\StudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Models\Services\Implementations\UniversityInfo_2Service.cs" />
     <Compile Include="Areas\StudentArea\StudentAreaAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />

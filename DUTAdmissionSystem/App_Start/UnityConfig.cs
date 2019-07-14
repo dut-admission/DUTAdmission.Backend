@@ -42,6 +42,7 @@ namespace DUTAdmissionSystem
             // version 2 ( An - Hằng -Hoàng)
 
             container.RegisterType<IUniversityInfo_2Service, UniversityInfo_2Service>();
+            container.RegisterType<IStudentTuitionService, StudentTuitionService>();
 
 
 
