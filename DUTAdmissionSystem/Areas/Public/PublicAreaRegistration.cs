@@ -42,11 +42,11 @@ namespace DUTAdmissionSystem.Areas.Public
                 defaults: new { controller = "Slide", action = "GetSlideById", id = RouteParameter.Optional }
             );
 
-            context.Routes.MapHttpRoute(
-                name: "GetUniversityInfo",
-                routeTemplate: "api/public/university-info",
-                defaults: new { controller = "UniversityInfo", action = "GetUniversityInfo", id = RouteParameter.Optional }
-            );
+            //context.Routes.MapHttpRoute(
+            //    name: "GetUniversityInfo",
+            //    routeTemplate: "api/public/university-info",
+            //    defaults: new { controller = "UniversityInfo", action = "GetUniversityInfo", id = RouteParameter.Optional }
+            //);
 
             context.Routes.MapHttpRoute(
                 name: "GetProfileForStudent",
