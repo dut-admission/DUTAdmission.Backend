@@ -1,9 +1,11 @@
-using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
+﻿using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
 using DUTAdmissionSystem.Areas.Admin.Models.Services.Implementations;
 using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementations;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
 using DUTAdmissionSystem.Areas.Public.Models.Services.Implementations;
+using DUTAdmissionSystem.Areas.StudentArea.Models.Services.Abstractions;
+using DUTAdmissionSystem.Areas.StudentArea.Models.Services.Implementations;
 using System.Web.Http;
 using Unity;
 using Unity.WebApi;
@@ -36,6 +38,10 @@ namespace DUTAdmissionSystem
             container.RegisterType<ITuitionManagementService, TuitionManagementService>();
             container.RegisterType<IDocumentManagementService, DocumentManagementService>();
             container.RegisterType<IAccountManagementService, AccountManagementService>();
+
+            // version 2 ( An - Hằng -Hoàng)
+
+            container.RegisterType<IUniversityInfo_2Service, UniversityInfo_2Service>();
 
 
 
