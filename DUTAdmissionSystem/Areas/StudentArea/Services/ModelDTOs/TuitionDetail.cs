@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.OutputDtos
+namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 {
-    public class TuitionDetail_2
+    public class TuitionDetail
     {
-        public List<TuitionType_2> TuitionTypes { get; set; }
+        public List<TuitionType> TuitionTypes { get; set; }
 
         public double TuitionFee { get; set; }
 
         public double TotalOfFee { get; set; }
     }
 
-    public class TuitionType_2
+    public class TuitionType
     {
         public int Id { get; set; }
         public string Name { get; set; }

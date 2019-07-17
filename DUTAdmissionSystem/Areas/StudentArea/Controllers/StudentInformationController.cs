@@ -1,11 +1,6 @@
-﻿using DUTAdmissionSystem.Areas.StudentArea.Models.Services.Abstractions;
+﻿using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Fillters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Controllers

@@ -1,7 +1,6 @@
 ﻿using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
 using DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementations;
-using DUTAdmissionSystem.Areas.StudentArea.Models.Services.Abstractions;
-using DUTAdmissionSystem.Areas.StudentArea.Models.Services.Implementations;
+using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
 using System.Web.Http;
 using Unity;
 using Unity.WebApi;
@@ -21,10 +20,9 @@ namespace DUTAdmissionSystem
             
             container.RegisterType<IAuthenticationService, AuthenticationService>();
            
-
             // version 2 ( An - Hằng -Hoàng)
 
-            container.RegisterType<IUniversityInfo_2Service, UniversityInfo_2Service>();
+            container.RegisterType<IUniversityInfoService, UniversityInfoService>();
             container.RegisterType<IStudentTuitionService, StudentTuitionService>();
 
 

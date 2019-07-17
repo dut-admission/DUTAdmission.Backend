@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.OutputDtos
+namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 {
-    public class UniversityInfo_2Dto
+    public class UniversityInfo
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -35,11 +35,11 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.OutputDtos
         [JsonProperty("created_at")]
         public DateTime? CreatedAt { get; set; }
 
-        public UniversityInfo_2Dto()
+        public UniversityInfo()
         {
         }
 
-        public UniversityInfo_2Dto(int id, string universityName, string address, string phoneNumber, string fax, string email, string summary, string website, DateTime? createdAt)
+        public UniversityInfo(int id, string universityName, string address, string phoneNumber, string fax, string email, string summary, string website, DateTime? createdAt)
         {
             Id = id;
             UniversityName = universityName;
@@ -52,7 +52,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.OutputDtos
             CreatedAt = createdAt;
         }
 
-        public UniversityInfo_2Dto(UniversityInfo_2Dto universityInfo)
+        public UniversityInfo(UniversityInfo universityInfo)
         {
             Id = universityInfo.Id;
             UniversityName = universityInfo.UniversityName;
