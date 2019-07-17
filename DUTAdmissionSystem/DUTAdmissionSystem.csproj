@@ -224,12 +224,16 @@
     <Compile Include="Areas\Authentication\Models\Services\Abstractions\IAuthenticationService.cs" />
     <Compile Include="Areas\Authentication\Models\Services\Implementations\AuthenticationService.cs" />
     <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\ForgetPassword.cs" />
+    <Compile Include="Areas\StudentArea\Controllers\HighSchoolResultController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\StudentInformationController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\UniversityInfoController.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\HighSchoolResultService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IHighSchoolResultService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IStudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IUniversityInfoService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\StudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\UniversityInfoService.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\HighSchoolResult.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\TuitionDetail.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfo.cs" />
@@ -274,6 +278,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Resources\Data\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
+    <Folder Include="Areas\StudentArea\Views\" />
     <Folder Include="Document\" />
     <Folder Include="Models\" />
   </ItemGroup>
