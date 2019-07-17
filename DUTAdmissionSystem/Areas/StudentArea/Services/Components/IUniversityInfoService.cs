@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 {
-    public interface IStudentTuitionService
+    public interface IUniversityInfoService
     {
-        TuitionDetail GetTuitionDetail(string token);
+        List<UniversityInfo> GetUniversityInfo(UniversityInfoConditionSearch conditionSearch);
     }
 }

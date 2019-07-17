@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.InputDtos
+namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 {
-    public class UniversityInfo_2ConditionSearch
+    public class UniversityInfoConditionSearch
     {
         [JsonProperty("key_search_for_title")]
         public string KeySearch { set; get; }
@@ -17,7 +17,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Models.Dtos.InputDtos
         [JsonProperty("page_size")]
         public int PageSize { set; get; }
 
-        public UniversityInfo_2ConditionSearch()
+        public UniversityInfoConditionSearch()
         {
             this.KeySearch = "";
             this.PageSize = 10;
