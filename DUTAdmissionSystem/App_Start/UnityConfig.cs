@@ -24,6 +24,7 @@ namespace DUTAdmissionSystem
 
             container.RegisterType<IUniversityInfoService, UniversityInfoService>();
             container.RegisterType<IStudentTuitionService, StudentTuitionService>();
+            container.RegisterType<IHighSchoolResultService, HighSchoolResultService>();
 
 
 
