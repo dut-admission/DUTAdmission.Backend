@@ -13,21 +13,30 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
         {
             Accounts = new HashSet<Account>();
             Students = new HashSet<Student>();
+            ReceiptsForCollector = new HashSet<Receipt>();
+            ReceiptsForPayer = new HashSet<Receipt>();
+
         }
 
+        [Required]
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
 
+        [Required]
         [StringLength(255)]
         public string Avatar { get; set; }
 
+        [Required]
         public int ContactId { get; set; }
 
+        [Required]
         public int BirthInfoId { get; set; }
 
+        [Required]
         public int IdentityId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -41,5 +50,10 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student> Students { get; set; }
+
+        public virtual ICollection<Receipt> ReceiptsForCollector { get; set; }
+
+        public virtual ICollection<Receipt> ReceiptsForPayer { get; set; }
+
     }
 }

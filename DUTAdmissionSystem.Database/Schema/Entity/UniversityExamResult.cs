@@ -10,10 +10,13 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
     [Table("UniversityExamResult")]
     public partial class UniversityExamResult : TableHaveIdInt
     {
+        [Required]
         public int StudentId { get; set; }
 
+        [Required]
         public int SubjectId { get; set; }
 
+        [Required]
         public double Score { get; set; }
 
         public virtual Student Student { get; set; }

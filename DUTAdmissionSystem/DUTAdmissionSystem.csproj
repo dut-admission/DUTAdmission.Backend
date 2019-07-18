@@ -52,6 +52,9 @@
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
@@ -59,8 +62,21 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.5.4.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.5.4.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.4.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
       <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
@@ -68,6 +84,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.4.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -159,8 +178,8 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Z.EntityFramework.Plus.EF6, Version=1.8.25.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.1.8.25\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
+    <Reference Include="Z.EntityFramework.Plus.EF6, Version=1.9.5.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.1.9.5\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -190,87 +209,55 @@
     <Compile Include="App_Resources\Constants\AppMessage.cs" />
     <Compile Include="App_Resources\Constants\AppString.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\PreflightRequestsHandler.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Authorization\AuthorizationAreaRegistration.cs" />
-    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
-    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
-    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
-    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
-    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
-    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
-    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
-    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
-    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Areas\Public\Controllers\AdmissionNewsController.cs" />
-    <Compile Include="Areas\Public\Controllers\SlideController.cs" />
-    <Compile Include="Areas\Public\Controllers\UniversityInfoController.cs" />
-    <Compile Include="Areas\Public\Models\Dtos\InputDtos\AdmissionNewsConditionSearch.cs" />
-    <Compile Include="Areas\Public\Models\Dtos\InputDtos\SlideConditionSearch.cs" />
-    <Compile Include="Areas\Public\Models\Dtos\InputDtos\UniversityInfoConditionSearch.cs" />
-    <Compile Include="Areas\Public\Models\Dtos\OutputDtos\AdmissionNewsResponseDto.cs" />
-    <Compile Include="Areas\Public\Models\Dtos\OutputDtos\SlideResponseDto.cs" />
-    <Compile Include="Areas\Public\Models\Dtos\OutputDtos\UniversityInfoDto.cs" />
-    <Compile Include="Areas\Public\Models\Services\Abstactions\IAdmissionNewsService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Abstactions\ISlideService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Abstactions\IUniversityInfoService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Implementations\AdmissionNewsService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Implementations\SlideService.cs" />
-    <Compile Include="Areas\Public\Models\Services\Implementations\UniversityInfoService.cs" />
-    <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
+    <Compile Include="Areas\Authentication\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginDto.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\GroupResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\TokenInfo.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\UserResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Services\Components\IAuthenticationService.cs" />
+    <Compile Include="Areas\Authentication\Services\Components\AuthenticationService.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\ForgetPassword.cs" />
+    <Compile Include="Areas\StudentArea\Controllers\HighSchoolResultController.cs" />
+    <Compile Include="Areas\StudentArea\Controllers\StudentInformationController.cs" />
+    <Compile Include="Areas\StudentArea\Controllers\UniversityInfoController.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\HighSchoolResultService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IHighSchoolResultService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IStudentTuitionService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IUniversityInfoService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\StudentTuitionService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\UniversityInfoService.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\HighSchoolResult.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\TuitionDetail.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfoConditionSearch.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfo.cs" />
+    <Compile Include="Areas\StudentArea\StudentAreaAreaRegistration.cs" />
+    <Compile Include="Commons\AccountVerification.cs" />
+    <Compile Include="Commons\AuthenticationValidation.cs" />
+    <Compile Include="Commons\Constants.cs" />
+    <Compile Include="Commons\FunctionCommon.cs" />
+    <Compile Include="Commons\HeThong.cs" />
+    <Compile Include="Commons\JwtAuthenticationExtensions.cs" />
     <Compile Include="Commons\Paging.cs" />
+    <Compile Include="Commons\SendMail.cs" />
+    <Compile Include="Commons\TokenValidationHandler.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Fillters\DUTAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\HelpPage\Views\Web.config" />
-    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
-    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -281,7 +268,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -291,26 +277,26 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Resources\Data\" />
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\Authorization\Controllers\" />
-    <Folder Include="Areas\Authorization\Models\" />
-    <Folder Include="Areas\Authorization\Views\Shared\" />
-    <Folder Include="Areas\Public\Views\Shared\" />
+    <Folder Include="Areas\Authentication\Views\Shared\" />
+    <Folder Include="Areas\StudentArea\Views\" />
+    <Folder Include="Document\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Public\Views\web.config" />
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Authorization\Views\web.config" />
-    <None Include="packages.config" />
+    <Content Include="Areas\Authentication\Views\web.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DUTAdmissionSystem.Database\DUTAdmissionSystem.Database.csproj">
       <Project>{7c2bb331-3dd2-4637-a3e4-7fedf9670626}</Project>
       <Name>DUTAdmissionSystem.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DUTAdmissionSystem.NewDatabase\DUTAdmissionSystem.NewDatabase.csproj">
+      <Project>{f8eebb97-fd3d-4b52-9b72-6e8f87553da0}</Project>
+      <Name>DUTAdmissionSystem.NewDatabase</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -89,9 +89,53 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201904220238434_InitDatabase.cs" />
-    <Compile Include="Migrations\201904220238434_InitDatabase.Designer.cs">
-      <DependentUpon>201904220238434_InitDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201905080951428_InitialDatabase.cs" />
+    <Compile Include="Migrations\201905080951428_InitialDatabase.Designer.cs">
+      <DependentUpon>201905080951428_InitialDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905130457531_AddContactMessage.cs" />
+    <Compile Include="Migrations\201905130457531_AddContactMessage.Designer.cs">
+      <DependentUpon>201905130457531_AddContactMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905131603143_EditContactMessage.cs" />
+    <Compile Include="Migrations\201905131603143_EditContactMessage.Designer.cs">
+      <DependentUpon>201905131603143_EditContactMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905140655084_AddFamilyMemberName.cs" />
+    <Compile Include="Migrations\201905140655084_AddFamilyMemberName.Designer.cs">
+      <DependentUpon>201905140655084_AddFamilyMemberName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905151707252_AddStatusTable.cs" />
+    <Compile Include="Migrations\201905151707252_AddStatusTable.Designer.cs">
+      <DependentUpon>201905151707252_AddStatusTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905180228008_EditDocumentTable.cs" />
+    <Compile Include="Migrations\201905180228008_EditDocumentTable.Designer.cs">
+      <DependentUpon>201905180228008_EditDocumentTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905180623329_AddStatusForContactMessage.cs" />
+    <Compile Include="Migrations\201905180623329_AddStatusForContactMessage.Designer.cs">
+      <DependentUpon>201905180623329_AddStatusForContactMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905180724222_AddFileNameForDocument.cs" />
+    <Compile Include="Migrations\201905180724222_AddFileNameForDocument.Designer.cs">
+      <DependentUpon>201905180724222_AddFileNameForDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905190730110_AddTuitionTypeTable.cs" />
+    <Compile Include="Migrations\201905190730110_AddTuitionTypeTable.Designer.cs">
+      <DependentUpon>201905190730110_AddTuitionTypeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905200709091_UpdateProgramTable.cs" />
+    <Compile Include="Migrations\201905200709091_UpdateProgramTable.Designer.cs">
+      <DependentUpon>201905200709091_UpdateProgramTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905260848054_AddReceiptTable.cs" />
+    <Compile Include="Migrations\201905260848054_AddReceiptTable.Designer.cs">
+      <DependentUpon>201905260848054_AddReceiptTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906131901450_FixDocumentTable.cs" />
+    <Compile Include="Migrations\201906131901450_FixDocumentTable.Designer.cs">
+      <DependentUpon>201906131901450_FixDocumentTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,9 +152,10 @@
     <Compile Include="Schema\Entity\CircumstanceType.cs" />
     <Compile Include="Schema\Entity\Class.cs" />
     <Compile Include="Schema\Entity\ConductType.cs" />
-    <Compile Include="Schema\Entity\Confiuration.cs" />
+    <Compile Include="Schema\Entity\Configuration.cs" />
     <Compile Include="Schema\Entity\ContactInfo.cs" />
     <Compile Include="DataContext.cs" />
+    <Compile Include="Schema\Entity\ContactMessage.cs" />
     <Compile Include="Schema\Entity\Department.cs" />
     <Compile Include="Schema\Entity\Document.cs" />
     <Compile Include="Schema\Entity\DocumentType.cs" />
@@ -119,7 +164,6 @@
     <Compile Include="Schema\Entity\ErrorMsg.cs" />
     <Compile Include="Schema\Entity\Ethnic.cs" />
     <Compile Include="Schema\Entity\Faculty.cs" />
-    <Compile Include="Schema\Entity\Family.cs" />
     <Compile Include="Schema\Entity\FamilyMember.cs" />
     <Compile Include="Schema\Entity\FunctionInScreen.cs" />
     <Compile Include="Schema\Entity\HighSchoolResult.cs" />
@@ -127,7 +171,6 @@
     <Compile Include="Schema\Entity\HightSchoolYear.cs" />
     <Compile Include="Schema\Entity\IdentityInfo.cs" />
     <Compile Include="Schema\Entity\Insurance.cs" />
-    <Compile Include="Schema\Entity\InsuranceDuration.cs" />
     <Compile Include="Schema\Entity\InsuranceType.cs" />
     <Compile Include="Schema\Entity\LearningAbility.cs" />
     <Compile Include="Schema\Entity\Nationality.cs" />
@@ -135,22 +178,60 @@
     <Compile Include="Schema\Entity\PersonalInfo.cs" />
     <Compile Include="Schema\Entity\PositionType.cs" />
     <Compile Include="Schema\Entity\Program.cs" />
+    <Compile Include="Schema\Entity\Receipt.cs" />
     <Compile Include="Schema\Entity\RelationType.cs" />
     <Compile Include="Schema\Entity\Religion.cs" />
     <Compile Include="Schema\Entity\Screen.cs" />
     <Compile Include="Schema\Entity\Slide.cs" />
+    <Compile Include="Schema\Entity\Status.cs" />
+    <Compile Include="Schema\Entity\StatusType.cs" />
     <Compile Include="Schema\Entity\Student.cs" />
     <Compile Include="Schema\Entity\Subject.cs" />
     <Compile Include="Schema\Entity\sysdiagram.cs" />
     <Compile Include="Schema\Entity\Talent.cs" />
     <Compile Include="Schema\Entity\TalentType.cs" />
+    <Compile Include="Schema\Entity\TuitionType.cs" />
     <Compile Include="Schema\Entity\UniversityExamResult.cs" />
     <Compile Include="Schema\Entity\UniversityInfo.cs" />
     <Compile Include="Schema\Entity\UserInfo.cs" />
+    <Compile Include="Schema\Entity\YouthGroupInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904220238434_InitDatabase.resx">
-      <DependentUpon>201904220238434_InitDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905080951428_InitialDatabase.resx">
+      <DependentUpon>201905080951428_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905130457531_AddContactMessage.resx">
+      <DependentUpon>201905130457531_AddContactMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905131603143_EditContactMessage.resx">
+      <DependentUpon>201905131603143_EditContactMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905140655084_AddFamilyMemberName.resx">
+      <DependentUpon>201905140655084_AddFamilyMemberName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905151707252_AddStatusTable.resx">
+      <DependentUpon>201905151707252_AddStatusTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180228008_EditDocumentTable.resx">
+      <DependentUpon>201905180228008_EditDocumentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180623329_AddStatusForContactMessage.resx">
+      <DependentUpon>201905180623329_AddStatusForContactMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905180724222_AddFileNameForDocument.resx">
+      <DependentUpon>201905180724222_AddFileNameForDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905190730110_AddTuitionTypeTable.resx">
+      <DependentUpon>201905190730110_AddTuitionTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905200709091_UpdateProgramTable.resx">
+      <DependentUpon>201905200709091_UpdateProgramTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260848054_AddReceiptTable.resx">
+      <DependentUpon>201905260848054_AddReceiptTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906131901450_FixDocumentTable.resx">
+      <DependentUpon>201906131901450_FixDocumentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

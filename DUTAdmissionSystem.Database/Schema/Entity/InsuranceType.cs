@@ -14,14 +14,15 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             Insurances = new HashSet<Insurance>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
-        public int DurationId { get; set; }
+
+        [Required]
+        public double Fees { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Insurance> Insurances { get; set; }
-
-        public virtual InsuranceDuration InsuranceDuration { get; set; }
     }
 }

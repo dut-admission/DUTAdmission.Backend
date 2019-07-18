@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             FamilyMembers = new HashSet<FamilyMember>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
-using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
+using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }
 
             // Lấy các thông tin dùng để phân trang
-            var paging = new EducationManagement.Commons.Paging(db.UniversityInfoes.Count(x => !x.DelFlag &&
+            var paging = new Paging(db.UniversityInfoes.Count(x => !x.DelFlag &&
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.UniversityName.Contains(conditionSearch.KeySearch)))||
                 (conditionSearch.KeySearch != null && (x.Email.Contains(conditionSearch.KeySearch)))))
@@ -34,8 +35,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 (conditionSearch.KeySearch != null && (x.UniversityName.Contains(conditionSearch.KeySearch))) ||
                 (conditionSearch.KeySearch != null && (x.Email.Contains(conditionSearch.KeySearch)))))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new UniversityInfoDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new UniversityInfoDto
                 {
                     Id = x.Id,
                     UniversityName = x.UniversityName,
@@ -50,9 +51,6 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             return listOfUniversityInfo ?? listOfUniversityInfo;
         }
 
-        public UniversityInfoDto GetUniversityInfoById(int id)
-        {
-            return new UniversityInfoDto(db.UniversityInfoes.FirstOrDefault(s => !s.DelFlag && s.Id == id));
-        }
+        
     }
 }

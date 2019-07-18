@@ -7,20 +7,27 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
     [Table("Document")]
     public partial class Document : TableHaveIdInt
     {
+        [Required]
         public int DocumentTypeId { get; set; }
 
+        [Required]
         public int StudentId { get; set; }
 
-        [StringLength(50)]
-        public string Name { get; set; }
+        [Required]
+        public int StatusId { get; set; }
 
-        [StringLength(255)]
+        public string ResponseMessage { get; set; }
+
         public string Url { get; set; }
 
-        public bool IsValid { get; set; }
+        public string FileName { get; set; }
 
         public virtual DocumentType DocumentType { get; set; }
 
         public virtual Student Student { get; set; }
+
+        public virtual Status Status { get; set; }
+
+
     }
 }

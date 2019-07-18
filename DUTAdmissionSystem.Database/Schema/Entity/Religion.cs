@@ -1,11 +1,9 @@
 namespace DUTAdmissionSystem.Database.Schema.Entity
 {
     using DUTAdmissionSystem.Database.Schema.Base;
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
 
     [Table("Religion")]
     public partial class Religion : TableHaveIdInt
@@ -16,6 +14,7 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             PersonalInfoes = new HashSet<PersonalInfo>();
         }
 
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 

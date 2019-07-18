@@ -1,6 +1,7 @@
 ﻿using DUTAdmissionSystem.Areas.Public.Models.Dtos.InputDtos;
 using DUTAdmissionSystem.Areas.Public.Models.Dtos.OutputDtos;
-using DUTAdmissionSystem.Areas.Public.Models.Services.Abstactions;
+using DUTAdmissionSystem.Areas.Public.Models.Services.Abstractions;
+using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Database;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
             }
 
             // Lấy các thông tin dùng để phân trang
-            var paging = new EducationManagement.Commons.Paging(db.AdmissionNews.Count(x => !x.DelFlag &&
+            var paging = new Paging(db.AdmissionNews.Count(x => !x.DelFlag &&
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                 , conditionSearch.CurrentPage, conditionSearch.PageSize);
@@ -30,8 +31,8 @@ namespace DUTAdmissionSystem.Areas.Public.Models.Services.Implementations
                 (conditionSearch.KeySearch == null ||
                 (conditionSearch.KeySearch != null && (x.Title.Contains(conditionSearch.KeySearch)))))
                 .OrderBy(x => x.Id)
-                .Skip((paging.CurrentPage - 1) * paging.NumberOfRecord)
-                .Take(paging.NumberOfRecord).Select(x => new AdmissionNewsResponseDto
+                .Skip((paging.CurrentPage - 1) * paging.PageSize)
+                .Take(paging.PageSize).Select(x => new AdmissionNewsResponseDto
                 {
                     Id = x.Id,
                     Title = x.Title,

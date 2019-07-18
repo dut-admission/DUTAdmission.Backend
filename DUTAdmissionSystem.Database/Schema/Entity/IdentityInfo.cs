@@ -15,8 +15,9 @@ namespace DUTAdmissionSystem.Database.Schema.Entity
             UserInfoes = new HashSet<UserInfo>();
         }
 
-        [StringLength(1)]
-        public string Identitynumber { get; set; }
+        [Required]
+        [StringLength(15)]
+        public string IdentityNumber { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime? DateOfIssue { get; set; }

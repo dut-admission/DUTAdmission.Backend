@@ -1,0 +1,98 @@
+﻿using DUTAdmissionSystem.Areas.Admin.Models.Dtos.InputDtos;
+using DUTAdmissionSystem.Areas.Admin.Models.Services.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace DUTAdmissionSystem.Areas.Admin.Controllers
+{
+    public class AccountGroupManagementController : ApiController
+    {
+        private readonly IAccountGroupManagementService _accountGroupManagementService;
+
+        public AccountGroupManagementController(IAccountGroupManagementService accountGroupManagementService)
+        {
+            _accountGroupManagementService = accountGroupManagementService;
+        }
+
+        [HttpGet]
+        [ActionName("GetAccountGroups")]
+        public IHttpActionResult GetAccountGroups()
+        {
+            try
+            {
+                return Ok(_accountGroupManagementService.GetListAccountGroups());
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetAccountGroupById")]
+        public IHttpActionResult GetAccountGroupById(int id)
+        {
+            try
+            {
+                return Ok(_accountGroupManagementService.GetAccountGroupById(id));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPost]
+        [ActionName("AddAccountGroup")]
+        public IHttpActionResult AddAccountGroup([FromBody]AccountGroupDto accountGroup)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_accountGroupManagementService.AddAccountGroup(accountGroup));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("EditAccountGroup")]
+        public IHttpActionResult EditAccountGroup(int id, [FromBody]AccountGroupDto accountGroup)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                return Ok(_accountGroupManagementService.EditAccountGroup(accountGroup, id));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpDelete]
+        [ActionName("DeleteAccountGroup")]
+        public IHttpActionResult DeleteAccountGroup(int id)
+        {
+            try
+            {
+                _accountGroupManagementService.DeleteAccountGroup(id);
+                return Ok(true);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+    }
+}
