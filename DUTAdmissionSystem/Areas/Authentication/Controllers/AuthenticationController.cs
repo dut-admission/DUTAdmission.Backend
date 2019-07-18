@@ -1,10 +1,6 @@
 ﻿using DUTAdmissionSystem.App_Resources.Constants;
-using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
-using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
-using DUTAdmissionSystem.Commons;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using DUTAdmissionSystem.Areas.Authentication.Services.Components;
+using DUTAdmissionSystem.Areas.Authentication.Services.ModelDTOs;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -19,7 +15,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
         {
             this.authenticationService = authenticationService;
         }
-        
+
         [HttpPost]
         public IHttpActionResult Login([FromBody] LoginDto dto)
         {
@@ -61,7 +57,6 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
                 return InternalServerError(e);
             }
         }
-
 
         private IHttpActionResult CreateUnauthorizedResponse(string message)
         {

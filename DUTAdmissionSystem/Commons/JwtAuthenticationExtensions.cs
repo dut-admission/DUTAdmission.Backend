@@ -1,16 +1,16 @@
-﻿using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.OutputDtos;
-using System;
+﻿using System;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using DUTAdmissionSystem.Areas.Authentication.Services.ModelDTOs;
 
 namespace DUTAdmissionSystem.Commons
 {
     public static class JwtAuthenticationExtensions
     {
-        public static string CreateToken(DUTAdmissionSystem.Database.Schema.Entity.Account accountInfo, bool isStudent)
+        public static string CreateToken(DUTAdmissionSystem.NewDatabase.Schema.Entity.Account accountInfo, bool isStudent)
         {
             var issuedAt = DateTime.UtcNow;
             //set the time when it expires
