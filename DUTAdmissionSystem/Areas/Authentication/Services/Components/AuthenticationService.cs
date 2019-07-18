@@ -15,7 +15,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Services.Components
 
             dto.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(dto.Password));
 
-            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password && !x.DelFlag);
+            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.Username && x.Password == dto.Password && !x.DelFlag);
 
             if (accountFromDb == null)
             {
