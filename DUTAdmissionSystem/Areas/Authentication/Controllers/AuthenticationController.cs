@@ -1,6 +1,7 @@
 ﻿using DUTAdmissionSystem.App_Resources.Constants;
 using DUTAdmissionSystem.Areas.Authentication.Services.Components;
 using DUTAdmissionSystem.Areas.Authentication.Services.ModelDTOs;
+using DUTAdmissionSystem.Commons;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -50,6 +51,36 @@ namespace DUTAdmissionSystem.Areas.Authentication.Controllers
                 else
                 {
                     return BadRequest(AppMessage.NoAccount);
+                };
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("ChangePassword")]
+        public IHttpActionResult ChangePassword(ChangePassword changePassword)
+        {
+            try
+            {
+                int id = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                var result = authenticationService.ChangePass(changePassword, id);
+
+                if (result == 2)
+                {
+                    return Ok();
+                }
+                else if (result == 1)
+                {
+                    return BadRequest("Mật khẩu cũ không đúng, vui lòng kiểm tra lại !");
+                }
+                else
+                {
+                    return BadRequest("Có lỗi xảy ra, vui lòng kiểm tra lại");
                 };
             }
             catch (System.Exception e)

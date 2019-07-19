@@ -216,6 +216,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\Controllers\AuthenticationController.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\ChangePassword.cs" />
     <Compile Include="Areas\StudentArea\Controllers\FamilyMemberController.cs" />
     <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginDto.cs" />
     <Compile Include="Areas\Authentication\Services\ModelDTOs\GroupResponseDto.cs" />
