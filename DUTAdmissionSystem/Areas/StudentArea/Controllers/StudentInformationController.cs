@@ -21,7 +21,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
         {
             try
             {
-                return Ok(_studentTuitionService.GetTuitionDetail(Request.GetAuthorizationHeader()));
+                
+                return Ok(_studentTuitionService.GetTuitionDetail(FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader())));
             }
             catch (System.Exception e)
             {

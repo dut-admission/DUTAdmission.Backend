@@ -9,6 +9,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 {
     public interface IStudentTuitionService
     {
-        TuitionDetail GetTuitionDetail(string token);
+        TuitionDetail GetTuitionDetail(int id);
     }
 }
