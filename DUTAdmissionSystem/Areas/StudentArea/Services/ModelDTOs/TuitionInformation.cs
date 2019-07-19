@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 {
-    public class TuitionDetail
+    public class TuitionInformation
     {
         public List<TuitionType> TuitionTypes { get; set; }
 
@@ -20,6 +20,5 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
         public string Name { get; set; }
         public double Money { get; set; }
         public string Description { get; set; }
-        public int SchoolYear { get; set; }
     }
 }
