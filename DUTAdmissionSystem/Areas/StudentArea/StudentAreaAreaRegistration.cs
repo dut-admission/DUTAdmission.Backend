@@ -16,20 +16,15 @@ namespace DUTAdmissionSystem.Areas.StudentArea
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.Routes.MapHttpRoute(
-                name: "GetAchievementApi",
-                routeTemplate: "api/public/get-achievement",
-                defaults: new { controller = "Achievement", action = "GetAchievements", id = UrlParameter.Optional }
-            );
-            context.Routes.MapHttpRoute(
                 name         : "GetUniversityInfo_2",
                 routeTemplate: "api/public/university-info",
                 defaults     : new { controller = "UniversityInfo_2", action = "GetUniversityInfo_2", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
-                name: "GetTuitionDetail",
-                routeTemplate: "api/public/student-info-tuition",
-                defaults: new { controller = "StudentInformation", action = "GetTuitionDetail", id = RouteParameter.Optional }
+                name: "GetTuitionInfor",
+                routeTemplate: "api/public/tuition-infor",
+                defaults: new { controller = "TuitionInformation", action = "GetTuitionDetail", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
@@ -70,12 +65,12 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 defaults: new { controller = "FamilyMember", action = "GetFamilyMembers", id = UrlParameter.Optional }
             );
 
-            //Routing Achievement
-            //context.Routes.MapHttpRoute(
-            //    name: "GetAchievementApi",
-            //    routeTemplate: "api/public/get-achievement",
-            //    defaults: new { controller = "Achievement", action = "GetAchievements", id = UrlParameter.Optional }
-            //);
+            Routing Achievement
+            context.Routes.MapHttpRoute(
+                name: "GetAchievementApi",
+                routeTemplate: "api/public/get-achievement",
+                defaults: new { controller = "Achievement", action = "GetAchievements", id = UrlParameter.Optional }
+            );
             //context.Routes.MapHttpRoute(
             //    name         :"StudentArea_default",
             //    routeTemplate:"StudentArea/{controller}/{action}/{id}",

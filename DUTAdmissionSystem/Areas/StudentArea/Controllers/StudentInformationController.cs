@@ -10,10 +10,12 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
     public class StudentInformationController : ApiController
     {
         private readonly IStudentInforService _studentTuitionService;
+        private readonly IHighSchoolResultService _highSchoolResultService;
 
-        public StudentInformationController(IStudentInforService studentTuitionService)
+        public StudentInformationController(IStudentInforService studentTuitionService, IHighSchoolResultService highSchoolResultService)
         {
             _studentTuitionService = studentTuitionService;
+            _highSchoolResultService = highSchoolResultService;
         }
 
         
@@ -25,7 +27,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
         {
             try
             {
-                return Ok(_studentTuitionService.GetProfile(FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader())));
+                int id = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                var profile = _studentTuitionService.GetProfile(id);
+                profile.HighSchoolResults= _highSchoolResultService.GetHighSchoolResults(id);
+                return Ok(profile);
             }
             catch (System.Exception e)
             {
@@ -41,6 +46,21 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             try
             {
                 return Ok(_studentTuitionService.UpdateAvatar(avatar, FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader()), Request.RequestUri.GetLeftPart(UriPartial.Authority)));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpPut]
+        [ActionName("UpdateProfile")]
+        [DUTAuthorize]
+        public IHttpActionResult UpdateProfile([FromBody]Profile profile)
+        {
+            try
+            {
+                return Ok(_studentTuitionService.SaveProfile(profile, FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader())));
             }
             catch (System.Exception e)
             {
