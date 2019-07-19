@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 {
-    public interface IStudentTuitionService
+    public interface IHighSchoolResultService
     {
-       
-        Profile GetProfile(string token);
-
-        TuitionDetail GetTuitionDetail(int id);
+        List<HighSchoolResult> GetHighSchoolResults(int idUser);
     }
 }

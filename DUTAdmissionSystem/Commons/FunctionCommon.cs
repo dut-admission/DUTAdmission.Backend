@@ -249,5 +249,15 @@ namespace DUTAdmissionSystem.Commons
             }
         }
 
+        /// <summary>
+        /// Get id user by token
+        /// Author: HangNTD - 17/07/2019
+        /// </summary>
+        /// <param name="token">token</param>
+        /// <returns>return IdUser</returns>
+        public static int GetIdUserByToken(string token)
+        {
+            return JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+        }
     }
 }

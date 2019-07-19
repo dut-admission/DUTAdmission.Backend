@@ -9,9 +9,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
     {
         private DataContext context = new DataContext();
 
-        public TuitionDetail GetTuitionDetail(string token)
+        public TuitionDetail GetTuitionDetail(int id)
         {
-            int id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             var classOfStudent = context.Students.FirstOrDefault(x => x.UserInfoId == id && !x.DelFlag).Class;
             TuitionDetail tuitionDetail = new TuitionDetail();
             tuitionDetail.TuitionTypes = context.TuitionTypes.Where(x => !x.DelFlag).Select(x => new TuitionType

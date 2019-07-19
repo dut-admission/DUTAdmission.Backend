@@ -1,5 +1,4 @@
-﻿using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
-using DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementations;
+﻿using DUTAdmissionSystem.Areas.Authentication.Services.Components;
 using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
 using System.Web.Http;
 using Unity;
@@ -17,16 +16,14 @@ namespace DUTAdmissionSystem
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>();
-            
+
             container.RegisterType<IAuthenticationService, AuthenticationService>();
-           
+
             // version 2 ( An - Hằng -Hoàng)
 
             container.RegisterType<IUniversityInfoService, UniversityInfoService>();
             container.RegisterType<IStudentTuitionService, StudentTuitionService>();
-
-
-
+            container.RegisterType<IHighSchoolResultService, HighSchoolResultService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

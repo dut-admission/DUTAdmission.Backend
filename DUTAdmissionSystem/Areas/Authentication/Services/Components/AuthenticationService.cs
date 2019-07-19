@@ -1,12 +1,9 @@
-﻿using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos;
-using DUTAdmissionSystem.Areas.Authentication.Models.Dtos.OutputDtos;
-using DUTAdmissionSystem.Areas.Authentication.Models.Services.Abstractions;
+﻿using DUTAdmissionSystem.Areas.Authentication.Services.ModelDTOs;
 using DUTAdmissionSystem.Commons;
-using DUTAdmissionSystem.Database;
+using DUTAdmissionSystem.NewDatabase;
 using System.Linq;
-using System.Data.Entity;
 
-namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementations
+namespace DUTAdmissionSystem.Areas.Authentication.Services.Components
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -18,7 +15,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
             dto.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(dto.Password));
 
-            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.UserName && x.Password == dto.Password && !x.DelFlag);
+            var accountFromDb = db.Accounts.FirstOrDefault(x => x.UserName == dto.Username && x.Password == dto.Password && !x.DelFlag);
 
             if (accountFromDb == null)
             {
@@ -35,7 +32,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
             result.LastName = accountFromDb.UserInfo.LastName;
 
-            result.Avatar = accountFromDb.UserInfo.Avatar;
+            result.Avatar = accountFromDb.Avatar;
 
             result.UserName = accountFromDb.UserName;
 
@@ -46,8 +43,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
 
         public bool ForgetPass(ForgetPassword input)
         {
-
-            var taikhoan = db.Accounts.FirstOrDefault(x => string.Compare(x.UserName, input.Username) == 0 && string.Compare(x.UserInfo.ContactInfo.Email, input.Email) == 0 && !x.DelFlag);
+            var taikhoan = db.Accounts.FirstOrDefault(x => string.Compare(x.UserName, input.Username) == 0 && string.Compare(x.UserInfo.Email, input.Email) == 0 && !x.DelFlag);
             if (taikhoan == null)
             {
                 return false;
@@ -55,14 +51,11 @@ namespace DUTAdmissionSystem.Areas.Authentication.Models.Services.Implementation
             else
             {
                 string newPass = FunctionCommon.AutoPassword();
-                SendMail.Send(taikhoan.UserInfo.ContactInfo.Email, newPass, "[DUTAdmissionSystem] Forget Password");
+                SendMail.Send(taikhoan.UserInfo.Email, newPass, "[DUTAdmissionSystem] Forget Password");
                 taikhoan.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(newPass));
                 db.SaveChanges();
                 return true;
             }
-
         }
     }
-
-    
 }
