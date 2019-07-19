@@ -28,5 +28,20 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 return InternalServerError(e);
             }
         }
+
+        [HttpGet]
+        [ActionName("GetProfile")]
+        [DUTAuthorize]
+        public IHttpActionResult GetProfile()
+        {
+            try
+            {
+                return Ok(_studentTuitionService.GetProfile(Request.GetAuthorizationHeader()));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
     }
 }

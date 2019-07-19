@@ -230,6 +230,7 @@
     <Compile Include="Areas\StudentArea\Services\Components\IUniversityInfoService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\StudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\UniversityInfoService.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\Profile.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\TuitionDetail.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfo.cs" />

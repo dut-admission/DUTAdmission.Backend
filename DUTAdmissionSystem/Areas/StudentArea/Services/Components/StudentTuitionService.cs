@@ -31,5 +31,61 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             }
             return tuitionDetail;
         }
+
+        public Profile GetProfile(string token)
+        {
+            int id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
+            var Profile = new Profile();
+            Profile = context.UserInfoes.Where(x => x.Id == id && !x.DelFlag).Select(x => new Profile
+            {
+                Id = x.Id,
+
+                FirstName = x.FirstName,
+
+                LastName = x.LastName,
+
+                Sex = x.Sex,
+
+                DateOfBirth = x.DateOfBirth,
+
+                PlaceOfBirth = x.PlaceOfBirth,
+
+                NationalityId = x.NationalityId,
+
+                ReligionId = x.ReligionId,
+
+                EthnicId = x.EthnicId,
+
+                Identitynumber = x.IdentityNumber,
+
+                DateOfIssue = x.DateOfIssue,
+
+                PlaceOfIssue = x.PlaceOfIssue,
+
+                CircumstaneTypeId = x.Students.FirstOrDefault(y => !y.DelFlag).CircumstanceTypeId,
+
+                PermanentResidence = x.PermanentResidence,
+
+                Address = x.Address,
+
+                PhoneNumber = x.PhoneNumber,
+
+                Email = x.Email,
+
+                HighSchoolName = x.Students.FirstOrDefault(y => !y.DelFlag).HighSchoolName,
+
+                //IsJoinYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).Is,
+
+                DateOfJoiningYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).DateOfJoiningYouthGroup,
+
+                PlaceOfJoinYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).PlaceOfJoinYouthGroup,
+
+                HavingBooksOfYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).HavingBooksOfYouthGroup,
+                HavingCardsOfYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).HavingCardsOfYouthGroup
+
+            }).FirstOrDefault();
+
+            return Profile;
+        }
     }
 }
