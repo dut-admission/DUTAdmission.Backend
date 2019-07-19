@@ -59,19 +59,19 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             context.SaveChanges();
             return family;
         }
-        //public bool DeleteFamilyMember(int idFamily, int idUser)
-        //{
-        //    var student = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag);
-        //    if (student == null)
-        //    {
-        //        return false;
-        //    }
-        //    context.FamilyMembers.Where(x => x.StudentId == student.Id && x.Id == idFamily && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.HighSchoolResult
-        //    {
-        //        DelFlag = true
-        //    });
-        //    context.SaveChanges();
-        //    return true;
-        //}
+        public bool DeleteFamilyMember(int idFamily, int idUser)
+        {
+            var student = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag);
+            if (student == null)
+            {
+                return false;
+            }
+            //context.FamilyMembers.Where(x => x.StudentId == student.Id && x.Id == idFamily && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.HighSchoolResult
+            //{
+            //    DelFlag = true
+            //});
+            context.SaveChanges();
+            return true;
+        }
     }
 }

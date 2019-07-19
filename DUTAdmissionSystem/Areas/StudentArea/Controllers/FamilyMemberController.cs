@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
+using DUTAdmissionSystem.Commons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,31 +12,28 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 {
     public class FamilyMemberController : ApiController
     {
-        // GET: api/FamilyMember
-        public IEnumerable<string> Get()
+        private readonly IFamilyMemberService _FamilyMemberService;
+        public FamilyMemberController(IFamilyMemberService FamilyMemberService)
         {
-            return new string[] { "value1", "value2" };
+            _FamilyMemberService = FamilyMemberService;
         }
 
-        // GET: api/FamilyMember/5
-        public string Get(int id)
+        [HttpGet]
+        [ActionName("GetFamilyMembers")]
+        public IHttpActionResult GetFamilyMembers()
         {
-            return "value";
-        }
-
-        // POST: api/FamilyMember
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/FamilyMember/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/FamilyMember/5
-        public void Delete(int id)
-        {
+            try
+            {
+                int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                var result = _FamilyMemberService.GetFamilyMembers(idUser);
+                if (result == null)
+                    return BadRequest(AppMessage.BadRequestNotFound);
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
     }
 }
