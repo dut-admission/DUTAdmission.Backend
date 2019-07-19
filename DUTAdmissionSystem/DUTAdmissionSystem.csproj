@@ -216,15 +216,15 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Authentication\AuthenticationAreaRegistration.cs" />
     <Compile Include="Areas\Authentication\Controllers\AuthenticationController.cs" />
-    <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\LoginDto.cs" />
-    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\GroupResponseDto.cs" />
-    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\LoginResponseDto.cs" />
-    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\TokenInfo.cs" />
-    <Compile Include="Areas\Authentication\Models\Dtos\OutputDtos\UserResponseDto.cs" />
-    <Compile Include="Areas\Authentication\Models\Services\Abstractions\IAuthenticationService.cs" />
-    <Compile Include="Areas\Authentication\Models\Services\Implementations\AuthenticationService.cs" />
-    <Compile Include="Areas\Authentication\Models\Dtos\InputDtos\ForgetPassword.cs" />
-    <Compile Include="Areas\StudentArea\Controllers\FamilyMemberController.cs" />
+	<Compile Include="Areas\StudentArea\Controllers\FamilyMemberController.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginDto.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\GroupResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\TokenInfo.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\UserResponseDto.cs" />
+    <Compile Include="Areas\Authentication\Services\Components\IAuthenticationService.cs" />
+    <Compile Include="Areas\Authentication\Services\Components\AuthenticationService.cs" />
+    <Compile Include="Areas\Authentication\Services\ModelDTOs\ForgetPassword.cs" />
     <Compile Include="Areas\StudentArea\Controllers\HighSchoolResultController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\StudentInformationController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\UniversityInfoController.cs" />
@@ -232,14 +232,14 @@
     <Compile Include="Areas\StudentArea\Services\Components\HighSchoolResultService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IFamilyMemberService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IHighSchoolResultService.cs" />
-    <Compile Include="Areas\StudentArea\Services\Components\IStudentTuitionService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IStudentInforService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IUniversityInfoService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\StudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\UniversityInfoService.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\FamilyMember.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\HighSchoolResult.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\Profile.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\TuitionDetail.cs" />
-    <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfo.cs" />
     <Compile Include="Areas\StudentArea\StudentAreaAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />
@@ -283,6 +283,7 @@
     <Folder Include="App_Resources\Data\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\StudentArea\Views\" />
+    <Folder Include="Avatar\" />
     <Folder Include="Document\" />
     <Folder Include="Models\" />
   </ItemGroup>
@@ -291,6 +292,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\DUTAdmission - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>

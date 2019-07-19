@@ -8,31 +8,22 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 {
     public class UniversityInfo
     {
-        [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("university_name")]
         public string UniversityName { get; set; }
 
-        [JsonProperty("address")]
         public string Address { get; set; }
 
-        [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }
 
-        [JsonProperty("fax")]
         public string Fax { get; set; }
 
-        [JsonProperty("email")]
         public string Email { get; set; }
 
-        [JsonProperty("summary")]
         public string Summary { get; set; }
 
-        [JsonProperty("website")]
         public string Website { get; set; }
 
-        [JsonProperty("created_at")]
         public DateTime? CreatedAt { get; set; }
 
         public UniversityInfo()

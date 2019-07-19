@@ -22,6 +22,29 @@ namespace DUTAdmissionSystem.Areas.StudentArea
             );
 
             context.Routes.MapHttpRoute(
+                name: "GetTuitionDetail",
+                routeTemplate: "api/public/student-info-tuition",
+                defaults: new { controller = "StudentInformation", action = "GetTuitionDetail", id = RouteParameter.Optional }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "GetProfile",
+                routeTemplate: "api/public/profile",
+                defaults: new { controller = "StudentInformation", action = "GetProfile", id = RouteParameter.Optional }
+            );
+
+            context.Routes.MapHttpRoute(
+                name: "UpdateAvatar",
+                routeTemplate: "api/public/update-avatar",
+                defaults: new { controller = "StudentInformation", action = "UpdateAvatar", id = RouteParameter.Optional }
+            );
+
+            context.MapRoute(
+                "StudentArea_default",
+                "StudentArea/{controller}/{action}/{id}",
+                new { action = "Index", id = UrlParameter.Optional }
+            );
+            context.Routes.MapHttpRoute(
                 name: "GetHighSchoolResultApi",
                 routeTemplate: "api/public/get-high-school-result",
                 defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResult", id = UrlParameter.Optional }

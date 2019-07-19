@@ -5,16 +5,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace DUTAdmissionSystem.Areas.Authentication.Models.Dtos.InputDtos
+namespace DUTAdmissionSystem.Areas.Authentication.Services.ModelDTOs
 {
     public class LoginDto
     {
-        [JsonProperty("username")]
         [Required]
         [StringLength(50)]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
-        [JsonProperty("password")]
         [Required]
         [StringLength(50)]
         public string Password { get; set; }

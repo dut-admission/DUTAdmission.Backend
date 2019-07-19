@@ -15,11 +15,11 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 
         [HttpGet]
         [ActionName("GetUniversityInfo")]
-        public IHttpActionResult GetUniversityInfo_2([FromBody]UniversityInfoConditionSearch conditionSearch)
+        public IHttpActionResult GetUniversityInfo_2()
         {
             try
             {
-                return Ok(_universityInfoService.GetUniversityInfo(conditionSearch));
+                return Ok(_universityInfoService.GetUniversityInfo());
             }
             catch (System.Exception e)
             {

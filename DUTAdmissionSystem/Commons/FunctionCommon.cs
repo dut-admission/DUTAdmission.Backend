@@ -259,5 +259,33 @@ namespace DUTAdmissionSystem.Commons
         {
             return JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
         }
+
+        /// <summary>
+        /// Lưu file ảnh vào thư mục
+        /// Author       :   AnMT - 16/05/2019 - create
+        /// </summary>
+        /// <param name="stringPath">
+        /// đường dẫn của file
+        /// </param>
+        /// <param name="IdCommon">
+        /// Id đối tượng
+        /// </param>
+        /// <returns>
+        /// file ảnh
+        /// </returns>
+        static public string SaveFileImager(string stringPath, int IdCommon, string name)
+        {
+            string strFileName = null;
+            if (!string.IsNullOrEmpty(stringPath))
+            {
+                byte[] bytes = Convert.FromBase64String(stringPath);
+                strFileName = "Avatar/" + DateTime.Now.ToString("yyyyMMddHHmmss_") + IdCommon + "_" + name;
+                File.WriteAllBytes(HttpContext.Current.Server.MapPath("~/" + strFileName), bytes);
+
+            }
+            return strFileName;
+        }
+
+        
     }
 }
