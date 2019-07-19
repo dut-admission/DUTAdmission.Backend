@@ -9,6 +9,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 {
     public interface IUniversityInfoService
     {
-        List<UniversityInfo> GetUniversityInfo(UniversityInfoConditionSearch conditionSearch);
+        List<UniversityInfo> GetUniversityInfo();
     }
 }

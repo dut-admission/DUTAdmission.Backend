@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 {
-    public interface IStudentTuitionService
+    public interface IStudentInforService
     {
-        TuitionDetail GetTuitionDetail(int id);
+       
+        Profile GetProfile(int id);
+
+        string UpdateAvatar(Avatar avatar, int id, string host);
+
+        Profile SaveProfile(Profile profile);
     }
 }
