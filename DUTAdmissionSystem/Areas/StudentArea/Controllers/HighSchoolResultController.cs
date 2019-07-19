@@ -1,4 +1,8 @@
-﻿using System;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
+using DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs;
+using DUTAdmissionSystem.Commons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,32 +13,83 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 {
     public class HighSchoolResultController : ApiController
     {
+        private readonly IHighSchoolResultService _highSchoolResultService;
         // GET: api/HighSchoolResult
-        public IEnumerable<string> Get()
+        public HighSchoolResultController(IHighSchoolResultService highSchoolResultService)
         {
-            return new string[] { "value1", "value2" };
+            _highSchoolResultService = highSchoolResultService;
         }
-
-        // GET: api/HighSchoolResult/5
-        public string Get(int id)
+        [HttpGet]
+        [ActionName("GetHighSchoolResult")]
+        public IHttpActionResult GetHighSchoolResult()
         {
-            return "value";
+            try
+            {
+                int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                var result = _highSchoolResultService.GetHighSchoolResults(idUser);
+                if (result == null)
+                    return BadRequest(AppMessage.BadRequestNotFound);
+                return Ok(result);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
-
-        // POST: api/HighSchoolResult
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [ActionName("AddHighSchoolResult")]
+        // [Authorize]
+        public IHttpActionResult AddHighSchoolResult([FromBody]HighSchoolResult highSchoolResult)
         {
+            try
+            {
+                int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                if (_highSchoolResultService.AddHighSchoolResult(highSchoolResult, idUser) == false)
+                {
+                    return BadRequest("Kết quả học tập năm này đã tồn tại.");
+                };
+                return Ok(highSchoolResult);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
-
-        // PUT: api/HighSchoolResult/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        [ActionName("UpdateHighSchoolResult")]
+        public IHttpActionResult UpdateHighSchoolResult([FromBody]HighSchoolResult highSchoolResult)
         {
+            try
+            {
+                int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _highSchoolResultService.UpdateHighSchoolResult(highSchoolResult, idUser);
+                return Ok(highSchoolResult);
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
-
-        // DELETE: api/HighSchoolResult/5
-        public void Delete(int id)
+        [HttpDelete]
+        [ActionName("DeleteHighSchoolResult")]
+        public IHttpActionResult DeleteHighSchoolResult(int id)
         {
+            try
+            {
+                int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+                _highSchoolResultService.DeleteHighSchoolResult(idUser, id);
+                return Ok();
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
-        
     }
 }

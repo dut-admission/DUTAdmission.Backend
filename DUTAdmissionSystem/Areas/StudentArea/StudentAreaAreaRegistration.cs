@@ -16,9 +16,9 @@ namespace DUTAdmissionSystem.Areas.StudentArea
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.Routes.MapHttpRoute(
-                name: "GetUniversityInfo_2",
+                name         : "GetUniversityInfo_2",
                 routeTemplate: "api/public/university-info",
-                defaults: new { controller = "UniversityInfo_2", action = "GetUniversityInfo_2", id = RouteParameter.Optional }
+                defaults     : new { controller = "UniversityInfo_2", action = "GetUniversityInfo_2", id = RouteParameter.Optional }
             );
 
             context.Routes.MapHttpRoute(
@@ -44,6 +44,34 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 "StudentArea/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+            context.Routes.MapHttpRoute(
+                name: "GetHighSchoolResultApi",
+                routeTemplate: "api/public/get-high-school-result",
+                defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResult", id = UrlParameter.Optional }
+            );
+            context.Routes.MapHttpRoute(
+               name         :"AddHighSchoolResultApi",
+               routeTemplate:"api/public/add-high-school-result",
+               defaults: new { controller = "HighSchoolResult", action = "AddHighSchoolResult", id = UrlParameter.Optional }
+           );
+            context.Routes.MapHttpRoute(
+               name         :"UpdateHighSchoolResultApi",
+               routeTemplate:"api/public/update-high-school-result",
+               defaults: new { controller = "HighSchoolResult", action = "UpdateHighSchoolResult", id = UrlParameter.Optional }
+           );
+            context.Routes.MapHttpRoute(
+              name         : "DeleteHighSchoolResultApi",
+              routeTemplate: "api/public/delete-high-school-result/{id}",
+              defaults: new { controller = "HighSchoolResult", action = "DeleteHighSchoolResult", id = UrlParameter.Optional }
+           );
+
+            //context.Routes.MapHttpRoute(
+            //    name         :"StudentArea_default",
+            //    routeTemplate:"StudentArea/{controller}/{action}/{id}",
+            //    defaults: new { action = "Index", id = UrlParameter.Optional }
+            //);
+
+            
         }
     }
 }
