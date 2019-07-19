@@ -53,6 +53,9 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 
         public bool HavingCardsOfYouthGroup { get; set; }
 
+        public List<FamilyMember> FamilyMembers { get; set; }
+        public List<HighSchoolResult> HighSchoolResults { get; set; }
+
     }
     
     public class Avatar
