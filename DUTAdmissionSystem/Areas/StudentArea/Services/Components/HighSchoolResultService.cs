@@ -64,13 +64,13 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
         public bool DeleteHighSchoolResult(int idUser, int highSchoolYearId)
         {
             var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser).Id;
-            var student = context.HighSchoolResults.FirstOrDefault(x => x.StudentId == studentId && x.HighSchoolYearId == highSchoolYearId && !x.DelFlag);
-            if(student == null)
+            var result = context.HighSchoolResults.FirstOrDefault(x => x.StudentId == studentId && x.HighSchoolYearId == highSchoolYearId && !x.DelFlag);
+            if(result == null)
             {
                 return false;
             }
-            student.DelFlag = true;
-            context.SaveChanges();
+            result.DelFlag = true;
+            context.SaveChanges();  
             return true;
         }
     }

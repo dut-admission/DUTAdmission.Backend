@@ -38,18 +38,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 routeTemplate: "api/public/update-avatar",
                 defaults: new { controller = "StudentInformation", action = "UpdateAvatar", id = RouteParameter.Optional }
             );
-
-            context.Routes.MapHttpRoute(
-              name: "UpdateProfile",
-              routeTemplate: "api/public/update-profile",
-              defaults: new { controller = "StudentInformation", action = "UpdateProfile", id = UrlParameter.Optional }
-           );
-
-            
             context.Routes.MapHttpRoute(
                 name: "GetHighSchoolResultApi",
                 routeTemplate: "api/public/get-high-school-result",
-                defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResult", id = UrlParameter.Optional }
+                defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResults", id = UrlParameter.Optional }
             );
             context.Routes.MapHttpRoute(
                name         :"AddHighSchoolResultApi",
@@ -66,9 +58,19 @@ namespace DUTAdmissionSystem.Areas.StudentArea
               routeTemplate: "api/public/delete-high-school-result/{id}",
               defaults: new { controller = "HighSchoolResult", action = "DeleteHighSchoolResult", id = UrlParameter.Optional }
            );
+            //routing Family Member
+            context.Routes.MapHttpRoute(
+                name: "GetFamilyMemberResultApi",
+                routeTemplate: "api/public/get-family-member",
+                defaults: new { controller = "FamilyMember", action = "GetFamilyMembers", id = UrlParameter.Optional }
+            );
 
-            
-
+            Routing Achievement
+            context.Routes.MapHttpRoute(
+                name: "GetAchievementApi",
+                routeTemplate: "api/public/get-achievement",
+                defaults: new { controller = "Achievement", action = "GetAchievements", id = UrlParameter.Optional }
+            );
             //context.Routes.MapHttpRoute(
             //    name         :"StudentArea_default",
             //    routeTemplate:"StudentArea/{controller}/{action}/{id}",

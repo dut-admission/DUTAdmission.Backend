@@ -11,22 +11,21 @@ using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 {
-    public class HighSchoolResultController : ApiController
+    public class AchievementController : ApiController
     {
-        private readonly IHighSchoolResultService _highSchoolResultService;
-        // GET: api/HighSchoolResult
-        public HighSchoolResultController(IHighSchoolResultService highSchoolResultService)
+        private readonly IAchievementService _achievementService;
+        public AchievementController(IAchievementService achievementService)
         {
-            _highSchoolResultService = highSchoolResultService;
+            _achievementService = achievementService;
         }
         [HttpGet]
-        [ActionName("GetHighSchoolResult")]
-        public IHttpActionResult GetHighSchoolResults()
+        [ActionName("GetAchievements")]
+        public IHttpActionResult GetAchievements()
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
-                var result = _highSchoolResultService.GetHighSchoolResults(idUser);
+                var result = _achievementService.GetAchievements(idUser);
                 if (result == null)
                     return BadRequest(AppMessage.BadRequestNotFound);
                 return Ok(result);
@@ -37,20 +36,20 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             }
         }
         [HttpPost]
-        [ActionName("AddHighSchoolResult")]
+        [ActionName("AddAchievement")]
         // [Authorize]
-        public IHttpActionResult AddHighSchoolResult([FromBody]HighSchoolResult highSchoolResult)
+        public IHttpActionResult AddAchievement([FromBody]Achievement Achievement)
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                if (_highSchoolResultService.AddHighSchoolResult(highSchoolResult, idUser) == false)
+                if (_achievementService.AddAchievement(Achievement, idUser) == false)
                 {
                     return BadRequest("Kết quả học tập năm này đã tồn tại.");
                 };
-                return Ok(highSchoolResult);
+                return Ok(Achievement);
             }
             catch (System.Exception e)
             {
@@ -58,16 +57,16 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             }
         }
         [HttpPut]
-        [ActionName("UpdateHighSchoolResult")]
-        public IHttpActionResult UpdateHighSchoolResult([FromBody]HighSchoolResult highSchoolResult)
+        [ActionName("UpdateAchievement")]
+        public IHttpActionResult UpdateAchievement([FromBody]Achievement Achievement)
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _highSchoolResultService.UpdateHighSchoolResult(highSchoolResult, idUser);
-                return Ok(highSchoolResult);
+                _achievementService.UpdateAchievement(Achievement, idUser);
+                return Ok(Achievement);
             }
             catch (System.Exception e)
             {
@@ -75,15 +74,15 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             }
         }
         [HttpDelete]
-        [ActionName("DeleteHighSchoolResult")]
-        public IHttpActionResult DeleteHighSchoolResult(int id)
+        [ActionName("DeleteAchievement")]
+        public IHttpActionResult DeleteAchievement(int id)
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _highSchoolResultService.DeleteHighSchoolResult(idUser, id);
+                _achievementService.DeleteAchievement(idUser, id);
                 return Ok();
             }
             catch (System.Exception e)
