@@ -54,6 +54,12 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
         public bool HavingCardsOfYouthGroup { get; set; }
 
     }
+    
+    public class Avartar
+    {
+        public string Name { get; set; }
+        public string File { get; set; }
+    }
 
    
 }

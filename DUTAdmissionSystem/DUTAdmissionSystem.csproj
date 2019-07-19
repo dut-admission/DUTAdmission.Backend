@@ -236,7 +236,6 @@
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\HighSchoolResult.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\Profile.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\TuitionDetail.cs" />
-    <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfoConditionSearch.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfo.cs" />
     <Compile Include="Areas\StudentArea\StudentAreaAreaRegistration.cs" />
     <Compile Include="Commons\AccountVerification.cs" />

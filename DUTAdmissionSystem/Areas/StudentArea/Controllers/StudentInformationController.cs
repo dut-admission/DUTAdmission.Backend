@@ -37,7 +37,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
         {
             try
             {
-                return Ok(_studentTuitionService.GetProfile(Request.GetAuthorizationHeader()));
+                return Ok(_studentTuitionService.GetProfile(FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader())));
             }
             catch (System.Exception e)
             {

@@ -10,8 +10,12 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
     public interface IStudentTuitionService
     {
        
-        Profile GetProfile(string token);
+        Profile GetProfile(int id);
 
         TuitionDetail GetTuitionDetail(int id);
+
+        string UpdateAvatar(Avartar avatar, int id, string host);
+
+        Profile SaveProfile(Profile profile);
     }
 }

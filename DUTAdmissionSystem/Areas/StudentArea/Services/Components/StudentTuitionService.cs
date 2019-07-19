@@ -1,6 +1,7 @@
 ﻿using DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.NewDatabase;
+using EntityFramework.Extensions;
 using System.Linq;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
@@ -31,9 +32,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             return tuitionDetail;
         }
 
-        public Profile GetProfile(string token)
+        public Profile GetProfile(int id)
         {
-            int id = JwtAuthenticationExtensions.ExtractTokenInformation(token).UserId;
             var Profile = new Profile();
             Profile = context.UserInfoes.Where(x => x.Id == id && !x.DelFlag).Select(x => new Profile
             {
@@ -86,5 +86,54 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
             return Profile;
         }
+
+        public string UpdateAvatar(Avartar avatar, int id, string host)
+        {
+            int idStudent = context.Students.FirstOrDefault(x => x.UserInfoId == id && !x.DelFlag).Id;
+            string url = FunctionCommon.SaveFileImager(avatar.File, id, avatar.Name);
+            string urlFile = context.Accounts.FirstOrDefault(x => x.UserInfoId == id  && !x.DelFlag).Avatar;
+            string strUrl = host + "/" + url;
+
+            context.Accounts.Where(x => x.UserInfoId == id && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.Account
+            {
+                Avatar = url
+            });
+            context.SaveChanges();
+            return url;
+        }
+
+        public Profile SaveProfile(Profile profile)
+        {
+            var userInfo = context.UserInfoes.FirstOrDefault(x => x.Id == profile.Id);
+
+            userInfo.Id = profile.Id;
+            userInfo.FirstName = profile.FirstName;
+            userInfo.LastName = profile.LastName;
+            userInfo.Sex = profile.Sex;
+            userInfo.DateOfBirth = profile.DateOfBirth;
+            userInfo.PlaceOfBirth = profile.PlaceOfBirth;
+            userInfo.NationalityId = profile.NationalityId;
+            userInfo.ReligionId = profile.ReligionId;
+            userInfo.EthnicId = profile.EthnicId;
+            userInfo.IdentityNumber = profile.Identitynumber;
+            userInfo.DateOfIssue = profile.DateOfIssue;
+            userInfo.PlaceOfIssue = profile.PlaceOfIssue;
+            userInfo.Students.FirstOrDefault(y=>!y.DelFlag).CircumstanceTypeId = profile.CircumstaneTypeId;
+            userInfo.PermanentResidence = profile.PermanentResidence;
+            userInfo.Address = profile.Address;
+            userInfo.PhoneNumber = profile.PhoneNumber;
+            userInfo.Email = profile.Email;
+            userInfo.Students.FirstOrDefault(y => !y.DelFlag).HighSchoolName = profile.HighSchoolName;
+            //userInfo.Students.FirstOrDefault(y => !y.DelFlag).IsJoinYouthGroup = profile.IsJoinYouthGroup;
+            userInfo.Students.FirstOrDefault(y => !y.DelFlag).DateOfJoiningYouthGroup = profile.DateOfJoiningYouthGroup;
+            userInfo.Students.FirstOrDefault(y => !y.DelFlag).PlaceOfJoinYouthGroup = profile.PlaceOfJoinYouthGroup;
+            userInfo.Students.FirstOrDefault(y => !y.DelFlag).HavingBooksOfYouthGroup = profile.HavingBooksOfYouthGroup;
+            userInfo.Students.FirstOrDefault(y => !y.DelFlag).HavingCardsOfYouthGroup = profile.HavingCardsOfYouthGroup;
+
+            context.SaveChanges();
+
+            return profile;
+        }
+
     }
 }
