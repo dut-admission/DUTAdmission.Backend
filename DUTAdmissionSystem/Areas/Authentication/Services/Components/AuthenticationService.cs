@@ -57,5 +57,24 @@ namespace DUTAdmissionSystem.Areas.Authentication.Services.Components
                 return true;
             }
         }
+
+        public int ChangePass(ChangePassword changePassword, int id)
+        {
+            var taikhoan = db.Accounts.FirstOrDefault(x => x.UserInfoId==id && !x.DelFlag);
+            var pass = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(changePassword.OldPass));
+            if (taikhoan == null)
+            {
+                return 0;
+            }else if (string.Compare(pass,taikhoan.Password) != 0)
+            {
+                return 1;
+            }
+            else
+            {
+                taikhoan.Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(changePassword.NewPass));
+                db.SaveChanges();
+                return 2;
+            }
+        }
     }
 }

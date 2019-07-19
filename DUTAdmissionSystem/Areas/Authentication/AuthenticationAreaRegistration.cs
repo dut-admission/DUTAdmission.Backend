@@ -29,6 +29,12 @@ namespace DUTAdmissionSystem.Areas.Authentication
                defaults: new { controller = "Authentication", action = "ForgetPassword", id = RouteParameter.Optional }
            );
 
+            context.Routes.MapHttpRoute(
+               name: "ChangePassword",
+               routeTemplate: "api/change-password",
+               defaults: new { controller = "Authentication", action = "ChangePassword", id = RouteParameter.Optional }
+           );
+
             context.MapRoute(
                 "Authentication_default",
                 "Authentication/{controller}/{action}/{id}",

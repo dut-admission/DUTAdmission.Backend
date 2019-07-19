@@ -7,5 +7,7 @@ namespace DUTAdmissionSystem.Areas.Authentication.Services.Components
         LoginResponseDto Login(LoginDto dto);
 
         bool ForgetPass(ForgetPassword input);
+
+        int ChangePass(ChangePassword input,int id);
     }
 }
