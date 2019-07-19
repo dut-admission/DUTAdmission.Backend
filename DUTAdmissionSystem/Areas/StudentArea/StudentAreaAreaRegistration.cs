@@ -39,6 +39,12 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 defaults: new { controller = "StudentInformation", action = "UpdateAvatar", id = RouteParameter.Optional }
             );
 
+            context.Routes.MapHttpRoute(
+              name: "UpdateProfile",
+              routeTemplate: "api/public/update-profile",
+              defaults: new { controller = "StudentInformation", action = "UpdateProfile", id = UrlParameter.Optional }
+           );
+
             context.MapRoute(
                 "StudentArea_default",
                 "StudentArea/{controller}/{action}/{id}",
@@ -65,13 +71,15 @@ namespace DUTAdmissionSystem.Areas.StudentArea
               defaults: new { controller = "HighSchoolResult", action = "DeleteHighSchoolResult", id = UrlParameter.Optional }
            );
 
+            
+
             //context.Routes.MapHttpRoute(
             //    name         :"StudentArea_default",
             //    routeTemplate:"StudentArea/{controller}/{action}/{id}",
             //    defaults: new { action = "Index", id = UrlParameter.Optional }
             //);
 
-            
+
         }
     }
 }

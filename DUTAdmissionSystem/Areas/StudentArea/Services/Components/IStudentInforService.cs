@@ -14,6 +14,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
         string UpdateAvatar(Avatar avatar, int id, string host);
 
-        Profile SaveProfile(Profile profile);
+
+        Profile SaveProfile(Profile profile, int id);
     }
 }

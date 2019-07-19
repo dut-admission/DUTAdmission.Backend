@@ -81,7 +81,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             return url;
         }
 
-        public Profile SaveProfile(Profile profile)
+        public Profile SaveProfile(Profile profile, int id)
         {
             var userInfo = context.UserInfoes.FirstOrDefault(x => x.Id == profile.Id);
 
