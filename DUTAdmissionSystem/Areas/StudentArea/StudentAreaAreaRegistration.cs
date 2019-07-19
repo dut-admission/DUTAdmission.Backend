@@ -33,6 +33,12 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 defaults: new { controller = "StudentInformation", action = "GetProfile", id = RouteParameter.Optional }
             );
 
+            context.Routes.MapHttpRoute(
+                name: "UpdateAvatar",
+                routeTemplate: "api/public/update-avatar",
+                defaults: new { controller = "StudentInformation", action = "UpdateAvatar", id = RouteParameter.Optional }
+            );
+
             context.MapRoute(
                 "StudentArea_default",
                 "StudentArea/{controller}/{action}/{id}",

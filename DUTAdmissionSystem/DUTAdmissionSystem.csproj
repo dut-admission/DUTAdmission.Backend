@@ -229,7 +229,7 @@
     <Compile Include="Areas\StudentArea\Controllers\UniversityInfoController.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\HighSchoolResultService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IHighSchoolResultService.cs" />
-    <Compile Include="Areas\StudentArea\Services\Components\IStudentTuitionService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IStudentInforService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IUniversityInfoService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\StudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\UniversityInfoService.cs" />
@@ -279,6 +279,7 @@
     <Folder Include="App_Resources\Data\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\StudentArea\Views\" />
+    <Folder Include="Avatar\" />
     <Folder Include="Document\" />
     <Folder Include="Models\" />
   </ItemGroup>

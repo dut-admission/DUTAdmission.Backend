@@ -55,7 +55,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 
     }
     
-    public class Avartar
+    public class Avatar
     {
         public string Name { get; set; }
         public string File { get; set; }
