@@ -45,11 +45,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                if (_achievementService.AddAchievement(Achievement, idUser) == false)
-                {
-                    return BadRequest("Kết quả học tập năm này đã tồn tại.");
-                };
-                return Ok(Achievement);
+                return Ok(_achievementService.AddAchievement(Achievement, idUser));
             }
             catch (System.Exception e)
             {
@@ -66,7 +62,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 _achievementService.UpdateAchievement(Achievement, idUser);
-                return Ok(Achievement);
+                return Ok(_achievementService.UpdateAchievement(Achievement, idUser));
             }
             catch (System.Exception e)
             {
