@@ -20,7 +20,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             _highSchoolResultService = highSchoolResultService;
         }
         [HttpGet]
-        [ActionName("GetHighSchoolResult")]
+        [ActionName("GetHighSchoolResults")]
         public IHttpActionResult GetHighSchoolResults()
         {
             try
@@ -46,7 +46,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                if (_highSchoolResultService.AddHighSchoolResult(highSchoolResult, idUser) == false)
+                highSchoolResult = _highSchoolResultService.AddHighSchoolResult(highSchoolResult, idUser);
+                if (highSchoolResult == null)
                 {
                     return BadRequest("Kết quả học tập năm này đã tồn tại.");
                 };
@@ -66,7 +67,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _highSchoolResultService.UpdateHighSchoolResult(highSchoolResult, idUser);
+                highSchoolResult = _highSchoolResultService.UpdateHighSchoolResult(highSchoolResult, idUser);
                 return Ok(highSchoolResult);
             }
             catch (System.Exception e)
@@ -83,8 +84,11 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _highSchoolResultService.DeleteHighSchoolResult(idUser, id);
-                return Ok();
+                if (_highSchoolResultService.DeleteHighSchoolResult(idUser, id) == false)
+                {
+                    return BadRequest("Xóa thất bại");
+                }
+                    return Ok("Xóa thành công");
             }
             catch (System.Exception e)
             {

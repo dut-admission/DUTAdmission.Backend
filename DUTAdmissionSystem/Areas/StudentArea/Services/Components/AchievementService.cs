@@ -28,34 +28,53 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 }
                ).ToList();
         }
-        public bool AddAchievement(Achievement achievement, int idUser)
+        public Achievement AddAchievement(Achievement achievement, int idUser)
         {
-            var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
+            var studentId  = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
             achievement.Id = context.Achievements.Max(x => x.Id) + 1;
             context.Achievements.Add(new NewDatabase.Schema.Entity.Achievement
             {
-                StudentId = studentId,
+                StudentId          = studentId,
                 AchievementLevelId = achievement.AchievementLevelId,
                 AchievementPrizeId = achievement.AchievementPrizeId,
-                AchievementTypeId = achievement.AchievementTypeId,
-                Description = achievement.Description
+                AchievementTypeId  = achievement.AchievementTypeId,
+                Description        = achievement.Description
             });
             context.SaveChanges();
-            return true;
+            return new Achievement()
+            {
+                Id                   = achievement.Id,
+                AchievementLevelId   = achievement.AchievementLevelId,
+                AchievementLevelName = context.AchievementLevels.FirstOrDefault(x => !x.DelFlag && x.Id == achievement.AchievementLevelId).Name,
+                AchievementPrizeId   = achievement.AchievementPrizeId,
+                AchievementPrizeName = context.AchievementPrizes.FirstOrDefault(x => !x.DelFlag && x.Id == achievement.AchievementPrizeId).Name,
+                AchievementTypeId    = achievement.AchievementTypeId,
+                AchievementTypeName  = context.AchievementTypes.FirstOrDefault(x => !x.DelFlag && x.Id == achievement.AchievementTypeId).Name,
+                Description          = achievement.Description
+            };
         }
 
-        public bool UpdateAchievement(Achievement achievement, int idUser)
+        public Achievement UpdateAchievement(Achievement achievement, int idUser)
         {
-            var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
-            context.Achievements.Where(x => x.StudentId == studentId && x.Id == achievement.Id && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.Achievement
+            context.Achievements.Where(x => x.Id == achievement.Id && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.Achievement
             {
                 AchievementLevelId = achievement.AchievementLevelId,
                 AchievementPrizeId = achievement.AchievementPrizeId,
-                AchievementTypeId = achievement.AchievementTypeId,
-                Description = achievement.Description
+                AchievementTypeId  = achievement.AchievementTypeId,
+                Description        = achievement.Description
             });
             context.SaveChanges();
-            return true;
+            return new Achievement()
+            {
+                Id                   = achievement.Id,
+                AchievementLevelId   = achievement.AchievementLevelId,
+                AchievementLevelName = context.AchievementLevels.FirstOrDefault(x => !x.DelFlag && x.Id == achievement.AchievementLevelId).Name,
+                AchievementPrizeId   = achievement.AchievementPrizeId,
+                AchievementPrizeName = context.AchievementPrizes.FirstOrDefault(x => !x.DelFlag && x.Id == achievement.AchievementPrizeId).Name,
+                AchievementTypeId    = achievement.AchievementTypeId,
+                AchievementTypeName  = context.AchievementTypes.FirstOrDefault(x => !x.DelFlag && x.Id == achievement.AchievementTypeId).Name,
+                Description          = achievement.Description
+            };
         }
         public bool DeleteAchievement(int idUser, int id)
         {

@@ -10,8 +10,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
     public interface IAchievementService
     {
         List<Achievement> GetAchievements(int idUser);
-        bool AddAchievement(Achievement result, int idUser);
-        bool UpdateAchievement(Achievement result, int idUser);
+        Achievement AddAchievement(Achievement result, int idUser);
+        Achievement UpdateAchievement(Achievement result, int idUser);
         bool DeleteAchievement(int idUser, int highSchoolYearId);
     }
 }

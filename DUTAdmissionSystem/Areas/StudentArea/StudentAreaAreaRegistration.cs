@@ -65,12 +65,48 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 defaults: new { controller = "FamilyMember", action = "GetFamilyMembers", id = UrlParameter.Optional }
             );
 
-            Routing Achievement
+            context.Routes.MapHttpRoute(
+              name: "AddFamilyMemberApi",
+              routeTemplate: "api/public/add-family-member",
+              defaults: new { controller = "FamilyMember", action = "AddFamilyMember", id = UrlParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+               name: "UpdateFamilyMemberApi",
+               routeTemplate: "api/public/update-family-member",
+               defaults: new { controller = "FamilyMember", action = "UpdateFamilyMember", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "DeleteFamilyMemberApi",
+              routeTemplate: "api/public/delete-family-member/{id}",
+              defaults: new { controller = "FamilyMember", action = "DeleteFamilyMember", id = UrlParameter.Optional }
+           );
+
+            //Routing Achievement
             context.Routes.MapHttpRoute(
                 name: "GetAchievementApi",
                 routeTemplate: "api/public/get-achievement",
                 defaults: new { controller = "Achievement", action = "GetAchievements", id = UrlParameter.Optional }
             );
+
+            context.Routes.MapHttpRoute(
+              name: "AddAchievementApi",
+              routeTemplate: "api/public/add-achievement",
+              defaults: new { controller = "Achievement", action = "AddAchievement", id = UrlParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+               name: "UpdateAchievementApi",
+               routeTemplate: "api/public/update-achievement",
+               defaults: new { controller = "Achievement", action = "UpdateAchievement", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "DeleteAchievementApi",
+              routeTemplate: "api/public/delete-achievement/{id}",
+              defaults: new { controller = "Achievement", action = "DeleteAchievement", id = UrlParameter.Optional }
+           );
             //context.Routes.MapHttpRoute(
             //    name         :"StudentArea_default",
             //    routeTemplate:"StudentArea/{controller}/{action}/{id}",
