@@ -20,10 +20,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                     Id = x.Id,
                     ConductTypeId = x.ConductTypeId,
                     GPAScore = x.GPAScore,
-                    HightSchoolYearId = x.HighSchoolYearId,
+                    HighSchoolYearId = x.HighSchoolYearId,
                     LearningAbilityId = x.LearningAbilityId,
                     ConductTypeName = x.ConductType.Level,
-                    HightSchoolYear = x.HighSchoolYear.Year,
+                    HighSchoolYear = x.HighSchoolYear.Year,
                     LearningAbilityName = x.LearningAbility.Level
                 }
                ).ToList();
@@ -31,7 +31,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
         public HighSchoolResult AddHighSchoolResult(HighSchoolResult result, int idUser)
         {
             var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
-            if(context.HighSchoolResults.FirstOrDefault(x => x.StudentId == studentId && x.HighSchoolYearId == result.HightSchoolYearId && !x.DelFlag) != null)
+            if(context.HighSchoolResults.FirstOrDefault(x => x.StudentId == studentId && x.HighSchoolYearId == result.HighSchoolYearId && !x.DelFlag) != null)
             {
                 return null;
             }
@@ -39,7 +39,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             context.HighSchoolResults.Add(new NewDatabase.Schema.Entity.HighSchoolResult
             {
                 StudentId         = studentId,
-                HighSchoolYearId  = result.HightSchoolYearId,
+                HighSchoolYearId  = result.HighSchoolYearId,
                 ConductTypeId     = result.ConductTypeId,
                 LearningAbilityId = result.LearningAbilityId,
                 GPAScore          = result.GPAScore
@@ -50,10 +50,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 Id                  = result.Id,
                 ConductTypeId       = result.ConductTypeId,
                 GPAScore            = result.GPAScore,
-                HightSchoolYearId   = result.HightSchoolYearId,
+                HighSchoolYearId   = result.HighSchoolYearId,
                 LearningAbilityId   = result.LearningAbilityId,
                 ConductTypeName     = context.ConductTypes.FirstOrDefault(x => !x.DelFlag && x.Id == result.ConductTypeId).Level,
-                HightSchoolYear     = context.HighSchoolYears.FirstOrDefault(x => !x.DelFlag && x.Id == result.HightSchoolYearId).Year,
+                HighSchoolYear     = context.HighSchoolYears.FirstOrDefault(x => !x.DelFlag && x.Id == result.HighSchoolYearId).Year,
                 LearningAbilityName = context.LearningAbilities.FirstOrDefault(x => !x.DelFlag && x.Id == result.LearningAbilityId).Level
             };
         }
@@ -62,7 +62,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
         {
             context.HighSchoolResults.Where(x =>  x.Id == result.Id && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.HighSchoolResult
             {
-                HighSchoolYearId  = result.HightSchoolYearId,
+                HighSchoolYearId  = result.HighSchoolYearId,
                 ConductTypeId     = result.ConductTypeId,
                 LearningAbilityId = result.LearningAbilityId,
                 GPAScore          = result.GPAScore
@@ -73,10 +73,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 Id = result.Id,
                 ConductTypeId = result.ConductTypeId,
                 GPAScore = result.GPAScore,
-                HightSchoolYearId = result.HightSchoolYearId,
+                HighSchoolYearId = result.HighSchoolYearId,
                 LearningAbilityId = result.LearningAbilityId,
                 ConductTypeName = context.ConductTypes.FirstOrDefault(x => !x.DelFlag && x.Id == result.ConductTypeId).Level,
-                HightSchoolYear = context.HighSchoolYears.FirstOrDefault(x => !x.DelFlag && x.Id == result.HightSchoolYearId).Year,
+                HighSchoolYear = context.HighSchoolYears.FirstOrDefault(x => !x.DelFlag && x.Id == result.HighSchoolYearId).Year,
                 LearningAbilityName = context.LearningAbilities.FirstOrDefault(x => !x.DelFlag && x.Id == result.LearningAbilityId).Level
             };  
         }
