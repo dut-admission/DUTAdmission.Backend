@@ -46,16 +46,21 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
         public string HighSchoolName { get; set; }
 
         [Required]
+        public bool IsJoinYouthGroup { get; set; }
+
+        [Required]
         [Column(TypeName = "datetime2")]
         public DateTime DateOfJoiningYouthGroup { get; set; }
 
         [StringLength(255)]
         public string PlaceOfJoinYouthGroup { get; set; }
 
-        [Required]
         public bool HavingBooksOfYouthGroup { get; set; }
 
-        [Required]
+        public bool IsAdmitted { get; set; }
+        
+        public bool IsPaid { get; set; }
+
         public bool HavingCardsOfYouthGroup { get; set; }
 
         public virtual CircumstanceType CircumstanceType { get; set; }
