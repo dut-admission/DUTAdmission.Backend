@@ -13,6 +13,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 
         public string LastName { get; set; }
 
+        public string Avatar { get; set; }
+
         public bool Sex { get; set; }
 
         public DateTime DateOfBirth { get; set; }
@@ -25,13 +27,13 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 
         public int EthnicId { get; set; }
 
-        public string Identitynumber { get; set; }
+        public string IdentityNumber { get; set; }
 
         public DateTime? DateOfIssue { get; set; }
 
         public string PlaceOfIssue { get; set; }
 
-        public int CircumstaneTypeId { get; set; }
+        public int CircumstanceTypeId { get; set; }
 
         public string PermanentResidence { get; set; }
 
@@ -53,16 +55,24 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
 
         public bool HavingCardsOfYouthGroup { get; set; }
 
+        public string ClassName { get; set; }
+        public string DepartmentName { get; set; }
+        public string FacultyName { get; set; }
+        public string ProgramName { get; set; }
+        public string EnrollmentAreaName { get; set; }
+        public string ElectionName { get; set; }
+
         public List<FamilyMember> FamilyMembers { get; set; }
         public List<HighSchoolResult> HighSchoolResults { get; set; }
+        public List<Achievement> Achievements { get; set; }
 
     }
-    
+
     public class Avatar
     {
         public string Name { get; set; }
         public string File { get; set; }
     }
 
-   
+
 }

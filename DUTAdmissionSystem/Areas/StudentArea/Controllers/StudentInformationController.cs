@@ -11,18 +11,19 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
     {
         private readonly IStudentInforService _studentTuitionService;
         private readonly IHighSchoolResultService _highSchoolResultService;
+        private readonly IAchievementService _achievementService;
+        private readonly IFamilyMemberService _familyMemberService;
 
-        public StudentInformationController(IStudentInforService studentTuitionService, IHighSchoolResultService highSchoolResultService)
+        public StudentInformationController(IStudentInforService studentTuitionService, IHighSchoolResultService highSchoolResultService, IFamilyMemberService familyMemberService, IAchievementService achievementService)
         {
             _studentTuitionService = studentTuitionService;
             _highSchoolResultService = highSchoolResultService;
+            _achievementService = achievementService;
+            _familyMemberService = familyMemberService;
         }
-
-        
 
         [HttpGet]
         [ActionName("GetProfile")]
-        [DUTAuthorize]
         public IHttpActionResult GetProfile()
         {
             try
@@ -30,6 +31,9 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 int id = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 var profile = _studentTuitionService.GetProfile(id);
                 profile.HighSchoolResults= _highSchoolResultService.GetHighSchoolResults(id);
+                profile.FamilyMembers = _familyMemberService.GetFamilyMembers(id);
+                profile.Achievements = _achievementService.GetAchievements(id);
+
                 return Ok(profile);
             }
             catch (System.Exception e)
@@ -40,7 +44,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 
         [HttpPut]
         [ActionName("UpdateAvatar")]
-        [DUTAuthorize]
         public IHttpActionResult UpdateAvatar([FromBody]Avatar avatar)
         {
             try
@@ -55,7 +58,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 
         [HttpPut]
         [ActionName("UpdateProfile")]
-        [DUTAuthorize]
         public IHttpActionResult UpdateProfile([FromBody]Profile profile)
         {
             try
