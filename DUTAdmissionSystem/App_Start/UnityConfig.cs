@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Areas.Authentication.Services.Components;
+﻿using DUTAdmissionSystem.Areas.Admin_v2.Services.Components;
+using DUTAdmissionSystem.Areas.Authentication.Services.Components;
 using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
 using System.Web.Http;
 using Unity;
@@ -26,8 +27,12 @@ namespace DUTAdmissionSystem
             container.RegisterType<IHighSchoolResultService, HighSchoolResultService>();
             container.RegisterType<IFamilyMemberService, FamilyMemberService>();
             container.RegisterType<ITuitionInformationService, TuitionInformationService>();
-
             container.RegisterType<IAchievementService, AchievementService>();
+
+            //admin
+
+            container.RegisterType<IAccountGroupManagementService, AccountGroupManagementService>();
+
 
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
