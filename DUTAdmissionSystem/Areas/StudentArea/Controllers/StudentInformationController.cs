@@ -1,4 +1,5 @@
-﻿using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
+﻿using DUTAdmissionSystem.App_Resources.Constants;
+using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
 using DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs;
 using DUTAdmissionSystem.Commons;
 using DUTAdmissionSystem.Fillters;
@@ -63,6 +64,23 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             try
             {
                 return Ok(_studentTuitionService.SaveProfile(profile, FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader())));
+            }
+            catch (System.Exception e)
+            {
+                return InternalServerError(e);
+            }
+        }
+
+        [HttpGet]
+        [ActionName("GetLibrariesOfProFile")]
+        public IHttpActionResult GetLibrariesOfProFile()
+        {
+            try
+            {
+                var result = _studentTuitionService.GetLibrariesOfProFile();
+                if (result == null)
+                    return BadRequest(AppMessage.BadRequestNotFound);
+                return Ok(result);
             }
             catch (System.Exception e)
             {

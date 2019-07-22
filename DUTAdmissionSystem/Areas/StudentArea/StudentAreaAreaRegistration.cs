@@ -39,6 +39,19 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 defaults: new { controller = "StudentInformation", action = "UpdateAvatar", id = RouteParameter.Optional }
             );
             context.Routes.MapHttpRoute(
+              name: "UpdateProfile",
+              routeTemplate: "api/public/update-profile",
+              defaults: new { controller = "StudentInformation", action = "UpdateProfile", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "GetLibrariesOfProFile",
+              routeTemplate: "api/public/profile-library",
+              defaults: new { controller = "StudentInformation", action = "GetLibrariesOfProFile", id = UrlParameter.Optional }
+           );
+
+
+            context.Routes.MapHttpRoute(
                 name: "GetHighSchoolResultApi",
                 routeTemplate: "api/public/get-high-school-result",
                 defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResults", id = UrlParameter.Optional }

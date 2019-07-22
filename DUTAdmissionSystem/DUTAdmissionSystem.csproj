@@ -246,6 +246,7 @@
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\Achievement.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\FamilyMember.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\HighSchoolResult.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\LibrariesOfProFile.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\Profile.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\TuitionInformation.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\UniversityInfo.cs" />
