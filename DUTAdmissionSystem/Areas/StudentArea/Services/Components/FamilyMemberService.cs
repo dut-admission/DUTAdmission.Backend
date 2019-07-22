@@ -17,20 +17,23 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             return context.UserInfoes.FirstOrDefault(x => x.Id == idUser && !x.DelFlag)
                 .Students.FirstOrDefault(x => !x.DelFlag).FamilyMembers.Where(x => !x.DelFlag).Select(x => new FamilyMember()
                 {
-                    Id              = x.Id,
-                    Name            = x.UserInfo.FirstName + " "+ x.UserInfo.LastName,
-                    Address         = x.UserInfo.Address,
-                    CareerTypeId    = x.CareerTypeId,
-                    CareerTypeName  = x.CareerType.Name,
-                    Email           = x.UserInfo.Email,
-                    EthnicId        = x.UserInfo.EthnicId,
-                    EthnicName      = x.UserInfo.Ethnic.Name,
-                    NationalityId   = x.UserInfo.NationalityId,
+                    Id = x.Id,
+                    FirstName = x.UserInfo.FirstName,
+                    LastName = x.UserInfo.LastName,
+                    Address = x.UserInfo.Address,
+                    CareerTypeId = x.CareerTypeId,
+                    RelationId = x.RelationId,
+                    RelationName = x.RelationType.Name,
+                    CareerTypeName = x.CareerType.Name,
+                    Email = x.UserInfo.Email,
+                    EthnicId = x.UserInfo.EthnicId,
+                    EthnicName = x.UserInfo.Ethnic.Name,
+                    NationalityId = x.UserInfo.NationalityId,
                     NationalityName = x.UserInfo.Nationality.Name,
-                    PhoneNumber     = x.UserInfo.PhoneNumber,
-                    ReligionId      = x.UserInfo.ReligionId,
-                    ReligionName    = x.UserInfo.Religion.Name,
-                    YearOfBirth     = x.UserInfo.DateOfBirth.Year
+                    PhoneNumber = x.UserInfo.PhoneNumber,
+                    ReligionId = x.UserInfo.ReligionId,
+                    ReligionName = x.UserInfo.Religion.Name,
+                    YearOfBirth = x.UserInfo.DateOfBirth.Year
                 }
                ).ToList();
         }
@@ -42,50 +45,73 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 return null;
             }
             family.Id = context.HighSchoolResults.Max(x => x.Id) + 1;
-            context.FamilyMembers.Add(new NewDatabase.Schema.Entity.FamilyMember
+            var userInfo = new NewDatabase.Schema.Entity.UserInfo
             {
-                CareerTypeId    = family.CareerTypeId,
-                RelationId      = family.RelationId,
-                StudentId       = studentId
-            });
+                FirstName = family.FirstName,
+                LastName = family.LastName,
+                DateOfBirth = new DateTime(family.YearOfBirth, 1, 1),
+                PlaceOfBirth = "Việt Nam",
+                IdentityNumber = "000000000",
+                NationalityId = family.NationalityId,
+                Sex = true,
+                EthnicId = family.EthnicId,
+                ReligionId = family.ReligionId,
+                PhoneNumber = family.PhoneNumber,
+                Address = family.Address,
+                Email ="email@gmail.com"
+
+            };
+            context.UserInfoes.Add(userInfo);
+            var familyMember = new NewDatabase.Schema.Entity.FamilyMember
+            {
+                CareerTypeId = family.CareerTypeId,
+                RelationId = family.RelationId,
+                StudentId = studentId
+            };
+            familyMember.UserInfo = userInfo;
+            context.FamilyMembers.Add(familyMember);
             context.SaveChanges();
             return new FamilyMember()
             {
-                Id              = family.Id,
-                //Name            = family.UserInfo.FirstName + x.UserInfo.LastName,
-                //Address         = family.UserInfo.Address,
-                //CareerTypeId    = family.CareerTypeId,
-                //CareerTypeName  = family.CareerType.Name,
-                //Email           = family.UserInfo.Email,
-                //EthnicId        = family.UserInfo.EthnicId,
-                //EthnicName      = family.UserInfo.Ethnic.Name,
-                //NationalityId   = family.UserInfo.NationalityId,
-                //NationalityName = family.UserInfo.Nationality.Name,
-                //PhoneNumber     = family.UserInfo.PhoneNumber,
-                //RelationId      = family.RelationId,
-                //RelationName    = family.RelationType.Name,
-                //ReligionId      = family.UserInfo.ReligionId,
-                //ReligionName    = family.UserInfo.Religion.Name,
-                //YearOfBirth     = family.UserInfo.DateOfBirth.Year
+                Id = family.Id,
+                FirstName = family.FirstName,
+                LastName = family.LastName,
+                Address = family.Address,
+                CareerTypeId = family.CareerTypeId,
+                CareerTypeName = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,
+                Email = family.Email,
+                EthnicId = family.EthnicId,
+                EthnicName = context.Ethnics.FirstOrDefault(x => x.Id == family.EthnicId && !x.DelFlag).Name,
+                NationalityId = family.NationalityId,
+                NationalityName = context.Nationalities.FirstOrDefault(x => x.Id == family.NationalityId && !x.DelFlag).Name,
+                PhoneNumber = family.PhoneNumber,
+                RelationId = family.RelationId,
+                RelationName = context.RelationTypes.FirstOrDefault(x => x.Id == family.RelationId && !x.DelFlag).Name,
+                ReligionId = family.ReligionId,
+                ReligionName = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,
+                YearOfBirth = family.YearOfBirth
             };
         }
 
         public FamilyMember UpdateFamilyMember(FamilyMember family, int idUser)
         {
             var familyMember = context.FamilyMembers.FirstOrDefault(x => x.Id == family.Id && !x.DelFlag);
-            familyMember.CareerTypeId = family.CareerTypeId;
-            familyMember.RelationId = family.RelationId;
-            familyMember.UserInfo.Address = family.Address;
-            familyMember.UserInfo.PhoneNumber = family.PhoneNumber;
-            familyMember.UserInfo.DateOfBirth = new DateTime(family.YearOfBirth,1,1);
-            familyMember.UserInfo.EthnicId = family.EthnicId;
+            familyMember.CareerTypeId           = family.CareerTypeId;
+            familyMember.RelationId             = family.RelationId;
+            familyMember.UserInfo.FirstName     = family.FirstName;
+            familyMember.UserInfo.LastName      = family.LastName;
+            familyMember.UserInfo.Address       = family.Address;
+            familyMember.UserInfo.PhoneNumber   = family.PhoneNumber;
+            familyMember.UserInfo.DateOfBirth   = new DateTime(family.YearOfBirth, 1, 1);
+            familyMember.UserInfo.EthnicId      = family.EthnicId;
             familyMember.UserInfo.NationalityId = family.NationalityId;
-            familyMember.UserInfo.ReligionId = family.ReligionId;
+            familyMember.UserInfo.ReligionId    = family.ReligionId;
             context.SaveChanges();
             return new FamilyMember()
             {
                 Id              = family.Id,
-                Name            = family.Name,
+                FirstName       = family.FirstName,
+                LastName        = family.LastName,
                 Address         = family.Address,
                 CareerTypeId    = family.CareerTypeId,
                 CareerTypeName  = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,

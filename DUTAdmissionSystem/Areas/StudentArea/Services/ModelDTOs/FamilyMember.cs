@@ -8,7 +8,8 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
     public class FamilyMember
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public int RelationId { get; set; }
         public string RelationName { get; set; }
         public int YearOfBirth { get; set; }
