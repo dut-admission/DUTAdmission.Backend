@@ -38,7 +38,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea
                 routeTemplate: "api/public/update-avatar",
                 defaults: new { controller = "StudentInformation", action = "UpdateAvatar", id = RouteParameter.Optional }
             );
-
             context.Routes.MapHttpRoute(
               name: "UpdateProfile",
               routeTemplate: "api/public/update-profile",
@@ -55,7 +54,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea
             context.Routes.MapHttpRoute(
                 name: "GetHighSchoolResultApi",
                 routeTemplate: "api/public/get-high-school-result",
-                defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResult", id = UrlParameter.Optional }
+                defaults: new { controller = "HighSchoolResult", action = "GetHighSchoolResults", id = UrlParameter.Optional }
             );
             context.Routes.MapHttpRoute(
                name         :"AddHighSchoolResultApi",
@@ -72,9 +71,55 @@ namespace DUTAdmissionSystem.Areas.StudentArea
               routeTemplate: "api/public/delete-high-school-result/{id}",
               defaults: new { controller = "HighSchoolResult", action = "DeleteHighSchoolResult", id = UrlParameter.Optional }
            );
+            //routing Family Member
+            context.Routes.MapHttpRoute(
+                name: "GetFamilyMemberResultApi",
+                routeTemplate: "api/public/get-family-member",
+                defaults: new { controller = "FamilyMember", action = "GetFamilyMembers", id = UrlParameter.Optional }
+            );
 
-            
+            context.Routes.MapHttpRoute(
+              name: "AddFamilyMemberApi",
+              routeTemplate: "api/public/add-family-member",
+              defaults: new { controller = "FamilyMember", action = "AddFamilyMember", id = UrlParameter.Optional }
+          );
 
+            context.Routes.MapHttpRoute(
+               name: "UpdateFamilyMemberApi",
+               routeTemplate: "api/public/update-family-member",
+               defaults: new { controller = "FamilyMember", action = "UpdateFamilyMember", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "DeleteFamilyMemberApi",
+              routeTemplate: "api/public/delete-family-member/{id}",
+              defaults: new { controller = "FamilyMember", action = "DeleteFamilyMember", id = UrlParameter.Optional }
+           );
+
+            //Routing Achievement
+            context.Routes.MapHttpRoute(
+                name: "GetAchievementApi",
+                routeTemplate: "api/public/get-achievement",
+                defaults: new { controller = "Achievement", action = "GetAchievements", id = UrlParameter.Optional }
+            );
+
+            context.Routes.MapHttpRoute(
+              name: "AddAchievementApi",
+              routeTemplate: "api/public/add-achievement",
+              defaults: new { controller = "Achievement", action = "AddAchievement", id = UrlParameter.Optional }
+          );
+
+            context.Routes.MapHttpRoute(
+               name: "UpdateAchievementApi",
+               routeTemplate: "api/public/update-achievement",
+               defaults: new { controller = "Achievement", action = "UpdateAchievement", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "DeleteAchievementApi",
+              routeTemplate: "api/public/delete-achievement/{id}",
+              defaults: new { controller = "Achievement", action = "DeleteAchievement", id = UrlParameter.Optional }
+           );
             //context.Routes.MapHttpRoute(
             //    name         :"StudentArea_default",
             //    routeTemplate:"StudentArea/{controller}/{action}/{id}",

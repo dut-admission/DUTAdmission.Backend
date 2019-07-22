@@ -218,6 +218,7 @@
     <Compile Include="Areas\Authentication\Controllers\AuthenticationController.cs" />
     <Compile Include="Areas\Authentication\Services\ModelDTOs\ChangePassword.cs" />
     <Compile Include="Areas\StudentArea\Controllers\FamilyMemberController.cs" />
+    <Compile Include="Areas\StudentArea\Controllers\AchievementController.cs" />
     <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginDto.cs" />
     <Compile Include="Areas\Authentication\Services\ModelDTOs\GroupResponseDto.cs" />
     <Compile Include="Areas\Authentication\Services\ModelDTOs\LoginResponseDto.cs" />
@@ -230,8 +231,10 @@
     <Compile Include="Areas\StudentArea\Controllers\StudentInformationController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\TuitionInformationController.cs" />
     <Compile Include="Areas\StudentArea\Controllers\UniversityInfoController.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\AchievementService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\FamilyMemberService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\HighSchoolResultService.cs" />
+    <Compile Include="Areas\StudentArea\Services\Components\IAchievementService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IFamilyMemberService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IHighSchoolResultService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\IStudentInforService.cs" />
@@ -240,6 +243,7 @@
     <Compile Include="Areas\StudentArea\Services\Components\StudentTuitionService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\TuitionInformationService.cs" />
     <Compile Include="Areas\StudentArea\Services\Components\UniversityInfoService.cs" />
+    <Compile Include="Areas\StudentArea\Services\ModelDTOs\Achievement.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\FamilyMember.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\HighSchoolResult.cs" />
     <Compile Include="Areas\StudentArea\Services\ModelDTOs\LibrariesOfProFile.cs" />

@@ -27,6 +27,7 @@ namespace DUTAdmissionSystem
             container.RegisterType<IFamilyMemberService, FamilyMemberService>();
             container.RegisterType<ITuitionInformationService, TuitionInformationService>();
 
+            container.RegisterType<IAchievementService, AchievementService>();
 
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);

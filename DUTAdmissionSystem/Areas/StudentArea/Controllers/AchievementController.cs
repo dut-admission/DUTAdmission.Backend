@@ -11,22 +11,21 @@ using System.Web.Http;
 
 namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 {
-    public class FamilyMemberController : ApiController
+    public class AchievementController : ApiController
     {
-        private readonly IFamilyMemberService _familyMemberService;
-        public FamilyMemberController(IFamilyMemberService familyMemberService)
+        private readonly IAchievementService _achievementService;
+        public AchievementController(IAchievementService achievementService)
         {
-            _familyMemberService = familyMemberService;
+            _achievementService = achievementService;
         }
-
         [HttpGet]
-        [ActionName("GetFamilyMembers")]
-        public IHttpActionResult GetFamilyMembers()
+        [ActionName("GetAchievements")]
+        public IHttpActionResult GetAchievements()
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
-                var result = _familyMemberService.GetFamilyMembers(idUser);
+                var result = _achievementService.GetAchievements(idUser);
                 if (result == null)
                     return BadRequest(AppMessage.BadRequestNotFound);
                 return Ok(result);
@@ -37,21 +36,16 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             }
         }
         [HttpPost]
-        [ActionName("AddFamilyMember")]
+        [ActionName("AddAchievement")]
         // [Authorize]
-        public IHttpActionResult AddFamilyMember([FromBody]FamilyMember familyMember)
+        public IHttpActionResult AddAchievement([FromBody]Achievement Achievement)
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                familyMember = _familyMemberService.AddFamilyMember(familyMember, idUser);
-                if (familyMember == null)
-                {
-                    return BadRequest("Mối quan hệ này đã tồn tại.");
-                };
-                return Ok(familyMember);
+                return Ok(_achievementService.AddAchievement(Achievement, idUser));
             }
             catch (System.Exception e)
             {
@@ -59,16 +53,16 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             }
         }
         [HttpPut]
-        [ActionName("UpdateFamilyMember")]
-        public IHttpActionResult UpdateHighSchoolResult([FromBody]FamilyMember familyMember)
+        [ActionName("UpdateAchievement")]
+        public IHttpActionResult UpdateAchievement([FromBody]Achievement Achievement)
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                familyMember = _familyMemberService.UpdateFamilyMember(familyMember, idUser);
-                return Ok(familyMember);
+                _achievementService.UpdateAchievement(Achievement, idUser);
+                return Ok(_achievementService.UpdateAchievement(Achievement, idUser));
             }
             catch (System.Exception e)
             {
@@ -76,15 +70,15 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
             }
         }
         [HttpDelete]
-        [ActionName("DeleteFamilyMember")]
-        public IHttpActionResult DeleteFamilyMember(int id)
+        [ActionName("DeleteAchievement")]
+        public IHttpActionResult DeleteAchievement(int id)
         {
             try
             {
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _familyMemberService.DeleteFamilyMember(idUser, id);
+                _achievementService.DeleteAchievement(idUser, id);
                 return Ok();
             }
             catch (System.Exception e)

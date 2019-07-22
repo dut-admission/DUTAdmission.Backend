@@ -9,13 +9,19 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
     public class StudentInforService : IStudentInforService
     {
         private DataContext context = new DataContext();
-        
-        public Profile GetProfile(int id)
+
+        public Profile GetProfile(int userId)
         {
             var Profile = new Profile();
-            Profile = context.UserInfoes.Where(x => x.Id == id && !x.DelFlag).Select(x => new Profile
+            var student = context.Students.FirstOrDefault(x => !x.DelFlag & x.UserInfoId == userId);
+            var universityClass = student.Class;
+            var department = universityClass.Department;
+
+            Profile = context.UserInfoes.Where(x => x.Id == userId && !x.DelFlag).Select(x => new Profile
             {
                 Id = x.Id,
+
+                Avatar = x.Accounts.FirstOrDefault().Avatar,
 
                 FirstName = x.FirstName,
 
@@ -33,13 +39,13 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
                 EthnicId = x.EthnicId,
 
-                Identitynumber = x.IdentityNumber,
+                IdentityNumber = x.IdentityNumber,
 
                 DateOfIssue = x.DateOfIssue,
 
                 PlaceOfIssue = x.PlaceOfIssue,
 
-                CircumstaneTypeId = x.Students.FirstOrDefault(y => !y.DelFlag).CircumstanceTypeId,
+                CircumstanceTypeId = student.CircumstanceTypeId,
 
                 PermanentResidence = x.PermanentResidence,
 
@@ -49,16 +55,23 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
                 Email = x.Email,
 
-                HighSchoolName = x.Students.FirstOrDefault(y => !y.DelFlag).HighSchoolName,
+                HighSchoolName = student.HighSchoolName,
 
-                //IsJoinYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).Is,
+                ClassName = universityClass.Name,
+                DepartmentName = universityClass.Department.Name,
+                ProgramName = department.Program.Name,
+                FacultyName = department.Faculty.Name,
+                ElectionName = student.ElectionType.Name,
+                EnrollmentAreaName = student.EnrollmentArea.Name,
 
-                DateOfJoiningYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).DateOfJoiningYouthGroup,
+                IsJoinYouthGroup = student.IsJoinYouthGroup,
 
-                PlaceOfJoinYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).PlaceOfJoinYouthGroup,
+                DateOfJoiningYouthGroup = student.DateOfJoiningYouthGroup,
 
-                HavingBooksOfYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).HavingBooksOfYouthGroup,
-                HavingCardsOfYouthGroup = x.Students.FirstOrDefault(y => !y.DelFlag).HavingCardsOfYouthGroup
+                PlaceOfJoinYouthGroup = student.PlaceOfJoinYouthGroup,
+
+                HavingBooksOfYouthGroup = student.HavingBooksOfYouthGroup,
+                HavingCardsOfYouthGroup = student.HavingCardsOfYouthGroup
 
             }).FirstOrDefault();
 
@@ -69,7 +82,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
         {
             int idStudent = context.Students.FirstOrDefault(x => x.UserInfoId == id && !x.DelFlag).Id;
             string url = FunctionCommon.SaveFileImager(avatar.File, id, avatar.Name);
-            string urlFile = context.Accounts.FirstOrDefault(x => x.UserInfoId == id  && !x.DelFlag).Avatar;
+            string urlFile = context.Accounts.FirstOrDefault(x => x.UserInfoId == id && !x.DelFlag).Avatar;
             string strUrl = host + "/" + url;
 
             context.Accounts.Where(x => x.UserInfoId == id && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.Account
@@ -94,10 +107,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             userInfo.NationalityId = profile.NationalityId;
             userInfo.ReligionId = profile.ReligionId;
             userInfo.EthnicId = profile.EthnicId;
-            userInfo.IdentityNumber = profile.Identitynumber;
+            userInfo.IdentityNumber = profile.IdentityNumber;
             userInfo.DateOfIssue = profile.DateOfIssue;
             userInfo.PlaceOfIssue = profile.PlaceOfIssue;
-            userInfo.Students.FirstOrDefault(y=>!y.DelFlag).CircumstanceTypeId = profile.CircumstaneTypeId;
+            userInfo.Students.FirstOrDefault(y => !y.DelFlag).CircumstanceTypeId = profile.CircumstanceTypeId;
             userInfo.PermanentResidence = profile.PermanentResidence;
             userInfo.Address = profile.Address;
             userInfo.PhoneNumber = profile.PhoneNumber;
