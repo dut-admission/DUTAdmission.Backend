@@ -95,6 +95,11 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
         public FamilyMember UpdateFamilyMember(FamilyMember family, int idUser)
         {
+            var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
+            if (context.FamilyMembers.FirstOrDefault(x => x.StudentId == studentId && x.Id == family.RelationId && !x.DelFlag) != null)
+            {
+                return null;
+            }
             var familyMember = context.FamilyMembers.FirstOrDefault(x => x.Id == family.Id && !x.DelFlag);
             familyMember.CareerTypeId           = family.CareerTypeId;
             familyMember.RelationId             = family.RelationId;
@@ -106,6 +111,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             familyMember.UserInfo.EthnicId      = family.EthnicId;
             familyMember.UserInfo.NationalityId = family.NationalityId;
             familyMember.UserInfo.ReligionId    = family.ReligionId;
+            familyMember.RelationId = family.RelationId;
             context.SaveChanges();
             return new FamilyMember()
             {

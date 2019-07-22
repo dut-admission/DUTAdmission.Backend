@@ -68,6 +68,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 highSchoolResult = _highSchoolResultService.UpdateHighSchoolResult(highSchoolResult, idUser);
+                if (highSchoolResult == null)
+                {
+                    return BadRequest("Kết quả học tập năm này đã tồn tại.");
+                };
                 return Ok(highSchoolResult);
             }
             catch (System.Exception e)

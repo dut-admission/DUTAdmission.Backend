@@ -60,6 +60,11 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
         public HighSchoolResult UpdateHighSchoolResult(HighSchoolResult result, int idUser)
         {
+            var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
+            if (context.HighSchoolResults.FirstOrDefault(x => x.StudentId == studentId && x.HighSchoolYearId == result.HighSchoolYearId && !x.DelFlag) != null)
+            {
+                return null;
+            }
             context.HighSchoolResults.Where(x =>  x.Id == result.Id && !x.DelFlag).Update(x => new NewDatabase.Schema.Entity.HighSchoolResult
             {
                 HighSchoolYearId  = result.HighSchoolYearId,

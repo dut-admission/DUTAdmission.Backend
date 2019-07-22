@@ -68,6 +68,10 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 familyMember = _familyMemberService.UpdateFamilyMember(familyMember, idUser);
+                if (familyMember == null)
+                {
+                    return BadRequest("Mối quan hệ này đã tồn tại.");
+                };
                 return Ok(familyMember);
             }
             catch (System.Exception e)
