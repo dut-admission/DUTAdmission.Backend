@@ -16,5 +16,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
 
 
         Profile SaveProfile(Profile profile, int id);
+
+        LibrariesOfProFile GetLibrariesOfProFile();
     }
 }
