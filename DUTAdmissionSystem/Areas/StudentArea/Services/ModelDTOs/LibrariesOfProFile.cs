@@ -52,8 +52,18 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs
         public List<Subject> SubjectList { get; set; }
 
         public List<PositionType> PositionTypeList { get; set; }
+
+        public List<Class> Classes { get; set; }
+
+        public List<TuitionType> TuitionTypes { get; set; }
     }
 
+    public class Class
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
     public class Nationality
     {
         public int Id { get; set; }

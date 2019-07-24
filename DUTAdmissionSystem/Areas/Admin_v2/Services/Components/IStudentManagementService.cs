@@ -9,7 +9,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
 {
     public interface IStudentManagementService
     {
-        Students GetListStudents(StudentConditionSearch conditionSearch);
+        List<StudentResponse> GetListStudents(StudentConditionSearch conditionSearch);
 
         
     }

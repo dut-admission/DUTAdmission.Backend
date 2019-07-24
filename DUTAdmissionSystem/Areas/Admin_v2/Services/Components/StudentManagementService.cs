@@ -12,7 +12,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
     {
         private DataContext context = new DataContext();
 
-        public Students GetListStudents(StudentConditionSearch conditionSearch)
+        public List<StudentResponse> GetListStudents(StudentConditionSearch conditionSearch)
         {
             if (conditionSearch == null)
             {
@@ -22,88 +22,65 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
             // Lấy các thông tin dùng để phân trang
             var paging = new Paging(context.Students.Count(x => !x.DelFlag &&
                 //Search tên hoặc cmnd
-                (conditionSearch.Keyword == "" ||
+                (conditionSearch.Keyword == ""
+                ||
                 (conditionSearch.Keyword != "" && ((x.UserInfo.LastName + " " + x.UserInfo.FirstName).Contains(conditionSearch.Keyword)
-                || x.UserInfo.IdentityNumber.Contains(conditionSearch.Keyword) || x.IdentificationNumber.Contains(conditionSearch.Keyword))))
-                 //Search lớp
-                 && (conditionSearch.ClassId == 0 ||
-                (conditionSearch.ClassId != 0 && (x.ClassId == conditionSearch.ClassId)))
-                 && (conditionSearch.Status == null ||
-                (conditionSearch.Status != null && (x.IsAdmitted == conditionSearch.Status))))
-                , conditionSearch.CurrentPage, conditionSearch.PageSize);
+                ||
+                x.UserInfo.IdentityNumber.Contains(conditionSearch.Keyword)
+                ||
+                x.IdentificationNumber.Contains(conditionSearch.Keyword))))
+                //Search lớp
+                && (conditionSearch.ClassId == 0 || (x.ClassId == conditionSearch.ClassId))
+                && (x.IsAdmitted == conditionSearch.IsAdmitted)
+                && (conditionSearch.ElectionTypeId == 0 || x.ElectionTypeId == conditionSearch.ElectionTypeId)
+                ), conditionSearch.CurrentPage, conditionSearch.PageSize);
 
-            var students = new Students();
-            students.TuitionTypes = context.TuitionTypes.Where(x => !x.DelFlag).Select(x => new TuitionType
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Money = x.Money,
-                Description = x.Description
-            }).ToList();
-            double fee = students.TuitionTypes.Sum(x => x.Money);
-            students.StudentResponses= context.Students.Where(x => !x.DelFlag &&
+            double fee = context.TuitionTypes.Sum(x => x.Money);
+            var studentResponses = context.Students.Where(
+                x => !x.DelFlag &&
                 //Search tên hoặc cmnd
-                (conditionSearch.Keyword == null ||
-                (conditionSearch.Keyword != null && ((x.UserInfo.LastName + " " + x.UserInfo.FirstName).Contains(conditionSearch.Keyword)
-                || x.UserInfo.IdentityNumber.Contains(conditionSearch.Keyword) || x.IdentificationNumber.Contains(conditionSearch.Keyword))))
-                 //Search lớp
-                 && (conditionSearch.ClassId == 0 ||
-                (conditionSearch.ClassId != 0 && (x.ClassId == conditionSearch.ClassId)))
-                 //Search ngành
-                 && (conditionSearch.Status == null ||
-                (conditionSearch.Status != null && (x.IsAdmitted == conditionSearch.Status)))).OrderBy(x => x.Id)
+                (conditionSearch.Keyword == ""
+                ||
+                (conditionSearch.Keyword != "" && ((x.UserInfo.LastName + " " + x.UserInfo.FirstName).Contains(conditionSearch.Keyword)
+                ||
+                x.UserInfo.IdentityNumber.Contains(conditionSearch.Keyword)
+                ||
+                x.IdentificationNumber.Contains(conditionSearch.Keyword))))
+                //Search lớp
+                && (conditionSearch.ClassId == 0 || (x.ClassId == conditionSearch.ClassId))
+                && (x.IsAdmitted == conditionSearch.IsAdmitted)
+                && (conditionSearch.ElectionTypeId == 0 || x.ElectionTypeId == conditionSearch.ElectionTypeId))
+                 .OrderBy(x => x.Id)
                 .Skip((paging.CurrentPage - 1) * paging.PageSize)
                 .Take(paging.PageSize).Select(x => new StudentResponse
                 {
                     Id = x.Id,
-
                     FirstName = x.UserInfo.FirstName,
-
                     LastName = x.UserInfo.LastName,
-
                     Sex = x.UserInfo.Sex,
-
                     DateOfBirth = x.UserInfo.DateOfBirth,
-
                     PlaceOfBirth = x.UserInfo.PlaceOfBirth,
-
                     NationalityId = x.UserInfo.NationalityId,
-
                     ReligionId = x.UserInfo.ReligionId,
-
                     EthnicId = x.UserInfo.EthnicId,
-
                     IdentityNumber = x.UserInfo.IdentityNumber,
-
                     DateOfIssue = x.UserInfo.DateOfIssue,
-
                     PlaceOfIssue = x.UserInfo.PlaceOfIssue,
-
                     CircumstanceTypeId = x.CircumstanceTypeId,
-
                     PermanentResidence = x.UserInfo.PermanentResidence,
-
                     Address = x.UserInfo.Address,
-
                     PhoneNumber = x.UserInfo.PhoneNumber,
-
                     Email = x.UserInfo.Email,
-
                     HighSchoolName = x.HighSchoolName,
-
                     ClassName = x.Class.Name,
                     DepartmentName = x.Class.Department.Name,
                     ProgramName = x.Class.Department.Program.Name,
                     FacultyName = x.Class.Department.Faculty.Name,
                     ElectionName = x.ElectionType.Name,
                     EnrollmentAreaName = x.EnrollmentArea.Name,
-
                     IsJoinYouthGroup = x.IsJoinYouthGroup,
-
                     DateOfJoiningYouthGroup = x.DateOfJoiningYouthGroup,
-
                     PlaceOfJoinYouthGroup = x.PlaceOfJoinYouthGroup,
-
                     HavingBooksOfYouthGroup = x.HavingBooksOfYouthGroup,
                     HavingCardsOfYouthGroup = x.HavingCardsOfYouthGroup,
                     IsAdmitted = x.IsAdmitted,
@@ -128,8 +105,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                         ReligionId = y.UserInfo.ReligionId,
                         ReligionName = y.UserInfo.Religion.Name,
                         YearOfBirth = y.UserInfo.DateOfBirth.Year
-                    }
-               ).ToList(),
+                    }).ToList(),
                     HighSchoolResults = x.HighSchoolResults.Where(y => !x.DelFlag).Select(y => new HighSchoolResult()
                     {
                         Id = y.Id,
@@ -140,8 +116,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                         ConductTypeName = y.ConductType.Level,
                         HighSchoolYear = y.HighSchoolYear.Year,
                         LearningAbilityName = y.LearningAbility.Level
-                    }
-               ).ToList(),
+                    }).ToList(),
                     Achievements = x.Achievements.Where(y => !x.DelFlag).Select(y => new Achievement()
                     {
                         Id = y.Id,
@@ -152,8 +127,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                         AchievementTypeId = y.AchievementTypeId,
                         AchievementTypeName = y.AchievementType.Name,
                         Description = y.Description
-                    }
-               ).ToList(),
+                    }).ToList(),
                     Documents = x.Documents.Where(y => !y.DelFlag).Select(y => new Document
                     {
                         Id = y.Id,
@@ -161,14 +135,9 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                         IsSubmitted = y.IsSubmitted
                     }).ToList(),
                     TotalOfFee = x.Class.Department.Program.Fees + fee,
-                    TuitionFee = x.Class.Department.Program.Fees,
-
-                    
-
-
+                    TuitionFee = x.Class.Department.Program.Fees
                 }).ToList();
-            return students;
-
+            return studentResponses;
         }
     }
 }

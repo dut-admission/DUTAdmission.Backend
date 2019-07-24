@@ -269,6 +269,20 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 Name = x.Name
             }).ToList();
 
+            librariesOfProFile.Classes = context.Classes.Where(x => !x.DelFlag).Select(x => new Class
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+
+            librariesOfProFile.TuitionTypes = context.TuitionTypes.Where(x => !x.DelFlag).Select(x => new TuitionType
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                Money = x.Money
+            }).ToList();
+
             return librariesOfProFile;
         }
 

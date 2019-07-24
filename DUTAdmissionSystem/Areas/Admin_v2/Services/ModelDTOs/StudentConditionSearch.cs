@@ -11,8 +11,9 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
 
         public int ClassId { set; get; }
 
+        public bool IsAdmitted { set; get; }
 
-        public bool ? Status { set; get; }
+        public int ElectionTypeId { get; set; }
 
         public int CurrentPage { set; get; }
 
@@ -22,7 +23,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
         {
             this.Keyword = "";
             this.ClassId = 0;
-            this.Status = null;
+            this.IsAdmitted = false;
             this.PageSize = 15;
             this.CurrentPage = 1;
         }

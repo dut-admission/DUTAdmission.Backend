@@ -5,12 +5,6 @@ using System.Web;
 
 namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
 {
-    public class Students
-    {
-        public List<StudentResponse> StudentResponses { get; set; }
-        public List<TuitionType> TuitionTypes { get; set; }
-
-    }
     public class StudentResponse
     {
         public int Id { get; set; }
@@ -132,7 +126,6 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
         public bool IsSubmitted { get; set; }
     }
 
