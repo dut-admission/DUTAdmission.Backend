@@ -47,6 +47,13 @@ namespace DUTAdmissionSystem.Areas.Admin_v2
               defaults: new { controller = "AccountGroupManagement", action = "DeleteAccountGroup", id = UrlParameter.Optional }
            );
 
+            //StudentManagementController
+            context.Routes.MapHttpRoute(
+              name: "GetStudents",
+              routeTemplate: "api/admin/student",
+              defaults: new { controller = "StudentManagement", action = "GetStudents", id = UrlParameter.Optional }
+           );
+
 
             context.MapRoute(
                 "Admin_v2_default",
