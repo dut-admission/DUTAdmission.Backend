@@ -54,6 +54,13 @@ namespace DUTAdmissionSystem.Areas.Admin_v2
               defaults: new { controller = "StudentManagement", action = "GetStudents", id = UrlParameter.Optional }
            );
 
+            //DocumentManagement
+
+            context.Routes.MapHttpRoute(
+              name: "UpdateDocument",
+              routeTemplate: "api/admin/document-update",
+              defaults: new { controller = "DocumentManagement", action = "UpdateDocument", id = UrlParameter.Optional }
+           );
 
             context.MapRoute(
                 "Admin_v2_default",

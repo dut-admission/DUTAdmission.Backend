@@ -28,10 +28,8 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                  //Search lớp
                  && (conditionSearch.ClassId == 0 ||
                 (conditionSearch.ClassId != 0 && (x.ClassId == conditionSearch.ClassId)))
-                 //Search ngành
-                // && (conditionSearch.Status == null ||
-                //(conditionSearch.Status != null && (x.IsAdmitted == conditionSearch.Status)))
-                )
+                 && (conditionSearch.Status == null ||
+                (conditionSearch.Status != null && (x.IsAdmitted == conditionSearch.Status))))
                 , conditionSearch.CurrentPage, conditionSearch.PageSize);
 
             var students = new Students();
@@ -160,7 +158,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                     {
                         Id = y.Id,
                         Name = y.DocumentType.Name,
-                        Status = y.IsSubmitted
+                        IsSubmitted = y.IsSubmitted
                     }).ToList(),
                     TotalOfFee = x.Class.Department.Program.Fees + fee,
                     TuitionFee = x.Class.Department.Program.Fees,

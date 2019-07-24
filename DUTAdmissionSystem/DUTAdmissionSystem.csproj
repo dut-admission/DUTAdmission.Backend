@@ -216,9 +216,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin_v2\Admin_v2AreaRegistration.cs" />
     <Compile Include="Areas\Admin_v2\Controllers\AccountGroupManagementController.cs" />
+    <Compile Include="Areas\Admin_v2\Controllers\DocumentManagementController.cs" />
     <Compile Include="Areas\Admin_v2\Controllers\StudentManagementController.cs" />
     <Compile Include="Areas\Admin_v2\Services\Components\AccountGroupManagementService.cs" />
+    <Compile Include="Areas\Admin_v2\Services\Components\DocumentManagement.cs" />
     <Compile Include="Areas\Admin_v2\Services\Components\IAccountGroupManagementService.cs" />
+    <Compile Include="Areas\Admin_v2\Services\Components\IDocumentManagement.cs" />
     <Compile Include="Areas\Admin_v2\Services\Components\IStudentManagementService.cs" />
     <Compile Include="Areas\Admin_v2\Services\Components\StudentManagementService.cs" />
     <Compile Include="Areas\Admin_v2\Services\ModelDTOs\AccountGroup.cs" />
