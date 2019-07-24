@@ -133,7 +133,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public bool Status { get; set; }
+        public bool IsSubmitted { get; set; }
     }
 
     
