@@ -13,7 +13,8 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
         [Required]
         public int StudentId { get; set; }
 
-        [Required]
+        public bool IsSubmitted { get; set; }
+
         public int StatusId { get; set; }
 
         public string ResponseMessage { get; set; }

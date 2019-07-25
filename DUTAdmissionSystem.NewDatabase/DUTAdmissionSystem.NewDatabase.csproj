@@ -90,6 +90,10 @@
     <Compile Include="Migrations\201907211636374_AddIsAdmitedToStudent.Designer.cs">
       <DependentUpon>201907211636374_AddIsAdmitedToStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907241317230_AddSummitedDocument.cs" />
+    <Compile Include="Migrations\201907241317230_AddSummitedDocument.Designer.cs">
+      <DependentUpon>201907241317230_AddSummitedDocument.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schemas\Base\Table.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907211636374_AddIsAdmitedToStudent.resx">
       <DependentUpon>201907211636374_AddIsAdmitedToStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907241317230_AddSummitedDocument.resx">
+      <DependentUpon>201907241317230_AddSummitedDocument.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
