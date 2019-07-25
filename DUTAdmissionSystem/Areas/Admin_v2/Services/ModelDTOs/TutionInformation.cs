@@ -9,5 +9,8 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
     {
         public int IdStudent { get; set; }
         public bool IsPaid { get; set; }
+        public decimal Money { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

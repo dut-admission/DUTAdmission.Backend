@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
 {
-    interface ITuitionManagementService
+    public interface ITuitionManagementService
     {
-        List<TutionInformation> UpdateTutionInformation(TutionInformation tutionInfor);
+        bool UpdateTutionInformation(TutionInformation tutionInfor, int idUser);
     }
 }
