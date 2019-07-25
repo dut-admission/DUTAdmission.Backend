@@ -133,6 +133,8 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
     public class Document
     {
         public int Id { get; set; }
+
+        public int DocumentTypeId { get; set; }
         public string Name { get; set; }
 
         public bool IsSubmitted { get; set; }

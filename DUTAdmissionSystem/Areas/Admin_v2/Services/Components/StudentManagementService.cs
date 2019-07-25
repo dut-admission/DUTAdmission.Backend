@@ -10,6 +10,7 @@ using TblAccount= DUTAdmissionSystem.NewDatabase.Schema.Entity.Account;
 using TblUserInfo= DUTAdmissionSystem.NewDatabase.Schema.Entity.UserInfo;
 using TblStudent= DUTAdmissionSystem.NewDatabase.Schema.Entity.Student;
 using TblClass= DUTAdmissionSystem.NewDatabase.Schema.Entity.Class;
+using TblDocument= DUTAdmissionSystem.NewDatabase.Schema.Entity.Document;
 using EntityFramework.Extensions;
 
 namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
@@ -223,6 +224,19 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                 EnrollmentAreaId=studentResponse.EnrollmentAreaId
             };
 
+            foreach (var document in studentResponse.Documents)
+            {
+                TblDocument newDocument = new TblDocument
+                {
+                    IsSubmitted = false,
+                    DocumentTypeId = document.DocumentTypeId,
+                    StatusId=1
+                };
+                student.Documents.Add(newDocument);
+            }
+
+
+
             TblAccount Account = new TblAccount
             {
                 UserName = studentResponse.IdentificationNumber,
@@ -234,6 +248,8 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
             user.Students.Add(student);
 
             context.UserInfoes.Add(user);
+
+            
 
             context.SaveChanges();
 
