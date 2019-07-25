@@ -62,11 +62,20 @@ namespace DUTAdmissionSystem.Areas.Admin_v2
               defaults: new { controller = "DocumentManagement", action = "UpdateDocument", id = UrlParameter.Optional }
            );
 
+            //tuition Information
+            context.Routes.MapHttpRoute(
+              name: "TuitionInformation",
+              routeTemplate: "api/admin/update-tuition-information",
+              defaults: new { controller = "TuitionManagement", action = "UpdateTutionInformation", id = UrlParameter.Optional }
+           );
+
             context.MapRoute(
                 "Admin_v2_default",
                 "Admin_v2/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+
+           
         }
     }
 }
