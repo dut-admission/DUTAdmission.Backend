@@ -60,11 +60,11 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
 
         public bool HavingCardsOfYouthGroup { get; set; }
 
-        public string ClassName { get; set; }
-        public string DepartmentName { get; set; }
+        public int ClassId { get; set; }
+        public int DepartmentId { get; set; }
         public string FacultyName { get; set; }
         public string ProgramName { get; set; }
-        public string EnrollmentAreaName { get; set; }
+        public int EnrollmentAreaId { get; set; }
         public string ElectionName { get; set; }
 
         public bool IsAdmitted { get; set; }
@@ -72,18 +72,20 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
 
         public int ElectionType { get; set; }
 
-        public List<FamilyMember> FamilyMembers { get; set; }
-        public List<HighSchoolResult> HighSchoolResults { get; set; }
-        public List<Achievement> Achievements { get; set; }
+        public List<FamilyMemberManagemnet> FamilyMembers { get; set; }
+        public List<HighSchoolResultManagemnet> HighSchoolResults { get; set; }
+        public List<AchievementManagemnet> Achievements { get; set; }
         public List<Document> Documents { get; set; }
 
         public double TuitionFee { get; set; }
 
         public double TotalOfFee { get; set; }
+
+        public string IdentificationNumber { get; set; }
     }
 
 
-    public class FamilyMember
+    public class FamilyMemberManagemnet
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -104,7 +106,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
         public string Address { get; set; }
     }
 
-    public class HighSchoolResult
+    public class HighSchoolResultManagemnet
     {
         public int Id { get; set; }
         public int HighSchoolYearId { get; set; }
@@ -116,7 +118,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
         public double GPAScore { get; set; }
     }
 
-    public class Achievement
+    public class AchievementManagemnet
     {
         public int Id { get; set; }
         public int AchievementTypeId { get; set; }
@@ -145,4 +147,5 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.ModelDTOs
         public double Money { get; set; }
         public string Description { get; set; }
     }
+
 }
