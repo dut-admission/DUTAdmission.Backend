@@ -32,6 +32,7 @@ namespace DUTAdmissionSystem
             //admin
 
             container.RegisterType<IAccountGroupManagementService, AccountGroupManagementService>();
+            container.RegisterType<IAccountManagementService, AccountManagementService>();
 
 
 
