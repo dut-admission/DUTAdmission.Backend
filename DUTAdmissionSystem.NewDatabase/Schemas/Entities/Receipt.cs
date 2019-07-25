@@ -11,7 +11,7 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
         public int CollectorUserId { get; set; }
         public int PayerUserId { get; set; }
         public decimal Money { get; set; }
-        public int ReceiptNumber { get; set; }
+        public bool IsPaid { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CollectionDate { get; set; }
