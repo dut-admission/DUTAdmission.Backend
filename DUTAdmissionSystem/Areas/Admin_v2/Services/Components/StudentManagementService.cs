@@ -6,6 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+using TblAccount= DUTAdmissionSystem.NewDatabase.Schema.Entity.Account;
+using TblUserInfo= DUTAdmissionSystem.NewDatabase.Schema.Entity.UserInfo;
+using TblStudent= DUTAdmissionSystem.NewDatabase.Schema.Entity.Student;
+using TblClass= DUTAdmissionSystem.NewDatabase.Schema.Entity.Class;
+using EntityFramework.Extensions;
+
 namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
 {
     public class StudentManagementService : IStudentManagementService
@@ -41,17 +47,17 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                 Description = x.Description
             }).ToList();
             double fee = students.TuitionTypes.Sum(x => x.Money);
-            students.StudentResponses= context.Students.Where(x => !x.DelFlag &&
-                //Search tên hoặc cmnd
-                (conditionSearch.Keyword == null ||
-                (conditionSearch.Keyword != null && ((x.UserInfo.LastName + " " + x.UserInfo.FirstName).Contains(conditionSearch.Keyword)
-                || x.UserInfo.IdentityNumber.Contains(conditionSearch.Keyword) || x.IdentificationNumber.Contains(conditionSearch.Keyword))))
-                 //Search lớp
-                 && (conditionSearch.ClassId == 0 ||
-                (conditionSearch.ClassId != 0 && (x.ClassId == conditionSearch.ClassId)))
-                 //Search ngành
-                 && (conditionSearch.Status == null ||
-                (conditionSearch.Status != null && (x.IsAdmitted == conditionSearch.Status)))).OrderBy(x => x.Id)
+            students.StudentResponses = context.Students.Where(x => !x.DelFlag &&
+                 //Search tên hoặc cmnd
+                 (conditionSearch.Keyword == null ||
+                 (conditionSearch.Keyword != null && ((x.UserInfo.LastName + " " + x.UserInfo.FirstName).Contains(conditionSearch.Keyword)
+                 || x.UserInfo.IdentityNumber.Contains(conditionSearch.Keyword) || x.IdentificationNumber.Contains(conditionSearch.Keyword))))
+                  //Search lớp
+                  && (conditionSearch.ClassId == 0 ||
+                 (conditionSearch.ClassId != 0 && (x.ClassId == conditionSearch.ClassId)))
+                  //Search ngành
+                  && (conditionSearch.Status == null ||
+                 (conditionSearch.Status != null && (x.IsAdmitted == conditionSearch.Status)))).OrderBy(x => x.Id)
                 .Skip((paging.CurrentPage - 1) * paging.PageSize)
                 .Take(paging.PageSize).Select(x => new StudentResponse
                 {
@@ -91,12 +97,12 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
 
                     HighSchoolName = x.HighSchoolName,
 
-                    ClassName = x.Class.Name,
-                    DepartmentName = x.Class.Department.Name,
+                    ClassId = x.ClassId,
+                    DepartmentId = x.Class.DepartmentId,
                     ProgramName = x.Class.Department.Program.Name,
                     FacultyName = x.Class.Department.Faculty.Name,
                     ElectionName = x.ElectionType.Name,
-                    EnrollmentAreaName = x.EnrollmentArea.Name,
+                    EnrollmentAreaId = x.EnrollmentAreaId,
 
                     IsJoinYouthGroup = x.IsJoinYouthGroup,
 
@@ -109,7 +115,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                     IsAdmitted = x.IsAdmitted,
                     IsPaid = x.IsPaid,
                     ElectionType = x.ElectionTypeId,
-                    FamilyMembers = x.FamilyMembers.Where(y => !y.DelFlag).Select(y => new FamilyMember()
+                    FamilyMembers = x.FamilyMembers.Where(y => !y.DelFlag).Select(y => new FamilyMemberManagemnet()
                     {
                         Id = y.Id,
                         FirstName = y.UserInfo.FirstName,
@@ -130,7 +136,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                         YearOfBirth = y.UserInfo.DateOfBirth.Year
                     }
                ).ToList(),
-                    HighSchoolResults = x.HighSchoolResults.Where(y => !x.DelFlag).Select(y => new HighSchoolResult()
+                    HighSchoolResults = x.HighSchoolResults.Where(y => !x.DelFlag).Select(y => new HighSchoolResultManagemnet()
                     {
                         Id = y.Id,
                         ConductTypeId = y.ConductTypeId,
@@ -142,7 +148,7 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                         LearningAbilityName = y.LearningAbility.Level
                     }
                ).ToList(),
-                    Achievements = x.Achievements.Where(y => !x.DelFlag).Select(y => new Achievement()
+                    Achievements = x.Achievements.Where(y => !x.DelFlag).Select(y => new AchievementManagemnet()
                     {
                         Id = y.Id,
                         AchievementLevelId = y.AchievementLevelId,
@@ -163,12 +169,136 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
                     TotalOfFee = x.Class.Department.Program.Fees + fee,
                     TuitionFee = x.Class.Department.Program.Fees,
 
-                    
+
 
 
                 }).ToList();
             return students;
 
+        }
+
+        public StudentResponse AddStudents(StudentResponse studentResponse)
+        {
+
+            TblUserInfo user = new TblUserInfo
+            {
+                FirstName = studentResponse.FirstName,
+                LastName = studentResponse.LastName,
+                Sex = studentResponse.Sex,
+                DateOfBirth = studentResponse.DateOfBirth,
+                PlaceOfBirth = studentResponse.PlaceOfBirth,
+                NationalityId = studentResponse.NationalityId,
+                ReligionId = studentResponse.ReligionId,
+                EthnicId = studentResponse.EthnicId,
+                IdentityNumber = studentResponse.IdentityNumber,
+                DateOfIssue = studentResponse.DateOfIssue,
+                PlaceOfIssue = studentResponse.PlaceOfIssue,
+
+                PermanentResidence = studentResponse.PermanentResidence,
+                Address = studentResponse.Address,
+                PhoneNumber = studentResponse.PhoneNumber,
+                Email = studentResponse.Email,
+
+            };
+            TblStudent student = new TblStudent
+            {
+                CircumstanceTypeId = studentResponse.CircumstanceTypeId,
+                HighSchoolName = studentResponse.HighSchoolName,
+                IsJoinYouthGroup = studentResponse.IsJoinYouthGroup,
+
+                DateOfJoiningYouthGroup = studentResponse.DateOfJoiningYouthGroup,
+
+                PlaceOfJoinYouthGroup = studentResponse.PlaceOfJoinYouthGroup,
+
+                HavingBooksOfYouthGroup = studentResponse.HavingBooksOfYouthGroup,
+                HavingCardsOfYouthGroup = studentResponse.HavingCardsOfYouthGroup,
+
+                ClassId= studentResponse.ClassId,
+
+                IsAdmitted = false,
+                IsPaid = false,
+
+                ElectionTypeId = studentResponse.ElectionType,
+                IdentificationNumber=studentResponse.IdentificationNumber,
+                EnrollmentAreaId=studentResponse.EnrollmentAreaId
+            };
+
+            TblAccount Account = new TblAccount
+            {
+                UserName = studentResponse.IdentificationNumber,
+                Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(studentResponse.IdentificationNumber)),
+                Avatar = "avatar",
+                AccountGroupId =6
+            };
+            user.Accounts.Add(Account);
+            user.Students.Add(student);
+
+            context.UserInfoes.Add(user);
+
+            context.SaveChanges();
+
+            return studentResponse;
+        }
+        public StudentResponse EditStudents(StudentResponse studentResponse)
+        {
+            context.Students.Where(x => x.Id == studentResponse.Id && !x.DelFlag).Update(x => new TblStudent
+            {
+                CircumstanceTypeId = studentResponse.CircumstanceTypeId,
+                HighSchoolName = studentResponse.HighSchoolName,
+                IsJoinYouthGroup = studentResponse.IsJoinYouthGroup,
+
+                DateOfJoiningYouthGroup = studentResponse.DateOfJoiningYouthGroup,
+
+                PlaceOfJoinYouthGroup = studentResponse.PlaceOfJoinYouthGroup,
+
+                HavingBooksOfYouthGroup = studentResponse.HavingBooksOfYouthGroup,
+                HavingCardsOfYouthGroup = studentResponse.HavingCardsOfYouthGroup,
+
+                ClassId = studentResponse.ClassId,
+
+                IsAdmitted = false,
+                IsPaid = false,
+
+                ElectionTypeId = studentResponse.ElectionType,
+                IdentificationNumber=studentResponse.IdentificationNumber,
+                EnrollmentAreaId = studentResponse.EnrollmentAreaId
+            });
+            var UserId = context.Students.FirstOrDefault(x => x.Id == studentResponse.Id).UserInfoId;
+
+            context.UserInfoes.Where(x => x.Id == UserId && !x.DelFlag).Update(x => new TblUserInfo
+            {
+                FirstName = studentResponse.FirstName,
+                LastName = studentResponse.LastName,
+                Sex = studentResponse.Sex,
+                DateOfBirth = studentResponse.DateOfBirth,
+                PlaceOfBirth = studentResponse.PlaceOfBirth,
+                NationalityId = studentResponse.NationalityId,
+                ReligionId = studentResponse.ReligionId,
+                EthnicId = studentResponse.EthnicId,
+                IdentityNumber = studentResponse.IdentityNumber,
+                DateOfIssue = studentResponse.DateOfIssue,
+                PlaceOfIssue = studentResponse.PlaceOfIssue,
+
+                PermanentResidence = studentResponse.PermanentResidence,
+                Address = studentResponse.Address,
+                PhoneNumber = studentResponse.PhoneNumber,
+                Email = studentResponse.Email
+            });
+
+            context.SaveChanges();
+            return studentResponse;
+        }
+        public bool DeleteStudents(int id)
+        {
+            var student = context.Students.FirstOrDefault(x => x.Id == id && !x.DelFlag);
+            if (student == null)
+            {
+                return false;
+            }
+            student.DelFlag = true;
+            student.UserInfo.DelFlag = true;
+            context.SaveChanges();
+            return true;
         }
     }
 }
