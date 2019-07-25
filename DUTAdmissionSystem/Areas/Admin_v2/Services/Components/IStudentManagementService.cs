@@ -11,6 +11,11 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
     {
         Students GetListStudents(StudentConditionSearch conditionSearch);
 
-        
+        StudentResponse AddStudents(StudentResponse studentResponse);
+        StudentResponse EditStudents(StudentResponse studentResponse);
+        bool DeleteStudents(int id);
+
+
+
     }
 }
