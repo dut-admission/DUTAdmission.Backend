@@ -15,6 +15,10 @@ namespace DUTAdmissionSystem.Areas.Admin_v2.Services.Components
         public bool UpdateTutionInformation(TutionInformation tutionInfor, int idUser)
         {
             var student = context.Students.FirstOrDefault(x => x.Id == tutionInfor.IdStudent && !x.DelFlag);
+            if(student == null)
+            {
+                return false;
+            }
             student.IsPaid = tutionInfor.IsPaid;
             context.Receipts.Add(new NewDatabase.Schema.Entity.Receipt()
             {
