@@ -1,11 +1,11 @@
 ﻿using DUTAdmissionSystem.Commons;
-using DUTAdmissionSystem.Database;
-using DUTAdmissionSystem.Database.Schema.Entity;
+using DUTAdmissionSystem.NewDatabase;
+using DUTAdmissionSystem.NewDatabase.Schema.Entity;
+using OfficeOpenXml;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Web;
 using System.Web.Mvc;
 using Excel = Microsoft.Office.Interop.Excel;
 
@@ -16,17 +16,31 @@ namespace DUTAdmissionSystem.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            // getExcelFile();
-            addDocumentForStudent();
             return View();
         }
-        public void getExcelFile()
+
+        private void TestFileExcel(string envoiceFilePath, string docsFilePath)
+        {
+            FileInfo envoiceFile = new FileInfo(Server.MapPath("~/App_Resources/Data/Envoice.xlsx"));
+            using (ExcelPackage package = new ExcelPackage(envoiceFile))
+            {
+                package.SaveAs(new FileInfo(Server.MapPath(envoiceFilePath)));
+            }
+            FileInfo docsFile = new FileInfo(Server.MapPath("~/App_Resources/Data/AdmittedDocs.xlsx"));
+            using (ExcelPackage package = new ExcelPackage(docsFile))
+            {
+                package.SaveAs(new FileInfo(Server.MapPath(docsFilePath)));
+            }
+
+        }
+
+        public void ImportSinhVien()
         {
             DataContext context = new DataContext();
 
             //Create COM Objects. Create a COM object for everything that is referenced
             Excel.Application xlApp = new Excel.Application();
-            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\Users\Aiden\Desktop\data.xlsx");
+            Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:/Users/Aiden/Documents/DUTAdmission/resources/DUTAdmission.Backend/DUTAdmissionSystem/App_Resources/Data/TuyenThang.xlsx");
             Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
             Excel.Range xlRange = xlWorksheet.UsedRange;
 
@@ -35,58 +49,29 @@ namespace DUTAdmissionSystem.Controllers
 
             //iterate over the rows and columns and print to the console as it appears in the file
             //excel is not zero based!!
-            for (int i = 1; i <= 50; i++)
+            for (int i = 2; i <= 106; i++)
             {
                 var user = new UserInfo()
                 {
-                    FirstName = xlRange.Cells[i, 4].Value2.ToString(),
-                    LastName = xlRange.Cells[i, 3].Value2.ToString(),
-                    Avatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_S9DUg_S9CHf-DxgcNbxYzZmibzud95wxTQslnreREOxA1ch1",
-                    BirthInfo = new BirthInfo()
-                    {
-                        Sex = true,
-                        DateOfBirth = DateTime.ParseExact(xlRange.Cells[i, 5].Value2.ToString(), "dd/MM/yyyy", null),
-                        PlaceOfBirth = xlRange.Cells[i, 10].Value2.ToString()
-                    },
-                    ContactInfo = new ContactInfo()
-                    {
-                        Address = xlRange.Cells[i, 10].Value2.ToString(),
-                        Email = xlRange.Cells[i, 8].Value2.ToString(),
-                        PhoneNumber = xlRange.Cells[i, 7].Value2.ToString()
-                    },
-                    IdentityInfo = new IdentityInfo()
-                    {
-                        IdentityNumber = xlRange.Cells[i, 11].Value2.ToString(),
-                        DateOfIssue = DateTime.Now,
-                        PlaceOfIssue = "Việt Nam"
-                    }
+                    FirstName = xlRange.Cells[i, 2].Value2.ToString(),
+                    LastName = xlRange.Cells[i, 1].Value2.ToString(),
                 };
 
                 var student = new Student()
                 {
                     UserInfo = user,
-                    IdentificationNumber = xlRange.Cells[i, 2].Value2.ToString(),
-                    HightSchoolName = "THPT",
+                    IdentificationNumber = xlRange.Cells[i, 4].Value2.ToString(),
                     ElectionTypeId = 1,
-                    YouthGroupInfo = null,
                     CircumstanceTypeId = 1,
                     EnrollmentAreaId = Convert.ToInt32(xlRange.Cells[i, 9].Value2.ToString()),
-                    ClassId = Convert.ToInt32(xlRange.Cells[i, 1].Value2.ToString()),
-                    PersonalInfo = new PersonalInfo()
-                    {
-                        EthnicId = 1,
-                        NationalityId = 1,
-                        ReligionId = 1,
-                        PermanentResidence = xlRange.Cells[i, 10].Value2.ToString()
-                    },
+                    ClassId = Convert.ToInt32(xlRange.Cells[i, 1].Value2.ToString())
                 };
 
                 var account = new Account()
                 {
                     UserInfo = user,
                     AccountGroupId = 2,
-                    Token = "",
-                    UserName = xlRange.Cells[i, 2].Value2.ToString(),
+                    UserName = xlRange.Cells[i, 4].Value2.ToString(),
                     Password = FunctionCommon.GetMd5(FunctionCommon.GetSimpleMd5(xlRange.Cells[i, 2].Value2.ToString()))
                 };
 

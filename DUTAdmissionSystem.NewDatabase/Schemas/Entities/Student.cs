@@ -57,11 +57,15 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
 
         public bool HavingBooksOfYouthGroup { get; set; }
 
+        public bool HavingCardsOfYouthGroup { get; set; }
+
         public bool IsAdmitted { get; set; }
-        
+
         public bool IsPaid { get; set; }
 
-        public bool HavingCardsOfYouthGroup { get; set; }
+        public string DocumentFilePath { get; set; }
+
+        public string ReceiptFilePath { get; set; }
 
         public virtual CircumstanceType CircumstanceType { get; set; }
 
