@@ -54,6 +54,24 @@ namespace DUTAdmissionSystem.Areas.Admin_v2
               defaults: new { controller = "StudentManagement", action = "GetStudents", id = UrlParameter.Optional }
            );
 
+            context.Routes.MapHttpRoute(
+              name: "UpdateStudent",
+              routeTemplate: "api/admin/update-student",
+              defaults: new { controller = "StudentManagement", action = "UpdateStudent", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "AddStudent",
+              routeTemplate: "api/admin/add-student",
+              defaults: new { controller = "StudentManagement", action = "AddStudent", id = UrlParameter.Optional }
+           );
+
+            context.Routes.MapHttpRoute(
+              name: "DeleteStudent",
+              routeTemplate: "api/admin/delete-student/{id}",
+              defaults: new { controller = "StudentManagement", action = "DeleteStudent", id = UrlParameter.Optional }
+           );
+
             //DocumentManagement
 
             context.Routes.MapHttpRoute(
@@ -62,11 +80,20 @@ namespace DUTAdmissionSystem.Areas.Admin_v2
               defaults: new { controller = "DocumentManagement", action = "UpdateDocument", id = UrlParameter.Optional }
            );
 
+            //tuition Information
+            context.Routes.MapHttpRoute(
+              name: "TuitionInformation",
+              routeTemplate: "api/admin/update-tuition-information",
+              defaults: new { controller = "TuitionManagement", action = "UpdateTutionInformation", id = UrlParameter.Optional }
+           );
+
             context.MapRoute(
                 "Admin_v2_default",
                 "Admin_v2/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
+
+           
         }
     }
 }
