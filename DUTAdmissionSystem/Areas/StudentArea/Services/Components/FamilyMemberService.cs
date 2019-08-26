@@ -40,11 +40,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
         public FamilyMember AddFamilyMember(FamilyMember family, int idUser)
         {
             var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
-            if (context.FamilyMembers.FirstOrDefault(x => x.StudentId == studentId && x.Id == family.RelationId && !x.DelFlag) != null)
-            {
-                return null;
-            }
-            family.Id = context.HighSchoolResults.Max(x => x.Id) + 1;
+            family.Id = context.FamilyMembers.Max(x => x.Id) + 1;
             var userInfo = new NewDatabase.Schema.Entity.UserInfo
             {
                 FirstName = family.FirstName,
@@ -58,10 +54,9 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 ReligionId = family.ReligionId,
                 PhoneNumber = family.PhoneNumber,
                 Address = family.Address,
-                Email ="email@gmail.com"
-
+                Email = family.Email
             };
-            context.UserInfoes.Add(userInfo);
+
             var familyMember = new NewDatabase.Schema.Entity.FamilyMember
             {
                 CareerTypeId = family.CareerTypeId,
@@ -88,7 +83,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
                 RelationId = family.RelationId,
                 RelationName = context.RelationTypes.FirstOrDefault(x => x.Id == family.RelationId && !x.DelFlag).Name,
                 ReligionId = family.ReligionId,
-                ReligionName = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,
+                ReligionName = context.Religions.FirstOrDefault(x => x.Id == family.ReligionId && !x.DelFlag).Name,
                 YearOfBirth = family.YearOfBirth
             };
         }
@@ -96,48 +91,48 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
         public FamilyMember UpdateFamilyMember(FamilyMember family, int idUser)
         {
             var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser && !x.DelFlag).Id;
-            if (context.FamilyMembers.FirstOrDefault(x => x.StudentId == studentId && x.Id == family.RelationId && !x.DelFlag) != null)
+            var familyMember = context.FamilyMembers.FirstOrDefault(x => x.Id == family.Id && !x.DelFlag);
+            if (familyMember == null)
             {
                 return null;
             }
-            var familyMember = context.FamilyMembers.FirstOrDefault(x => x.Id == family.Id && !x.DelFlag);
-            familyMember.CareerTypeId           = family.CareerTypeId;
-            familyMember.RelationId             = family.RelationId;
-            familyMember.UserInfo.FirstName     = family.FirstName;
-            familyMember.UserInfo.LastName      = family.LastName;
-            familyMember.UserInfo.Address       = family.Address;
-            familyMember.UserInfo.PhoneNumber   = family.PhoneNumber;
-            familyMember.UserInfo.DateOfBirth   = new DateTime(family.YearOfBirth, 1, 1);
-            familyMember.UserInfo.EthnicId      = family.EthnicId;
+            familyMember.CareerTypeId = family.CareerTypeId;
+            familyMember.RelationId = family.RelationId;
+            familyMember.UserInfo.FirstName = family.FirstName;
+            familyMember.UserInfo.LastName = family.LastName;
+            familyMember.UserInfo.Address = family.Address;
+            familyMember.UserInfo.PhoneNumber = family.PhoneNumber;
+            familyMember.UserInfo.Email = family.Email;
+            familyMember.UserInfo.DateOfBirth = new DateTime(family.YearOfBirth, 1, 1);
+            familyMember.UserInfo.EthnicId = family.EthnicId;
             familyMember.UserInfo.NationalityId = family.NationalityId;
-            familyMember.UserInfo.ReligionId    = family.ReligionId;
+            familyMember.UserInfo.ReligionId = family.ReligionId;
             familyMember.RelationId = family.RelationId;
             context.SaveChanges();
             return new FamilyMember()
             {
-                Id              = family.Id,
-                FirstName       = family.FirstName,
-                LastName        = family.LastName,
-                Address         = family.Address,
-                CareerTypeId    = family.CareerTypeId,
-                CareerTypeName  = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,
-                Email           = family.Email,
-                EthnicId        = family.EthnicId,
-                EthnicName      = context.Ethnics.FirstOrDefault(x => x.Id == family.EthnicId && !x.DelFlag).Name,
-                NationalityId   = family.NationalityId,
+                Id = family.Id,
+                FirstName = family.FirstName,
+                LastName = family.LastName,
+                Address = family.Address,
+                CareerTypeId = family.CareerTypeId,
+                CareerTypeName = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,
+                Email = family.Email,
+                EthnicId = family.EthnicId,
+                EthnicName = context.Ethnics.FirstOrDefault(x => x.Id == family.EthnicId && !x.DelFlag).Name,
+                NationalityId = family.NationalityId,
                 NationalityName = context.Nationalities.FirstOrDefault(x => x.Id == family.NationalityId && !x.DelFlag).Name,
-                PhoneNumber     = family.PhoneNumber,
-                RelationId      = family.RelationId,
-                RelationName    = context.RelationTypes.FirstOrDefault(x => x.Id == family.RelationId && !x.DelFlag).Name,
-                ReligionId      = family.ReligionId,
-                ReligionName    = context.CareerTypes.FirstOrDefault(x => x.Id == family.CareerTypeId && !x.DelFlag).Name,
-                YearOfBirth     = family.YearOfBirth
+                PhoneNumber = family.PhoneNumber,
+                RelationId = family.RelationId,
+                RelationName = context.RelationTypes.FirstOrDefault(x => x.Id == family.RelationId && !x.DelFlag).Name,
+                ReligionId = family.ReligionId,
+                ReligionName = context.Religions.FirstOrDefault(x => x.Id == family.ReligionId && !x.DelFlag).Name,
+                YearOfBirth = family.YearOfBirth
             };
         }
         public bool DeleteFamilyMember(int idFamily, int idUser)
         {
-            var studentId = context.Students.FirstOrDefault(x => x.UserInfoId == idUser).Id;
-            var result = context.FamilyMembers.FirstOrDefault(x => x.StudentId == studentId && x.Id == idFamily && !x.DelFlag);
+            var result = context.FamilyMembers.FirstOrDefault(x => x.Id == idFamily && !x.DelFlag);
             if (result == null)
             {
                 return false;

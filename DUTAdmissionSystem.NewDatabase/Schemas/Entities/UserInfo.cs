@@ -31,7 +31,6 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
         [Column(TypeName = "datetime2")]
         public DateTime DateOfBirth { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string PlaceOfBirth { get; set; }
 
@@ -42,11 +41,9 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
         [StringLength(15)]
         public string PhoneNumber { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string Email { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string Address { get; set; }
 
