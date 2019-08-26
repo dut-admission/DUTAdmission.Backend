@@ -2,6 +2,7 @@
 using DUTAdmissionSystem.Areas.StudentArea.Services.Components;
 using DUTAdmissionSystem.Areas.StudentArea.Services.ModelDTOs;
 using DUTAdmissionSystem.Commons;
+using DUTAdmissionSystem.Fillters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
         }
         [HttpPost]
         [ActionName("AddFamilyMember")]
-        // [Authorize]
+        [DUTAuthorize]
         public IHttpActionResult AddFamilyMember([FromBody]FamilyMember familyMember)
         {
             try
@@ -47,10 +48,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 familyMember = _familyMemberService.AddFamilyMember(familyMember, idUser);
-                if (familyMember == null)
-                {
-                    return BadRequest("Mối quan hệ này đã tồn tại.");
-                };
                 return Ok(familyMember);
             }
             catch (System.Exception e)
@@ -60,6 +57,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
         }
         [HttpPut]
         [ActionName("UpdateFamilyMember")]
+        [DUTAuthorize]
         public IHttpActionResult UpdateHighSchoolResult([FromBody]FamilyMember familyMember)
         {
             try
@@ -70,7 +68,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 familyMember = _familyMemberService.UpdateFamilyMember(familyMember, idUser);
                 if (familyMember == null)
                 {
-                    return BadRequest("Mối quan hệ này đã tồn tại.");
+                    return NotFound();
                 };
                 return Ok(familyMember);
             }
@@ -81,6 +79,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
         }
         [HttpDelete]
         [ActionName("DeleteFamilyMember")]
+        [DUTAuthorize]
         public IHttpActionResult DeleteFamilyMember(int id)
         {
             try
@@ -88,7 +87,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
                 int idUser = FunctionCommon.GetIdUserByToken(Request.GetAuthorizationHeader());
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
-                _familyMemberService.DeleteFamilyMember(idUser, id);
+                _familyMemberService.DeleteFamilyMember(id, idUser);
                 return Ok();
             }
             catch (System.Exception e)

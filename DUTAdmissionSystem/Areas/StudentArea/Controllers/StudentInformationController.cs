@@ -25,6 +25,7 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Controllers
 
         [HttpGet]
         [ActionName("GetProfile")]
+        [DUTAuthorize]
         public IHttpActionResult GetProfile()
         {
             try

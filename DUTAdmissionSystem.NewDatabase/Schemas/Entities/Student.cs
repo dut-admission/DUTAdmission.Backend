@@ -41,14 +41,12 @@ namespace DUTAdmissionSystem.NewDatabase.Schema.Entity
         [Required]
         public int ElectionTypeId { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string HighSchoolName { get; set; }
 
         [Required]
         public bool IsJoinYouthGroup { get; set; }
 
-        [Required]
         [Column(TypeName = "datetime2")]
         public DateTime DateOfJoiningYouthGroup { get; set; }
 

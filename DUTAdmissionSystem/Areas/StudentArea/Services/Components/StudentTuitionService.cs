@@ -116,7 +116,6 @@ namespace DUTAdmissionSystem.Areas.StudentArea.Services.Components
             userInfo.PhoneNumber = profile.PhoneNumber;
             userInfo.Email = profile.Email;
             userInfo.Students.FirstOrDefault(y => !y.DelFlag).HighSchoolName = profile.HighSchoolName;
-            //userInfo.Students.FirstOrDefault(y => !y.DelFlag).IsJoinYouthGroup = profile.IsJoinYouthGroup;
             userInfo.Students.FirstOrDefault(y => !y.DelFlag).DateOfJoiningYouthGroup = profile.DateOfJoiningYouthGroup;
             userInfo.Students.FirstOrDefault(y => !y.DelFlag).PlaceOfJoinYouthGroup = profile.PlaceOfJoinYouthGroup;
             userInfo.Students.FirstOrDefault(y => !y.DelFlag).HavingBooksOfYouthGroup = profile.HavingBooksOfYouthGroup;

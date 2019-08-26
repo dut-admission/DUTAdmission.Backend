@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DUTAdmissionSystem.Database
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DUTAdmissionSystem.NewDatabase", "DUTAdmissionSystem.NewDatabase\DUTAdmissionSystem.NewDatabase.csproj", "{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DUTAdmissionSystem.Window", "DUTAdmissionSystem.Window\DUTAdmissionSystem.Window.csproj", "{A2BF8BFC-79AD-4F86-B269-714B22A54882}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8EEBB97-FD3D-4B52-9B72-6E8F87553DA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BF8BFC-79AD-4F86-B269-714B22A54882}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BF8BFC-79AD-4F86-B269-714B22A54882}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BF8BFC-79AD-4F86-B269-714B22A54882}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BF8BFC-79AD-4F86-B269-714B22A54882}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

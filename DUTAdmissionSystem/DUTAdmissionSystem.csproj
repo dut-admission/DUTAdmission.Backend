@@ -288,8 +288,6 @@
     <Compile Include="Commons\Paging.cs" />
     <Compile Include="Commons\SendMail.cs" />
     <Compile Include="Commons\TokenValidationHandler.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Fillters\DUTAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -309,26 +307,19 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Resources\Data\" />
     <Folder Include="Areas\Admin_v2\Views\Shared\" />
     <Folder Include="Areas\Authentication\Views\Shared\" />
     <Folder Include="Areas\StudentArea\Views\" />
     <Folder Include="Avatar\" />
     <Folder Include="Document\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Authentication\Views\web.config" />
     <Content Include="Areas\Admin_v2\Views\web.config" />
-    <Content Include="App_Resources\Data\Invoice.xls" />
-    <Content Include="App_Resources\Data\EnvoiceSheet.xlsx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
